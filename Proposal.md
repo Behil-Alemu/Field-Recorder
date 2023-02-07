@@ -5,6 +5,11 @@ data entry and analysis app. Keep track of sample found and pin the location of 
 
 1. What tech stack will you use for your final project? We recommend that you use React and Node for this project, however if you are extremely interested in becoming a Python developer you are welcome to use Python/Flask for this project. 
 >React.js for frontend Python/flask for the backend. How to connect React and Python reference https://dev.to/nagatodev/how-to-connect-flask-to-reactjs-1k8i
+- Possible UI to use 
+> - [Tailwindui](https://tailwindui.com/)
+> - [Reactstrap](https://reactstrap.github.io/?path=/story/home-installation--page)
+> - [Chakra-ui](https://chakra-ui.com/)
+> - [Material-UI](https://mui.com/)
     
 2. Is the front-end UI or the back-end going to be the focus of your project? Or are you going to make an evenly focused full-stack application? 
 
