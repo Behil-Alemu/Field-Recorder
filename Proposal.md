@@ -4,7 +4,7 @@ data entry and analysis app. Keep track of sample found and pin the location of 
 
 
 1. What tech stack will you use for your final project? We recommend that you use React and Node for this project, however if you are extremely interested in becoming a Python developer you are welcome to use Python/Flask for this project. 
->React.js for frontend Python/flask for the backend. How to connect React and Python reference https://dev.to/nagatodev/how-to-connect-flask-to-reactjs-1k8i
+>React.js for frontend Python/flask for the backend. How to connect React and Python reference https://dev.to/nagatodev/how-to-connect-flask-to-reactjs-1k8i. SQl for data base.
 - Possible UI to use 
 > - [Tailwindui](https://tailwindui.com/)
 > - [Reactstrap](https://reactstrap.github.io/?path=/story/home-installation--page)
@@ -41,9 +41,9 @@ data entry and analysis app. Keep track of sample found and pin the location of 
 
 
 - What kinds of issues might you run into with your API? This is especially important if you are creating your own API, web scraping produces notoriously messy data. 
->Creating an interactive map sounds like trouble. When the app is opened for the first time, it asks for locations access. How to do that seems hard. Take a picture of sample(how to access camera). 
+>Creating an interactive map sounds like trouble. When the app is opened for the first time, it asks for locations access. The map has to be easy to use, with options to zoom in/out, pan, and add/remove pins. How to do that seems hard. Take a picture of sample(how to access camera). Error handling and validation for user inputs
 - Is there any sensitive information you need to secure? 
->Sensitive information would be user's login information.
+>Sensitive information would be user's login information. Encrypted sensitive information with authentication and authorization
 - What functionality will your app include? 
     - [ ] Login 
     - [ ] search sample scientific name based on common name
@@ -63,4 +63,5 @@ data entry and analysis app. Keep track of sample found and pin the location of 
 - What features make your site more than a CRUD app? What are your stretch goals? 
     - [ ] accessing camera to take picture of samples is a stretch goal
     - [ ] when clicking on the im, it would have a component that displays the image better
+    - [ ] Graph data and be able to see trend. Data analysis
 
