@@ -35,9 +35,9 @@ data entry and analysis app. Keep track of sample found and pin the location of 
 - What does your database schema look like? 
 
 **Tree Species in Metro Atlanta Area**
-| Sample ID | Type | Common name  | Scientific name | Location  | Image(optional) | Note | TimeStamp |
-| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
-| 1 | plant | oak tree | Quercus |around the corner(pinned location) | pic.png | est 20 ft tall | 01:10 pm 01/04/2023 |
+| Sample ID | Type | Common name  | Scientific name |quantity| Location  | Image(optional) | Note | TimeStamp | 
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |----------- |
+| 1 | plant | oak tree | Quercus |5|around the corner(pinned location) | pic.png | est 20 ft tall | 01:10 pm 01/04/2023 |
 
 
 - What kinds of issues might you run into with your API? This is especially important if you are creating your own API, web scraping produces notoriously messy data. 
@@ -62,6 +62,6 @@ data entry and analysis app. Keep track of sample found and pin the location of 
 
 - What features make your site more than a CRUD app? What are your stretch goals? 
     - [ ] accessing camera to take picture of samples is a stretch goal
-    - [ ] when clicking on the im, it would have a component that displays the image better
+    - [ ] when clicking on the image, it would have a component that displays the image better
     - [ ] Graph data and be able to see trend. Data analysis
 
