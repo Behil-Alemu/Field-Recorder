@@ -35,9 +35,9 @@ data entry and analysis app. Keep track of sample found and pin the location of 
 - What does your database schema look like? 
 
 **Tree Species in Metro Atlanta Area**
-| Sample ID | Type | Common name  | Scientific name |quantity| Location  | Image(optional) | Note | TimeStamp | 
+| Sample ID | Common name  | Scientific name |quantity| Location  | Image(optional) | Note | TimeStamp | 
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |----------- |
-| 1 | plant | oak tree | Quercus |5|around the corner(pinned location) | pic.png | est 20 ft tall | 01:10 pm 01/04/2023 |
+| 1 | oak tree | Quercus |5|41°24'12.2"N 2°10'26.5"E | pic.png | est 20 ft tall | 01:10 pm 01/04/2023 |
 
 
 - What kinds of issues might you run into with your API? This is especially important if you are creating your own API, web scraping produces notoriously messy data. 
