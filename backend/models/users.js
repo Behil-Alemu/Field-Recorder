@@ -9,8 +9,8 @@ const getUserInfo  = require('./usersHelper/getUserInfo');
 class User {
 	/** authenticate user with username, password.*/
 	static async authenticate(username, password) {
-		const user = await authenticate(username, password);
-		return user;
+		const userToken = await authenticate(username, password);
+		return userToken;
 	}
 
 	/** Register user with data.

@@ -17,10 +17,10 @@ async function authenticate(username, password) {
               password,
               first_name AS "firstName",
               last_name AS "lastName",
-              email,
+              email
        FROM users
        WHERE username = $1`,
-		[ username ]
+		[ username ],
 	);
 
 	const user = result.rows[0];
