@@ -1,23 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './logo.png';
 import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
+import useLocalStorage from "./hooks/useLocalStorage";
+import Navigation from "./routes-nav/Navigation";
+import Routes from "./routes-nav/Routes";
+import LoadingSpinner from "./common/LoadingSpinner";
+import FieldRecorderApi from "./api/api";
+import UserContext from "./auth/UserContext";
+import jwt from "jsonwebtoken";
+
+// Key name for storing token in localStorage for "remember me" re-login
+export const TOKEN_STORAGE_ID = "jobly-token";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          hi
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
