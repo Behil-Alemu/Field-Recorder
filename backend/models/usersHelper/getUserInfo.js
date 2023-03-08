@@ -12,14 +12,15 @@ const { NotFoundError } = require('../../expressError');
 
 async function getUserInfo(username) {
 	const userRes = await db.query(
-		`SELECT username,
-                first_name AS "firstName",
-                last_name AS "lastName",
-                email,
-         FROM users
-         WHERE username = $1`,
-		[ username ]
-	);
+      `SELECT username,
+              first_name AS "firstName",
+              last_name AS "lastName",
+              email
+       FROM users
+       WHERE username = $1`,
+      [username]
+    );
+    
 
 	const user = userRes.rows[0];
 

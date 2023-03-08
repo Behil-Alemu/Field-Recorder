@@ -24,7 +24,7 @@ CREATE TABLE sample_entry (
   image_url TEXT,
   note TEXT DEFAULT 'None',
   timestamp TIMESTAMP DEFAULT NOW() NOT NULL,
-  username VARCHAR(25) NOT NULL,
+  π VARCHAR(25) NOT NULL,
   folder_id INTEGER NOT NULL,
   CONSTRAINT fk_users_username
     FOREIGN KEY (username)

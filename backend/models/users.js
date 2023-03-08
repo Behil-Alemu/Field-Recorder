@@ -31,6 +31,7 @@ class User {
    */
 
 	static async update(username, data) {
+        
 		const user = await update(username, data);
 		return user;
 	}

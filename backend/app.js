@@ -10,6 +10,7 @@ const { NotFoundError } = require('./expressError');
 const { authenticateJWT } = require('./middleware/auth');
 const authRoutes = require('./routes/auth');
 const usersRoutes = require('./routes/users');
+const sampleEntryRoutes = require('./routes/sample-entry');
 /**
  *morgan- log details about incoming HTTP requests, such as the request method, URL, response status, and response time.
  */
@@ -24,6 +25,7 @@ app.use(authenticateJWT);
 
 app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);
+//app.use('/sample-entry', sampleEntryRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use(function(req, res, next) {
