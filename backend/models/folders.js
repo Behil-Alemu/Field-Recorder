@@ -6,9 +6,7 @@ const { sqlForPartialUpdate } = require('../helpers/sql');
 
 class Folder {
 	/**add folder info to sample_col data.
-   *
    * data should be { folder_name }
-   *
    * Returns { id, folderName, username }
    **/
 
@@ -37,14 +35,10 @@ class Folder {
 	}
 
 	/** Update folder data with `data`.
-   *
    * Data can include: { folder_name}
-   *
    * Returns { id, commonName, username  }
-   *
    * Throws NotFoundError if not found.
    */
-
 	static async update(id, data) {
 		const { setCols, values } = sqlForPartialUpdate(data, {
 			folderName: 'folder_name'
@@ -65,8 +59,6 @@ class Folder {
 	}
 
 	/** Delete given folder from database; returns undefined.
-   *
-   * Throws NotFoundError sample id is not found.
    **/
 	static async remove(id) {
 		const result = await db.query(

@@ -11,6 +11,7 @@ const { authenticateJWT } = require('./middleware/auth');
 const authRoutes = require('./routes/auth');
 const usersRoutes = require('./routes/users');
 const sampleEntryRoutes = require('./routes/sample-entry');
+const foldersRoutes = require('./routes/folders');
 /**
  *morgan- log details about incoming HTTP requests, such as the request method, URL, response status, and response time.
  */
@@ -25,7 +26,8 @@ app.use(authenticateJWT);
 
 app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);
-//app.use('/sample-entry', sampleEntryRoutes);
+app.use('/sample-entry', sampleEntryRoutes);
+app.use('/folders', foldersRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use(function(req, res, next) {

@@ -1,28 +1,33 @@
-import logo from './logo.png';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import useLocalStorage from './hooks/useLocalStorage';
-import NavigationBar from './Routes/NavigationBar';
-import Routes from '../src/Routes/Routes';
+import NavigationBar from './routes/NavigationBar';
+import Routes from './routes/Routes';
 import LoadingSpinner from './helpers/LoadingSpinner';
-import FieldRecorderApi from './api/api';
+import UsersApi from './api/UsersApi';
 import UserContext from './auth/UserContext';
 import jwt from 'jsonwebtoken';
 
-// Key name for storing token in localStorage for "remember me" re-login
+/** 
+ * - infoLoaded: has user data been pulled from API?
+ *   else show  "loading..."
+ * - currentUser: user obj from API. passed via userContext to check is user is logged in
+ * - token: real token is assigned after sign up
+ *  
+ *   localStorage and synced to there via the useLocalStorage hook.
+ *
+ * App -> Routes
+ */
+
 export const TOKEN_STORAGE_ID = 'Random token';
 
 function App() {
-  const [ infoReceived, setInfoReceived ] = useState(false);
+	const [ infoReceived, setInfoReceived ] = useState(false);
 	const [ currentUser, setCurrentUser ] = useState(null);
 	const [ token, setToken ] = useLocalStorage(TOKEN_STORAGE_ID);
 
 	console.debug('App', 'infoReceived=', infoReceived, 'currentUser=', currentUser, 'token=', token);
-
-  // Load user info from API. Until a user is logged in and they have a token,
-  // this should not run. It only needs to re-run when a user logs out, so
-  // the value of the token is a dependency for this effect.
 
 	useEffect(
 		function fetchUserData() {
@@ -30,12 +35,9 @@ function App() {
 				if (token) {
 					try {
 						let { username } = jwt.decode(token);
-						FieldRecorderApi.token = token;
+						UsersApi.token = token;
 
-						let currentUser = await FieldRecorderApi.getCurrentUser(username);
-
-						// console.log("username",currentUser)
-
+						let currentUser = await UsersApi.getCurrentUser(username);
 						setCurrentUser(currentUser);
 					} catch (err) {
 						console.log(err);
@@ -46,10 +48,9 @@ function App() {
 			}
 			setInfoReceived(false);
 			getUser();
-
-		},[ token ]
+		},
+		[ token ]
 	);
-
 
 	/** Handles site-wide signup.
    *
@@ -59,7 +60,7 @@ function App() {
    */
 	async function signup(signupData) {
 		try {
-			let token = await FieldRecorderApi.signup(signupData);
+			let token = await UsersApi.signup(signupData);
 			setToken(token);
 			return { success: true };
 		} catch (errors) {
@@ -74,7 +75,7 @@ function App() {
      */
 	async function login(loginData) {
 		try {
-			let token = await FieldRecorderApi.login(loginData);
+			let token = await UsersApi.login(loginData);
 			setToken(token);
 			return { success: true };
 		} catch (errors) {
@@ -90,15 +91,14 @@ function App() {
 	if (!infoReceived) return <LoadingSpinner />;
 
 	return (
-    <BrowserRouter>
-    <UserContext.Provider
-        value={{ currentUser, setCurrentUser }}>
-      <div className="App">
-        <NavigationBar logout={logout} />
-        <Routes login={login} signup={signup} />
-      </div>
-    </UserContext.Provider>
-  </BrowserRouter>
+		<BrowserRouter>
+			<UserContext.Provider value={{ currentUser, setCurrentUser }}>
+				<div className="App">
+					<NavigationBar logout={logout} />
+					<Routes login={login} signup={signup} />
+				</div>
+			</UserContext.Provider>
+		</BrowserRouter>
 	);
 }
 

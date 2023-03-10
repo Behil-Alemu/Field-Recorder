@@ -6,7 +6,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
  * Static class tying together methods used to get/send to to the API.
  * */
 
-class FieldRecorderApi {
+class UserApi {
 	// the token for interactive with the API will be stored here.
 	static token;
 
@@ -14,7 +14,7 @@ class FieldRecorderApi {
 		console.debug('API Call:', endpoint, data, method);
 
 		const url = `${BASE_URL}/${endpoint}`;
-		const headers = { Authorization: `Bearer ${FieldRecorderApi.token}` };
+		const headers = { Authorization: `Bearer ${UserApi.token}` };
 		const params = method === 'get' ? data : {};
 
 		try {
@@ -48,12 +48,13 @@ class FieldRecorderApi {
 		return res.token;
 	}
 
-	/** Save user profile page. */
+	/** Edit user profile page. */
 
-	static async saveProfile(username, data) {
+	static async editProfile(username, data) {
 		let res = await this.request(`users/${username}`, data, 'patch');
 		return res.user;
 	}
+	
 }
 
-export default FieldRecorderApi;
+export default UserApi;
