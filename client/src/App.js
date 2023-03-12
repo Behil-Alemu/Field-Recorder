@@ -1,9 +1,10 @@
 import './App.css';
+//import { ChakraProvider } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import useLocalStorage from './hooks/useLocalStorage';
 import NavigationBar from './routes/NavigationBar';
-import Routes from './routes/Routes';
+import Routes from './routes/AppRoutes';
 import LoadingSpinner from './helpers/LoadingSpinner';
 import UsersApi from './api/UsersApi';
 import UserContext from './auth/UserContext';
@@ -91,14 +92,16 @@ function App() {
 	if (!infoReceived) return <LoadingSpinner />;
 
 	return (
-		<BrowserRouter>
-			<UserContext.Provider value={{ currentUser, setCurrentUser }}>
-				<div className="App">
-					<NavigationBar logout={logout} />
-					<Routes login={login} signup={signup} />
-				</div>
-			</UserContext.Provider>
-		</BrowserRouter>
+		// <ChakraProvider>
+			<BrowserRouter>
+				<UserContext.Provider value={{ currentUser, setCurrentUser }}>
+					<div className="App">
+						{/* <NavigationBar logout={logout} /> */}
+						<Routes login={login} signup={signup} />
+					</div>
+				</UserContext.Provider>
+			</BrowserRouter>
+		// </ChakraProvider>
 	);
 }
 
