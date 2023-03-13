@@ -5,7 +5,9 @@ import LandingLayout from "./LandingLayout";
 
 export default function Landingpage() {
   return (
+    
     <LandingLayout>
+      <h1>hu</h1>
       <Hero
         title="Build this rad landing page from scratch"
         subtitle="This is the subheader section where you describe the basic benefits of your product"

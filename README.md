@@ -21,3 +21,5 @@ https://explorer.natureserve.org/api/data/suggestions/?searchTerm=frog&recordTyp
 once selected go by taxa id
 
 https://explorer.natureserve.org/api/data/taxon/ELEMENT_GLOBAL.2.106149
+
+for chakra landing page. https://codesandbox.io/s/landing-page-with-chakra-ui-forked-o4uusw?file=/package.json:281-361

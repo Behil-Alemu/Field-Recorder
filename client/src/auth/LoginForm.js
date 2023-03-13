@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 /** Login form.
  *
@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
  */
 
 function LoginForm({ login }) {
-  const history = useHistory();
+  const history = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",

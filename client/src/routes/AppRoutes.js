@@ -10,8 +10,10 @@ function AppRoutes({ login, signup }) {
 	console.debug('Routes', `login=${typeof login}`, `register=${typeof register}`);
 
 	return (
-		<div className="pt-5">
+		<div>
+			
 			<Routes>
+				
 				<Route path="/" element={<LandingPage />} />
 
 				<Route path="/login" element={<LoginForm login={login} />} />

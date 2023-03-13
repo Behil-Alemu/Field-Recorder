@@ -1,5 +1,6 @@
 import './App.css';
-//import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { AnimatePresence } from 'framer-motion';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import useLocalStorage from './hooks/useLocalStorage';
@@ -93,6 +94,7 @@ function App() {
 
 	return (
 		// <ChakraProvider>
+		<AnimatePresence>
 			<BrowserRouter>
 				<UserContext.Provider value={{ currentUser, setCurrentUser }}>
 					<div className="App">
@@ -101,6 +103,7 @@ function App() {
 					</div>
 				</UserContext.Provider>
 			</BrowserRouter>
+		</AnimatePresence>
 		// </ChakraProvider>
 	);
 }
