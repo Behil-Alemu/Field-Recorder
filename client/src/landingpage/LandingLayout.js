@@ -1,22 +1,22 @@
 import React from "react";
-// import { Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
-// export default function LandingLayout(props) {
-//   return (
-//     <Flex
-//       direction="column"
-//       align="center"
-//       maxW={{ xl: "1200px" }}
-//       m="0 auto"
-//       {...props}
-//     >
-//       {props.children}
-//     </Flex>
-//   );
-// }
-
-function Hero() {
-	return <div />;
+export default function LandingLayout(props) {
+  return (
+    <Flex
+      direction="column"
+      align="center"
+      maxW={{ xl: "1200px" }}
+      m="0 auto"
+      {...props}
+    >
+      {props.children}
+    </Flex>
+  );
 }
 
-export default Hero;
+// function Hero() {
+// 	return <h1>HELLO WORLD</h1>;
+// }
+
+// export default Hero;
