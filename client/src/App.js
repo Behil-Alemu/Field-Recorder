@@ -1,5 +1,5 @@
 import './App.css';
-//import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import useLocalStorage from './hooks/useLocalStorage';
@@ -8,7 +8,7 @@ import Routes from './routes/AppRoutes';
 import LoadingSpinner from './helpers/LoadingSpinner';
 import UsersApi from './api/UsersApi';
 import UserContext from './auth/UserContext';
-import jwt from 'jsonwebtoken';
+import * as jose from 'jose';
 
 /** 
  * - infoLoaded: has user data been pulled from API?
@@ -21,7 +21,7 @@ import jwt from 'jsonwebtoken';
  * App -> Routes
  */
 
-export const TOKEN_STORAGE_ID = 'Random token';
+export const TOKEN_STORAGE_ID = 'TOKEN';
 
 function App() {
 	const [ infoReceived, setInfoReceived ] = useState(false);
@@ -35,7 +35,7 @@ function App() {
 			async function getUser() {
 				if (token) {
 					try {
-						let { username } = jwt.decode(token);
+						let { username } = jose.decodeJwt(token);
 						UsersApi.token = token;
 
 						let currentUser = await UsersApi.getCurrentUser(username);
@@ -92,16 +92,17 @@ function App() {
 	if (!infoReceived) return <LoadingSpinner />;
 
 	return (
-		// <ChakraProvider>
+		<ChakraProvider>
 			<BrowserRouter>
 				<UserContext.Provider value={{ currentUser, setCurrentUser }}>
 					<div className="App">
 						{/* <NavigationBar logout={logout} /> */}
+						
 						<Routes login={login} signup={signup} />
 					</div>
 				</UserContext.Provider>
 			</BrowserRouter>
-		// </ChakraProvider>
+		</ChakraProvider>
 	);
 }
 
