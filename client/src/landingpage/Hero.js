@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Box, Button, Flex, Image, Heading, Stack, Text } from '@chakra-ui/react';
 
-export default function Hero({ title, subtitle, image, ctaLink, ctaText, ...rest }) {
+export default function Hero({ title, subtitle, image, signupLink, createText, ...rest }) {
 	return (
 		<Flex
 			align="center"
@@ -40,13 +40,14 @@ export default function Hero({ title, subtitle, image, ctaLink, ctaText, ...rest
 				>
 					{subtitle}
 				</Heading>
-				<Link to={ctaLink}>
-					<Button colorScheme="primary" borderRadius="8px" py="4" px="4" lineHeight="1" size="md">
-						{ctaText}
+				
+				<Link to={signupLink}>
+					<Button colorScheme="green" borderRadius="8px" py="4" px="4" lineHeight="1" size="md">
+						{createText}
 					</Button>
 				</Link>
 				<Text fontSize="xs" mt={2} textAlign="center" color="primary.800" opacity="0.6">
-					No credit card required.
+					Not sure what put here.
 				</Text>
 			</Stack>
 			<Box w={{ base: '80%', sm: '60%', md: '50%' }} mb={{ base: 12, md: 0 }}>
@@ -61,26 +62,15 @@ Hero.propTypes = {
 	title: PropTypes.string,
 	subtitle: PropTypes.string,
 	image: PropTypes.string,
-	ctaText: PropTypes.string,
-	ctaLink: PropTypes.string
+	createText: PropTypes.string,
+	signupLink: PropTypes.string
 };
 
 Hero.defaultProps = {
-	title: 'React landing page with Chakra UI',
-	subtitle: 'This is the subheader section where you describe the basic benefits of your product',
-	image: 'https://source.unsplash.com/collection/404339/800x600',
-	ctaText: 'Create your account now',
-	ctaLink: '/signup'
+	title: 'FieldRecorder',
+	subtitle: 'For research biologist-data entry and analysis app. Keep track of samples and pin the location of samples found. Accompanied by NatureServe Explorer REST API, an API that has information on rare and endangered species and ecosystems in the Americas.',
+	image: 'https://source.unsplash.com/collection/1360066/800x600',
+	createText: 'Create your account now',
+	signupLink: '/signup'
 };
-// import React from 'react';
 
-// /** Presentational component for showing bootstrap-style alerts.
-//  *
-//  * { LoginForm, SignupForm, ProfileForm } -> Alert
-//  **/
-
-// function Hero() {
-// 	return <div />;
-// }
-
-// export default Hero;

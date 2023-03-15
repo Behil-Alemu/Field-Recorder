@@ -1,21 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import Hero from "./Hero";
-import LandingLayout from "./LandingLayout";
+import Hero from './Hero';
+import LandingLayout from './LandingLayout';
 
-export default function Landingpage() {
-  return (
-    
-    <LandingLayout>
-      <h1>hu</h1>
-      <Hero
-        title="Build this rad landing page from scratch"
-        subtitle="This is the subheader section where you describe the basic benefits of your product"
-        image="https://source.unsplash.com/collection/404339/800x600"
-        ctaText="Create your account now"
-        ctaLink="/signup"
-      />
-    </LandingLayout>
-  );
+export default function Landingpage({logout}) {
+	return (
+		<LandingLayout>
 
+			<Hero
+				title="FieldRecorder"
+				subtitle="For research biologist-data entry and analysis app. Keep track of samples and pin the location of samples found. Accompanied by NatureServe Explorer REST API, an API that has information on rare and endangered species and ecosystems in the Americas."
+				image="https://source.unsplash.com/collection/1360066/800x600"
+				createText="Create your account now"
+				signupLink="/signup"
+			/>
+		</LandingLayout>
+	);
 }

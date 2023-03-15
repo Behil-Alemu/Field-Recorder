@@ -1,17 +1,13 @@
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react';
-<<<<<<< HEAD
-import { AnimatePresence } from 'framer-motion';
-=======
->>>>>>> origin/master
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import useLocalStorage from './hooks/useLocalStorage';
-import NavigationBar from './routes/NavigationBar';
 import Routes from './routes/AppRoutes';
 import LoadingSpinner from './helpers/LoadingSpinner';
 import UsersApi from './api/UsersApi';
 import UserContext from './auth/UserContext';
+import NavigationBar from './routes/NavigationBar';
 import * as jose from 'jose';
 
 /** 
@@ -96,27 +92,16 @@ function App() {
 	if (!infoReceived) return <LoadingSpinner />;
 
 	return (
-<<<<<<< HEAD
-		// <ChakraProvider>
-		<AnimatePresence>
-=======
 		<ChakraProvider>
->>>>>>> origin/master
 			<BrowserRouter>
 				<UserContext.Provider value={{ currentUser, setCurrentUser }}>
 					<div className="App">
-						{/* <NavigationBar logout={logout} /> */}
-						
+					<NavigationBar logout={logout} />
 						<Routes login={login} signup={signup} />
 					</div>
 				</UserContext.Provider>
 			</BrowserRouter>
-<<<<<<< HEAD
-		</AnimatePresence>
-		// </ChakraProvider>
-=======
 		</ChakraProvider>
->>>>>>> origin/master
 	);
 }
 

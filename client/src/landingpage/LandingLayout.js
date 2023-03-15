@@ -10,13 +10,8 @@ export default function LandingLayout(props) {
       m="0 auto"
       {...props}
     >
+      
       {props.children}
     </Flex>
   );
 }
-
-// function Hero() {
-// 	return <h1>HELLO WORLD</h1>;
-// }
-
-// export default Hero;

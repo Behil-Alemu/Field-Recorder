@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 
 const container = document.getElementById('app');
 
-const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(<App />);
 

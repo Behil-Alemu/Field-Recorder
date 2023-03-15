@@ -1,12 +1,9 @@
 import React  from "react";
+import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 
 
 function LoadingSpinner(){
-    return(
-        <div>
-            Loading...
-        </div>
-    )
+    <CircularProgress isIndeterminate color='green.300' />
 
 }
 
