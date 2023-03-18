@@ -60,18 +60,18 @@ class Folder {
 
 	/** Delete given folder from database; returns undefined.
    **/
-	static async remove(id) {
+	 static async remove(id) {
 		const result = await db.query(
-			`DELETE sample_folder
-           FROM 
-           WHERE id = $1
-           RETURNING id`,
-			[ id ]
+		  `DELETE FROM sample_folder
+		   WHERE id = $1
+		   RETURNING id`,
+		  [id]
 		);
 		const folder = result.rows[0];
-
+	  
 		if (!folder) throw new NotFoundError(`No sample with the id: ${id}`);
-	}
+	  }
+	  
 }
 
 module.exports = Folder;

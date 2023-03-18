@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Heading, Card, CardBody, CardHeader,Text } from '@chakra-ui/react';
+import { Box, Heading, Card, CardBody, CardHeader, Text } from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import Sampletable from './Sampletable';
@@ -23,7 +23,7 @@ function Samplepage() {
 		try {
 			SamplesApi.token = token;
 			let result = await SamplesApi.getSamples(currentUser.username, folderName);
-			
+
 			setSamples(result);
 		} catch (err) {
 			console.log(err);

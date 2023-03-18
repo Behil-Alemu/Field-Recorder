@@ -7,7 +7,7 @@ import ProjectList from './ProjectList';
 
 function Homepage() {
 	const history = useNavigate();
-	const { currentUser } = useContext(UserContext);
+	const { currentUser, token } = useContext(UserContext);
 	const [ formData, setFormData ] = useState({
 		folderName: '',
 		username: currentUser.username
@@ -16,12 +16,13 @@ function Homepage() {
 
 	console.debug('Homepage', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
 
-	async function handleSubmit(evt) {
-		evt.preventDefault();
-		let result = await FoldersApi.addFolder(formData);
+	async function handleSubmit() {
+		//why wont it work when event handlers added
+		FoldersApi.token = token;
+		let result = await FoldersApi.addFolder(formData, currentUser.username);
 
 		if (result.success) {
-			history.push('/homepage');
+			history('/homepage');
 		} else {
 			setFormErrors(result.errors);
 		}

@@ -29,13 +29,12 @@ class FoldersApi {
 
 	static async getFolder(username) {
 		let res = await this.request(`folders/${username}`);
-		console.log("PPppppp", res.folders)
+		console.log('PPppppp', res.folders);
 		return res.folders;
 	}
 
 	/**Add sample to data */
-	static async addFolder(data) {
-
+	static async addFolder(data, username) {
 		let res = await this.request(`folders/add`, data, 'post');
 
 		return res.folders;

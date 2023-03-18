@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import {
 	Box,
 	Button,
 	Checkbox,
 	Container,
-	Divider,
 	FormControl,
 	FormLabel,
 	Heading,
@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/react';
 import logo from '../logo.png';
 import PasswordField from '../helpers/PasswordField';
+import { NotifyRed } from '../helpers/Alert';
 
 /** Login form.
  *
@@ -48,7 +49,7 @@ function LoginForm({ login }) {
 		evt.preventDefault();
 		let result = await login(formData);
 		if (result.success) {
-			history.push('/homepage');
+			history('/homepage');
 		} else {
 			setFormErrors(result.errors);
 		}
@@ -63,6 +64,7 @@ function LoginForm({ login }) {
 		<Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
 			<Stack spacing="8">
 				<Stack spacing="6">
+					<form onSubmit={handleSubmit}>{formErrors.length > 0 && <NotifyRed error={formErrors} />}</form>
 					<Box>
 						<Image src={logo} alt="app logo" />
 					</Box>

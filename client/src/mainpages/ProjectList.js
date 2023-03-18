@@ -5,6 +5,7 @@ import LoadingSpinner from '../helpers/LoadingSpinner';
 import { Card, Text, CardBody, CardHeader, Heading, Stack, Box, SimpleGrid } from '@chakra-ui/react';
 import ProjectCard from './ProjectCard';
 
+
 function ProjectList() {
 	const [ formErrors, setFormErrors ] = useState([]);
 	const { currentUser, token } = useContext(UserContext);

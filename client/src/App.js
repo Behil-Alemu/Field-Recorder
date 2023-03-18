@@ -35,7 +35,9 @@ function App() {
 			async function getUser() {
 				if (token) {
 					try {
+						console.log('pppppppppppppppppppppppppppp');
 						let { username } = jose.decodeJwt(token);
+						console.log('pppppppppppppppppppppppppppp', username);
 						UsersApi.token = token;
 
 						let currentUser = await UsersApi.getCurrentUser(username);
@@ -96,7 +98,7 @@ function App() {
 			<BrowserRouter>
 				<UserContext.Provider value={{ currentUser, setCurrentUser, token }}>
 					<div className="App">
-					<NavigationBar logout={logout} />
+						<NavigationBar logout={logout} />
 						<Routes login={login} signup={signup} />
 					</div>
 				</UserContext.Provider>

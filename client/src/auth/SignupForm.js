@@ -38,7 +38,7 @@ function SignupForm({ signup }) {
 		evt.preventDefault();
 		let result = await signup(formData);
 		if (result.success) {
-			history.push('/homepage');
+			history('/homepage');
 		} else {
 			setFormErrors(result.errors);
 		}
@@ -48,14 +48,12 @@ function SignupForm({ signup }) {
 	function handleChange(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
-
+	console.log('KKKKKKKKKKKKKKKKKk', formErrors);
 	return (
 		<Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
 			<Stack spacing="8">
 				<Stack spacing="6">
-					<form onSubmit={handleSubmit}>
-						{formErrors && <NotifyRed error={formErrors} />}
-					</form>
+					<form onSubmit={handleSubmit}>{formErrors.length > 0 && <NotifyRed error={formErrors} />}</form>
 					<Box>
 						<Image src={logo} alt="app logo" />
 					</Box>

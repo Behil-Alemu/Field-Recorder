@@ -9,7 +9,7 @@ import Homepage from '../mainpages/Homepage';
 import Samplepage from '../mainpages/samplepage';
 
 function AppRoutes({ login, signup }) {
-	console.debug('Routes', `login=${typeof login}`, `register=${typeof register}`);
+	console.debug('Routes', `login=${typeof login}`, `signup=${typeof signup}`);
 
 	return (
 		<div>
