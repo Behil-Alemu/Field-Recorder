@@ -30,8 +30,8 @@ function AppRoutes({ login, signup }) {
 						</PrivateRoute>
 					}
 				/> */}
-				
-				<Route path="/samplepage" element={<Samplepage />} />
+
+				<Route path="/homepage/:folderName/:id" element={<Samplepage />} />
 
 				<Route path="/profile" element={<ProfileForm />} />
 

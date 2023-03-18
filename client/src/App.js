@@ -94,7 +94,7 @@ function App() {
 	return (
 		<ChakraProvider>
 			<BrowserRouter>
-				<UserContext.Provider value={{ currentUser, setCurrentUser }}>
+				<UserContext.Provider value={{ currentUser, setCurrentUser, token }}>
 					<div className="App">
 					<NavigationBar logout={logout} />
 						<Routes login={login} signup={signup} />

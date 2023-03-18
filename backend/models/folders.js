@@ -10,12 +10,12 @@ class Folder {
    * Returns { id, folderName, username }
    **/
 
-	static async add(data) {
+	static async add({ folderName, username }) {
 		const result = await db.query(
-			`INSERT INTO sample_folder (folder_name)
-       VALUES ($1)
-       RETURNING id, folder_name AS "folderName", username`,
-			[ data.folderName ]
+			`INSERT INTO sample_folder (folder_name, username)
+		   VALUES ($1, $2)
+		   RETURNING id, folder_name AS "folderName", username`,
+			[ folderName, username ]
 		);
 		let sampleFolder = result.rows[0];
 
@@ -26,7 +26,7 @@ class Folder {
     * */
 	static async getAllFolder(username) {
 		const folder = await db.query(
-			`SELECT folder_name AS folderName
+			`SELECT id, folder_name AS folderName
             FROM sample_folder 
             WHERE sample_folder.username = $1;`,
 			[ username ]

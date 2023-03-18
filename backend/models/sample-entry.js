@@ -19,13 +19,14 @@ class SampleEntry {
             quantity, 
             location, 
             image_url, 
-            note)
-           VALUES ($1, $2, $3, $4, $5, $6)
+            note,username,
+             folder_id)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
            RETURNING sample_id, common_name AS "commonName", scientific_name AS "scientificName", quantity, 
            location, 
            image_url AS "imageUrl", 
            note`,
-			[ data.commonName, data.scientificName, data.quantity, data.location, data.imageUrl.data.note ]
+			[ data.commonName, data.scientificName, data.quantity, data.location, data.imageUrl, data.note , data.username, data.folderId]
 		);
 		let SampleEntry = result.rows[0];
 

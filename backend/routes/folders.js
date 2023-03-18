@@ -12,10 +12,11 @@ const folderUpdateSchema = require('../schemas/folderUpdate.json');
 
 const router = express.Router();
 
-//GET /[username] => {folder under the user name }*/
+//GET /folders/[username] => {folder under the user name }*/
 router.get('/:username', ensureLoggedIn, async function(req, res, next) {
 	try {
 		const folders = await Folder.getAllFolder(req.params.username);
+
 		return res.json({ folders });
 	} catch (err) {
 		return next(err);
@@ -30,6 +31,7 @@ router.get('/:username', ensureLoggedIn, async function(req, res, next) {
 router.post('/add', ensureLoggedIn, async function(req, res, next) {
 	try {
 		const validator = jsonschema.validate(req.body, folderEntrySchema);
+
 		if (!validator.valid) {
 			const errs = validator.errors.map((e) => e.stack);
 			throw new BadRequestError(errs);

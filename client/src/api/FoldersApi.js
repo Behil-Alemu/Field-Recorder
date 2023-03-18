@@ -11,7 +11,7 @@ class FoldersApi {
 	static token;
 
 	static async request(endpoint, data = {}, method = 'get') {
-		console.debug('API Call:', endpoint, data, method);
+		console.debug('API Call:', endpoint, data, method, 'token', this.token);
 
 		const url = `${BASE_URL}/${endpoint}`;
 		const headers = { Authorization: `Bearer ${FoldersApi.token}` };
@@ -29,25 +29,28 @@ class FoldersApi {
 
 	static async getFolder(username) {
 		let res = await this.request(`folders/${username}`);
-		return res.sample_folder;
+		console.log("PPppppp", res.folders)
+		return res.folders;
 	}
-    
+
 	/**Add sample to data */
 	static async addFolder(data) {
-		let res = await this.request(`folders/add`, data, "post");
-		return res.sample_folder;
+
+		let res = await this.request(`folders/add`, data, 'post');
+
+		return res.folders;
 	}
 
 	/** Edit sample table*/
 	static async editFolder(id, data) {
-		let res = await this.request(`folders/${id}`, data, "patch");
-		return res.sample_folder;
+		let res = await this.request(`folders/${id}`, data, 'patch');
+		return res.folders;
 	}
 
-    /** delete the */
-    static async deleteFolder(id) {
-		let res = await this.request(`folders/${id}`,{},"delete");
-		return res.sample_folder;
+	/** delete the */
+	static async deleteFolder(id) {
+		let res = await this.request(`folders/${id}`, {}, 'delete');
+		return res.folders;
 	}
 }
 

@@ -3,10 +3,10 @@
     "$id": "http://example.com/sampleEntry.json",
     "type": "object",
     "properties": {
-      "common_name": {
+      "commonName": {
         "type": "string"
       },
-      "scientific_name": {
+      "scientificName": {
         "type": "string"
       },
       "quantity": {
@@ -15,25 +15,31 @@
       "location": {
         "type": "string"
       },
-      "image_url": {
+      "imageUrl": {
         "type": "string"
       },
       "note": {
         "type": "string"
       },
-      "timestamp":{
+      "username": {
         "type": "string"
+      },
+      "folderId": {
+        "type": "integer"
       }
+      
+
     },
     "additionalProperties": false,
     "required": [
-      "common_name",
-      "scientific_name",
+      "commonName",
+      "scientificName",
       "quantity",
       "location",
-      "image_url",
+      "imageUrl",
       "note",
-      "timestamp"
+      "username",
+      "folderId"
     ]
   }
   

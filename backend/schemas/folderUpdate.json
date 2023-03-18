@@ -3,7 +3,7 @@
     "$id": "http://example.com/folderUpdate.json",
     "type": "object",
     "properties": {
-      "folder_name": {
+      "folderName": {
         "type": "string"
       }
     },

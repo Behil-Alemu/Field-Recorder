@@ -3,13 +3,14 @@
     "$id": "http://example.com/folder.json",
     "type": "object",
     "properties": {
-      "folder_name": {
+      "folderName": {
+        "type": "string"
+      }, 
+      "username": {
         "type": "string"
       }
     },
     "additionalProperties": false,
-    "required": [
-      "folder_name"
-    ]
+    "required": ["folderName", "username"]
   }
   

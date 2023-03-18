@@ -41,7 +41,6 @@ function SignupForm({ signup }) {
 			history.push('/homepage');
 		} else {
 			setFormErrors(result.errors);
-			return <NotifyRed error={formErrors} />;
 		}
 	}
 
