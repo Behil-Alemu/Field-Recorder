@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Tabs, TabList, Tab, TabPanel, Box, Flex, Image, useColorMode, Button } from '@chakra-ui/react';
+import { Tabs, TabList, Tab, Flex, Image, useColorMode } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import logo from '../logo.png';
 import UserContext from '../auth/UserContext';
@@ -11,11 +11,14 @@ const NavigationBar = ({ logout }) => {
 	function loggedInNav() {
 		return (
 			<TabList>
-                <Link to="/homepage" >
+				<Link to="/homepage">
 					<Tab color="red.800">My Projects</Tab>
 				</Link>
+				<Link to="/profile">
+					<Tab color="green.800">{currentUser.first_name || currentUser.username}</Tab>
+				</Link>
 				<Link to="/login" onClick={logout}>
-					<Tab color="red.800">Log out {currentUser.first_name || currentUser.username}</Tab>
+					<Tab color="red.800">Log out</Tab>
 				</Link>
 			</TabList>
 		);
@@ -35,7 +38,7 @@ const NavigationBar = ({ logout }) => {
 
 	return (
 		<Flex bg="green.50" p={4} alignItems="center" justifyContent="space-between">
-			<Tabs colorScheme='green'>
+			<Tabs colorScheme="green">
 				<TabList>
 					<Tab>
 						<Link to="/">
@@ -44,7 +47,7 @@ const NavigationBar = ({ logout }) => {
 					</Tab>
 				</TabList>
 			</Tabs>
-			<Tabs align='end' variant='soft-rounded' colorScheme='green'>
+			<Tabs align="end" variant="soft-rounded" colorScheme="green">
 				<TabList>
 					{currentUser ? loggedInNav() : loggedOutNav()}
 					<Tab>

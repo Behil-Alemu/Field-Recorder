@@ -26,7 +26,16 @@ class SampleEntry {
            location, 
            image_url AS "imageUrl", 
            note`,
-			[ data.commonName, data.scientificName, data.quantity, data.location, data.imageUrl, data.note , data.username, data.folderId]
+			[
+				data.commonName,
+				data.scientificName,
+				data.quantity,
+				data.location,
+				data.imageUrl,
+				data.note,
+				data.username,
+				data.folderId
+			]
 		);
 		let SampleEntry = result.rows[0];
 
@@ -45,6 +54,7 @@ class SampleEntry {
                     WHERE sf.folder_name = $2 AND se.username = $1`,
 			[ username, folderName ]
 		);
+		
 		return samples.rows;
 	}
 

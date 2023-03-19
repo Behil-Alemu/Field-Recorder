@@ -29,7 +29,6 @@ class FoldersApi {
 
 	static async getFolder(username) {
 		let res = await this.request(`folders/${username}`);
-		console.log('PPppppp', res.folders);
 		return res.folders;
 	}
 
@@ -42,6 +41,7 @@ class FoldersApi {
 
 	/** Edit sample table*/
 	static async editFolder(id, data) {
+		console.log('PPppppp', data);
 		let res = await this.request(`folders/${id}`, data, 'patch');
 		return res.folders;
 	}

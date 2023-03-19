@@ -5,7 +5,6 @@ import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import Sampletable from './Sampletable';
 import SampleForm from './SampleForm';
-import LoadingSpinner from '../helpers/LoadingSpinner';
 
 function Samplepage() {
 	const { folderName } = useParams();
@@ -23,6 +22,7 @@ function Samplepage() {
 		try {
 			SamplesApi.token = token;
 			let result = await SamplesApi.getSamples(currentUser.username, folderName);
+			console.log(result, '{{{{{}}}}}');
 
 			setSamples(result);
 		} catch (err) {
@@ -32,7 +32,6 @@ function Samplepage() {
 	}
 	if (!samples) {
 		console.log('no samples added yet');
-		return <LoadingSpinner />;
 	}
 	return (
 		<Box p={4}>
@@ -41,7 +40,7 @@ function Samplepage() {
 			</Heading>
 			<SampleForm />
 			<div>
-				{samples.length ? (
+				{samples && samples.length > 0 ? (
 					<Sampletable />
 				) : (
 					<Card maxW="md" align="center" bg="red.50">

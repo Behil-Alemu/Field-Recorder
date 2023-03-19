@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-import { FormControl, FormLabel, Input, Textarea, Select, Button, Flex, Spacer, Box, Heading } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer,} from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 

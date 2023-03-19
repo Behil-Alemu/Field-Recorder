@@ -7,12 +7,13 @@ import ProfileForm from '../auth/ProfileForm';
 import PrivateRoute from '../auth/PrivateRoute';
 import Homepage from '../mainpages/Homepage';
 import Samplepage from '../mainpages/samplepage';
+import { Box } from '@chakra-ui/react';
 
 function AppRoutes({ login, signup }) {
 	console.debug('Routes', `login=${typeof login}`, `signup=${typeof signup}`);
 
 	return (
-		<div>
+		<Box m={8} align="center">
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 
@@ -37,7 +38,7 @@ function AppRoutes({ login, signup }) {
 
 				<Route path="/" element={<Navigate to="/" />} />
 			</Routes>
-		</div>
+		</Box>
 	);
 }
 

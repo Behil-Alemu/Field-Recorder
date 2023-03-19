@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import FoldersApi from '../api/FoldersApi';
 import UserContext from '../auth/UserContext';
 import { useNavigate } from 'react-router-dom';
@@ -8,9 +8,11 @@ import ProjectList from './ProjectList';
 function Homepage() {
 	const history = useNavigate();
 	const { currentUser, token } = useContext(UserContext);
+	let username = currentUser == null ? '' : currentUser.username;
 	const [ formData, setFormData ] = useState({
 		folderName: '',
-		username: currentUser.username
+		//when i first load it, it says username not found
+		username: username
 	});
 	const [ formErrors, setFormErrors ] = useState([]);
 
@@ -35,7 +37,7 @@ function Homepage() {
 		<Box>
 			<Box p={4}>
 				<Heading as="h1" size="lg" mb={4}>
-					{currentUser.username}'s projects
+					{username}'s projects
 				</Heading>
 				<Box borderWidth="1px" p={4} borderRadius="md">
 					<form onSubmit={handleSubmit}>
@@ -58,7 +60,7 @@ function Homepage() {
 				</Box>
 			</Box>
 			<Box align="center">
-				<ProjectList />
+				<ProjectList username={username} />
 			</Box>
 		</Box>
 	);

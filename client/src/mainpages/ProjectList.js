@@ -2,11 +2,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import FoldersApi from '../api/FoldersApi';
 import UserContext from '../auth/UserContext';
 import LoadingSpinner from '../helpers/LoadingSpinner';
-import { Card, Text, CardBody, CardHeader, Heading, Stack, Box, SimpleGrid } from '@chakra-ui/react';
+import { Card, Text, CardBody, CardHeader, Heading, Box, SimpleGrid } from '@chakra-ui/react';
 import ProjectCard from './ProjectCard';
 
 
-function ProjectList() {
+function ProjectList({username}) {
 	const [ formErrors, setFormErrors ] = useState([]);
 	const { currentUser, token } = useContext(UserContext);
 	const [ projects, setProjects ] = useState([]);
@@ -21,7 +21,7 @@ function ProjectList() {
 	async function projectList() {
 		try {
 			FoldersApi.token = token;
-			let result = await FoldersApi.getFolder(currentUser.username);
+			let result = await FoldersApi.getFolder(username);
 			setProjects(result);
 		} catch (err) {
 			console.log(err);
@@ -39,7 +39,7 @@ function ProjectList() {
 			{projects.length ? (
 				<Box p={4} bg="gray.50">
 					<SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(200px, 1fr))">
-						{projects.map((p) => <ProjectCard key={p.id} id={p.id} folderName={p.foldername} />)}
+						{projects.map((p) => <ProjectCard key={p.id} id={p.id} folderName={p.foldername} username={username} />)}
 					</SimpleGrid>
 				</Box>
 			) : (

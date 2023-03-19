@@ -35,9 +35,8 @@ function App() {
 			async function getUser() {
 				if (token) {
 					try {
-						console.log('pppppppppppppppppppppppppppp');
 						let { username } = jose.decodeJwt(token);
-						console.log('pppppppppppppppppppppppppppp', username);
+
 						UsersApi.token = token;
 
 						let currentUser = await UsersApi.getCurrentUser(username);
