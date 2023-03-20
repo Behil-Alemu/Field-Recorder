@@ -22,8 +22,6 @@ function Samplepage() {
 		try {
 			SamplesApi.token = token;
 			let result = await SamplesApi.getSamples(currentUser.username, folderName);
-			console.log(result, '{{{{{}}}}}');
-
 			setSamples(result);
 		} catch (err) {
 			console.log(err);
@@ -33,6 +31,8 @@ function Samplepage() {
 	if (!samples) {
 		console.log('no samples added yet');
 	}
+	console.log(samples, '{{{{{S}}}}}');
+
 	return (
 		<Box p={4}>
 			<Heading as="h1" size="lg" mb={4}>
@@ -41,8 +41,11 @@ function Samplepage() {
 			<SampleForm />
 			<div>
 				{samples && samples.length > 0 ? (
-					<Sampletable />
-				) : (
+					<Box p={4} bg="gray.50">
+						 <Sampletable samples={samples}/>
+					</Box>
+					 
+				) : ( 
 					<Card maxW="md" align="center" bg="red.50">
 						<CardHeader>
 							<Heading size="md">Sorry, no projects yet!</Heading>

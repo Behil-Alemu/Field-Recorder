@@ -28,26 +28,26 @@ class SamplesApi {
 	/** Get the a list of samples */
 
 	static async getSamples(username, folderName) {
-		let res = await this.request(`sample-entry/${folderName}/${username}`);
-		return res.sample_entry;
+		let res = await this.request(`sample-entry/${username}/${folderName}`);
+		return res.samples;
 	}
 	/**Add sample to data */
 	static async addSamples(data) {
-		let res = await this.request(`sample-entry/add`, data, "post");
-		return res.sample_entry;
+		let res = await this.request(`sample-entry/add`, data, 'post');
+		return res.samples;
 	}
 
 	/** Edit sample table*/
 	static async editSamples(sampe_id, data) {
-		let res = await this.request(`sample-entry/${sampe_id}`, data, "patch");
-		return res.sample_entry;
+		let res = await this.request(`sample-entry/${sampe_id}`, data, 'patch');
+		return res.samples;
 	}
 
-    /** delete the */
-    static async deleteSample(sampe_id) {
-		let res = await this.request(`sample-entry/${sampe_id}`,{},"delete");
-		return res.sample_entry;
+	/** delete the */
+	static async deleteSample(sampe_id) {
+		let res = await this.request(`sample-entry/${sampe_id}`, {}, 'delete');
+		return res.samples;
 	}
 }
-    
+
 export default SamplesApi;

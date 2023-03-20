@@ -24,12 +24,11 @@ function SampleForm() {
 	const [ formErrors, setFormErrors ] = useState([]);
 	console.debug('sampleForm', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
 
-	async function handleSubmit(evt) {
-		evt.preventDefault();
+	async function handleSubmit() {
 		SamplesApi.token = token;
 		let result = await SamplesApi.addSamples(formData);
-        console.log(result,"HHHHHHHHHHHHHHHHHHHHHHH")
 		if (result.success) {
+			//question 3 I would have to reload to see the sample adeed
 			history.push('/homepage');
 		} else {
 			setFormErrors(result.errors);

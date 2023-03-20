@@ -13,10 +13,11 @@ const sampleUpdateSchema = require('../schemas/sampleUpdate.json');
 const router = express.Router();
 
 //GET /[username, folderName] => {samples }*/
-router.get('/:folderName/:username', ensureLoggedIn, async function(req, res, next) {
+router.get('/:username/:folderName', ensureLoggedIn, async function(req, res, next) {
 	
-	try {		
+	try {
 		const samples = await SampleEntry.getAllSample(req.params.username, req.params.folderName);
+
 		return res.json({ samples });
 	} catch (err) {
 		return next(err);

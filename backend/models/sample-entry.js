@@ -54,7 +54,7 @@ class SampleEntry {
                     WHERE sf.folder_name = $2 AND se.username = $1`,
 			[ username, folderName ]
 		);
-		
+
 		return samples.rows;
 	}
 
