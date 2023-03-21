@@ -109,7 +109,7 @@ function LoginForm({ login }) {
 							</Button>
 						</HStack>
 						<Stack spacing="6">
-							<Button variant="filled" onClick={handleSubmit}>
+							<Button colorScheme='cyan' variant="filled" onClick={handleSubmit}>
 								Sign in
 							</Button>
 						</Stack>

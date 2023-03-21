@@ -1,15 +1,7 @@
 import React, { useState, useContext } from 'react';
 import UsersApi from '../api/UsersApi';
 import UserContext from '../auth/UserContext';
-import {
-	Box,
-	FormControl,
-	FormLabel,
-	Input,
-	Button,
-	Heading,
-	useToast
-} from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, Button, Heading, useToast } from '@chakra-ui/react';
 
 function ProfileForm() {
 	const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -70,7 +62,9 @@ function ProfileForm() {
 
 	return (
 		<Box maxW="sm" align="center" borderWidth="1px" rounded="lg" p="4">
-			<Heading>{formData.username} </Heading>
+			<Heading as="h2" size="md" m="3">
+				Account Setting{' '}
+			</Heading>
 			<FormControl>
 				<FormLabel htmlFor="firstName">First Name</FormLabel>
 				<Input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />

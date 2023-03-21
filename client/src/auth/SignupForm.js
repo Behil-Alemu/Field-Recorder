@@ -119,7 +119,8 @@ function SignupForm({ signup }) {
 								/>
 							</FormControl>
 							<Stack spacing="6">
-								<Button variant="filled" onClick={handleSubmit}>
+							{/* question 5 why is the color of the button not showing up */}
+								<Button colorScheme='cyan' variant="filled" onClick={handleSubmit}>
 									Sign up
 								</Button>
 							</Stack>

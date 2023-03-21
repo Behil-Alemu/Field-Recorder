@@ -7,7 +7,7 @@ import Sampletable from './Sampletable';
 import SampleForm from './SampleForm';
 
 function Samplepage() {
-	const { folderName } = useParams();
+	const { folderName, id } = useParams();
 	const [ formErrors, setFormErrors ] = useState([]);
 	const { currentUser, token } = useContext(UserContext);
 	const [ samples, setSamples ] = useState([]);
@@ -31,21 +31,19 @@ function Samplepage() {
 	if (!samples) {
 		console.log('no samples added yet');
 	}
-	console.log(samples, '{{{{{S}}}}}');
 
 	return (
 		<Box p={4}>
-			<Heading as="h1" size="lg" mb={4}>
+			<Heading as="h4" size="md" mb={4}>
 				Project Name: {folderName}
 			</Heading>
 			<SampleForm />
 			<div>
 				{samples && samples.length > 0 ? (
 					<Box p={4} bg="gray.50">
-						 <Sampletable samples={samples}/>
+						<Sampletable samples={samples} folderName={folderName} folder_id={id} />
 					</Box>
-					 
-				) : ( 
+				) : (
 					<Card maxW="md" align="center" bg="red.50">
 						<CardHeader>
 							<Heading size="md">Sorry, no projects yet!</Heading>

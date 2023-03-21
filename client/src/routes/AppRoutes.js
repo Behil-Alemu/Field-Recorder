@@ -6,7 +6,7 @@ import SignupForm from '../auth/SignupForm';
 import ProfileForm from '../auth/ProfileForm';
 import PrivateRoute from '../auth/PrivateRoute';
 import Homepage from '../mainpages/Homepage';
-import Samplepage from '../mainpages/samplepage';
+import Samplepage from '../samples/samplepage';
 import { Box } from '@chakra-ui/react';
 
 function AppRoutes({ login, signup }) {

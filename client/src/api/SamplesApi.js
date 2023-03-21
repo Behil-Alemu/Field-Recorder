@@ -45,6 +45,7 @@ class SamplesApi {
 
 	/** delete the */
 	static async deleteSample(sampe_id) {
+
 		let res = await this.request(`sample-entry/${sampe_id}`, {}, 'delete');
 		return res.samples;
 	}
