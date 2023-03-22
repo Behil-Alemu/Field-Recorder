@@ -14,7 +14,6 @@ const router = express.Router();
 
 //GET /[username, folderName] => {samples }*/
 router.get('/:username/:folderName', ensureLoggedIn, async function(req, res, next) {
-	
 	try {
 		const samples = await SampleEntry.getAllSample(req.params.username, req.params.folderName);
 
@@ -72,7 +71,7 @@ router.patch('/:sample_id', ensureLoggedIn, async function(req, res, next) {
 
 router.delete('/:sample_id', ensureLoggedIn, async function(req, res, next) {
 	try {
-		await SampleEntry.remove(req.params.username);
+		await SampleEntry.remove(req.params.sample_id);
 		return res.json({ deleted: req.params.sample_id });
 	} catch (err) {
 		return next(err);

@@ -96,15 +96,14 @@ class SampleEntry {
    **/
 	static async remove(sample_id) {
 		const result = await db.query(
-			`DELETE sample_entry
-               FROM 
-               WHERE sample_id = $1
-               RETURNING id`,
+			`DELETE FROM sample_entry
+			 WHERE sample_id = $1
+			 RETURNING sample_id`,
 			[ sample_id ]
 		);
 		const sample = result.rows[0];
 
-		if (!sample) throw new NotFoundError(`No sample with the id: ${id}`);
+		if (!sample) throw new NotFoundError(`No sample with the id: ${sample_id}`);
 	}
 }
 module.exports = SampleEntry;

@@ -16,6 +16,7 @@ function ProjectList({username}) {
 	useEffect(function getProjectsOnMount() {
 		console.debug('ProjectList useEffect getProjectsOnMount');
 		projectList();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	async function projectList() {

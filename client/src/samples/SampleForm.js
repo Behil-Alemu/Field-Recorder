@@ -6,7 +6,9 @@ import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer } from '@
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import NatureServerApi from '../api/natureServer';
-import { DropdownIndicator } from './DropdownIndicator';
+import { DropdownIndicator } from './SampleHelper.js/DropdownIndicator';
+import MapWrapper from '../samples/Maps/MapWrapper';
+
 
 function SampleForm() {
 	const history = useNavigate();
@@ -75,6 +77,7 @@ function SampleForm() {
 			console.debug('SampleList useEffect getSamplesOnMount');
 			organismsList();
 		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[ organismToSearch ]
 	);
 
@@ -96,6 +99,7 @@ function SampleForm() {
 	}));
 
 	return (
+		<>
 		<form onSubmit={handleSubmit}>
 			<Flex>
 				<FormControl p="1" id="common-name" isRequired>
@@ -145,7 +149,10 @@ function SampleForm() {
 					Submit
 				</Button>
 			</Flex>
+			
 		</form>
+		<MapWrapper/>
+		</>
 	);
 }
 

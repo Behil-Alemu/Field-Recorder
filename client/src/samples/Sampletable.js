@@ -3,9 +3,9 @@ import { Table, Thead, Tr, Th, chakra, Tbody, Td } from '@chakra-ui/react';
 import React, { useMemo } from 'react';
 import { useTable, useSortBy } from 'react-table';
 import { convertTimestamp } from '../helpers/TimeReader';
-import { EditIcon, DeleteIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
-import { useNavigate } from 'react-router-dom';
+import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { handleDeleteClick } from './SampleHelper.js/handleEditDelete';
+import { useNavigate } from 'react-router-dom';
 
 export default function Sampletable({ samples, folderName, folder_id }) {
 	let history = useNavigate();
@@ -13,7 +13,7 @@ export default function Sampletable({ samples, folderName, folder_id }) {
 	const handleDelete = async (id) => {
 		console.log(id, '{{{{{S}}}}}');
 		try {
-			let result = await handleDeleteClick(id);
+			let result = await handleDeleteClick(id, folderName, folder_id);
 			console.log(result);
 			history(`/homepage/${folderName}/${folder_id}`);
 			window.location.reload();
@@ -40,17 +40,6 @@ export default function Sampletable({ samples, folderName, folder_id }) {
 
 	const columns = useMemo(
 		() => [
-			{
-				Header: 'Actions',
-				accessor: 'actions',
-				Cell: ({ row }) => (
-					<DeleteIcon
-						onClick={() => {
-							handleDelete(row.original.sample_id);
-						}}
-					/>
-				)
-			},
 			{
 				Header: 'Sample ID',
 				accessor: 'sample_id',
@@ -85,15 +74,35 @@ export default function Sampletable({ samples, folderName, folder_id }) {
 				Header: 'Timestamp',
 				accessor: 'timestamp',
 				isNumeric: true
+			},
+			{
+				Header: 'Actions',
+				accessor: 'actions',
+				Cell: ({ row }) => (
+					<div>
+						<DeleteIcon
+							m={2}
+							onClick={() => {
+								handleDelete(row.original.sample_id);
+							}}
+						/>
+						{/* <EditIcon
+							onClick={() => {
+								handleEdit(row.original.sample_id);
+							}}
+						/> */}
+					</div>
+				)
 			}
 		],
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[]
 	);
 
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, useSortBy);
 
 	return (
-		<Table {...getTableProps()}>
+		<Table size="sm" {...getTableProps()}>
 			<Thead>
 				{headerGroups.map((headerGroup) => (
 					<Tr {...headerGroup.getHeaderGroupProps()}>

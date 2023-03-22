@@ -1,9 +1,11 @@
 import SamplesApi from '../../api/SamplesApi';
 
+
+
 async function handleDeleteClick(id) {
 	try {
 		let result = await SamplesApi.deleteSample(id);
-
+		
 		return result.success;
 	} catch (err) {
 		return err;
