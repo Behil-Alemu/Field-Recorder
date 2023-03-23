@@ -1,7 +1,7 @@
 import { Wrapper, Status } from '@googlemaps/react-wrapper';
 import LoadingSpinner from '../../helpers/LoadingSpinner';
 import { NotifyRed } from '../../helpers/Alert';
-import GoogleMap from '../Maps/GoogleMap';
+import GoogleMap from './getCoords';
 import React from 'react';
 
 const API_KEY = 'AIzaSyDzzPH5NHXC6Sl-rlTAF7YkdL3_UH2kRIU';

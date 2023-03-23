@@ -68,7 +68,7 @@ function LoginForm({ login }) {
 					<Box>
 						<Image src={logo} alt="app logo" />
 					</Box>
-					<Stack spacing={{ base: '2', md: '3' }} textAlign="center">
+					<Stack spacing={{ base: '2', md: '3' }} text="ceAlignnter">
 						<Heading size={{ base: 'xs', md: 'sm' }}>Log in to your account</Heading>
 						<HStack spacing="1" justify="center">
 							<Text color="muted">Don't have an account?</Text>

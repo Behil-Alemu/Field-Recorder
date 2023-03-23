@@ -2,16 +2,16 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
-import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer, IconButton, Icon } from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import NatureServerApi from '../api/natureServer';
 import { DropdownIndicator } from './SampleHelper.js/DropdownIndicator';
-import MapWrapper from '../samples/Maps/MapWrapper';
-
-
+import { getCoords } from '../samples/Maps/getCoords';
+import { GrLocation } from 'react-icons/gr';
 function SampleForm() {
 	const history = useNavigate();
+
 	const { currentUser, token } = useContext(UserContext);
 	const { id } = useParams();
 
@@ -46,7 +46,15 @@ function SampleForm() {
 
 	// 	setFormData({ ...formData, [e.target.name]: value });
 	// }
-
+	const handleGetCoords = async () => {
+		try {
+		  const coords = await getCoords();
+		  console.log(coords);
+		  formData.location = coords;
+		} catch (error) {
+			console.log(error);
+		}
+	  };
 	function handleChange(e) {
 		if (e && e.value) {
 			// // Handle change from Select component
@@ -68,6 +76,7 @@ function SampleForm() {
 			setFormData({ ...formData, [e.target.name]: value });
 		}
 	}
+
 	function handleInputChange(inputValue) {
 		setOrganismToSearch(inputValue);
 	}
@@ -99,7 +108,6 @@ function SampleForm() {
 	}));
 
 	return (
-		<>
 		<form onSubmit={handleSubmit}>
 			<Flex>
 				<FormControl p="1" id="common-name" isRequired>
@@ -128,14 +136,15 @@ function SampleForm() {
 				</FormControl>
 
 				<FormControl p="1" id="location" isRequired>
-					<FormLabel>Location</FormLabel>
-					<Input name="location" type="text" value={formData.location} onChange={handleChange} />
+					<FormLabel>Pin Location</FormLabel>
+					<Input name="location" type="text" value={formData.location} onChange={getCoords} />
 				</FormControl>
 			</Flex>
 			<Flex>
-				<FormControl p="1" id="image-url">
-					<FormLabel>Image URL</FormLabel>
-					<Input name="imageUrl" type="text" value={formData.imageUrl} onChange={handleChange} />
+				<FormControl p="1" id="location">
+					<Button align="left" onClick={handleGetCoords}>
+						Pin Location <Icon as={GrLocation} />
+					</Button>
 				</FormControl>
 
 				<FormControl p="1" id="note">
@@ -149,10 +158,7 @@ function SampleForm() {
 					Submit
 				</Button>
 			</Flex>
-			
 		</form>
-		<MapWrapper/>
-		</>
 	);
 }
 
