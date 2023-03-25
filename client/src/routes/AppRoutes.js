@@ -8,6 +8,7 @@ import PrivateRoute from '../auth/PrivateRoute';
 import Homepage from '../mainpages/Homepage';
 import Samplepage from '../samples/samplepage';
 import { Box } from '@chakra-ui/react';
+import HandleImage from '../samples/SampleHelper.js/handeImage';
 
 function AppRoutes({ login, signup }) {
 	console.debug('Routes', `login=${typeof login}`, `signup=${typeof signup}`);
@@ -22,6 +23,8 @@ function AppRoutes({ login, signup }) {
 				<Route path="/signup" element={<SignupForm signup={signup} />} />
 
 				<Route path="/homepage" element={<Homepage />} />
+				
+				<Route path="/url/:image_url" element={<HandleImage />} />
 
 				{/* <Route
 					path="/samplepage"

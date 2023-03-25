@@ -3,20 +3,18 @@ import { Table, Thead, Tr, Th, chakra, Tbody, Td } from '@chakra-ui/react';
 import React, { useMemo } from 'react';
 import { useTable, useSortBy } from 'react-table';
 import { convertTimestamp } from '../helpers/TimeReader';
-import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import { EditIcon, DeleteIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { handleDeleteClick } from './SampleHelper.js/handleEditDelete';
 import { useNavigate } from 'react-router-dom';
-
 export default function Sampletable({ samples, folderName, folder_id }) {
 	let history = useNavigate();
 
 	const handleDelete = async (id) => {
-		console.log(id, '{{{{{S}}}}}');
 		try {
 			let result = await handleDeleteClick(id, folderName, folder_id);
 			console.log(result);
 			history(`/homepage/${folderName}/${folder_id}`);
-			window.location.reload();
+			//window.location.reload();
 			return; //question 1) why do i have to reload to get back to home
 		} catch (err) {
 			console.error(err);
@@ -39,6 +37,7 @@ export default function Sampletable({ samples, folderName, folder_id }) {
 	);
 
 	const columns = useMemo(
+		
 		() => [
 			{
 				Header: 'Sample ID',
@@ -64,7 +63,17 @@ export default function Sampletable({ samples, folderName, folder_id }) {
 			},
 			{
 				Header: 'Image URL',
-				accessor: 'image_url'
+				accessor: 'image_url',
+				Cell: ({ row }) => (
+					<ExternalLinkIcon
+					
+						m={2}
+						onClick={() => {
+							console.log(row.original.image_url)
+							history(`/url/${toString(row.original.image_url)}`);
+						}}
+					/>
+				)
 			},
 			{
 				Header: 'Note',

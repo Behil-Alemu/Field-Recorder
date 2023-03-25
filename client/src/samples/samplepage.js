@@ -16,7 +16,7 @@ function Samplepage() {
 	useEffect(function getSamplessOnMount() {
 		console.debug('SampleList useEffect getSamplesOnMount');
 		sampleList();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	async function sampleList() {

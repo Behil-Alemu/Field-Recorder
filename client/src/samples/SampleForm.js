@@ -2,13 +2,15 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
-import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer, IconButton, Icon } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer, Icon } from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import NatureServerApi from '../api/natureServer';
 import { DropdownIndicator } from './SampleHelper.js/DropdownIndicator';
 import { getCoords } from '../samples/Maps/getCoords';
 import { GrLocation } from 'react-icons/gr';
+import MapComponent from './Maps/MapComponent';
+import UploadImage from './SampleHelper.js/uploadImage';
 function SampleForm() {
 	const history = useNavigate();
 
@@ -28,6 +30,8 @@ function SampleForm() {
 	const [ formErrors, setFormErrors ] = useState([]);
 	const [ organisms, setOrganisms ] = useState([]);
 	const [ organismToSearch, setOrganismToSearch ] = useState('');
+	const [ coords, setCoords ] = useState({ lat: null, long: null });
+	
 
 	console.debug('sampleForm', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
 
@@ -36,30 +40,27 @@ function SampleForm() {
 		let result = await SamplesApi.addSamples(formData);
 		if (result.success) {
 			//question 3 I would have to reload to see the sample adeed
+			//window.lo
 			history.push('/homepage');
 		} else {
 			setFormErrors(result.errors);
 		}
 	}
-	// function handleChange(e) {
-	// 	const value = e.target.type === 'number' ? parseInt(e.target.value) : e.target.value;
 
-	// 	setFormData({ ...formData, [e.target.name]: value });
-	// }
 	const handleGetCoords = async () => {
 		try {
-		  const coords = await getCoords();
-		  console.log(coords);
-		  formData.location = coords;
+			const { lat, long } = await getCoords();
+
+			formData.location = `${lat},${long}`;
+			setCoords({ lat, long });
 		} catch (error) {
 			console.log(error);
 		}
-	  };
+	};
 	function handleChange(e) {
 		if (e && e.value) {
 			// // Handle change from Select component
 			//setFormData({ ...formData, commonName: e.value });
-
 			// Find selected option object
 			const selectedOption = organismsInfo.find((option) => option.value === e.value);
 			if (selectedOption) {
@@ -89,7 +90,13 @@ function SampleForm() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[ organismToSearch ]
 	);
-
+	const handleFileChange = (file) => {
+		console.log(toString(file))
+		setFormData((prevState) => ({
+			...prevState,
+			imageUrl: file
+		}));
+	};
 	async function organismsList() {
 		try {
 			const organismsInfo = await NatureServerApi.getTaxonData(organismToSearch);
@@ -120,8 +127,6 @@ function SampleForm() {
 						components={{ DropdownIndicator }}
 						placeholder={formData.commonName}
 					/>
-
-					{/* <Input name="commonName" type="text" value={formData.commonName} onChange={handleChange} /> */}
 				</FormControl>
 
 				<FormControl p="1" id="scientific-name" isRequired>
@@ -135,23 +140,26 @@ function SampleForm() {
 					<Input name="quantity" type="number" value={Number(formData.quantity)} onChange={handleChange} />
 				</FormControl>
 
-				<FormControl p="1" id="location" isRequired>
-					<FormLabel>Pin Location</FormLabel>
-					<Input name="location" type="text" value={formData.location} onChange={getCoords} />
-				</FormControl>
-			</Flex>
-			<Flex>
-				<FormControl p="1" id="location">
-					<Button align="left" onClick={handleGetCoords}>
-						Pin Location <Icon as={GrLocation} />
-					</Button>
-				</FormControl>
-
 				<FormControl p="1" id="note">
 					<FormLabel>Note</FormLabel>
 					<Textarea name="note" value={formData.note} onChange={handleChange} />
 				</FormControl>
 			</Flex>
+
+			{/* <Flex>
+				<FormControl p="1" id="image" isRequired>
+					<FormLabel>Image</FormLabel>
+					<Input name="location" type="text" value={formData.imageUrl} onChange={handleChange} />
+				</FormControl>
+			</Flex> */}
+			<Flex>
+				<Button align="left" onClick={handleGetCoords}>
+					Pin Current Location <Icon as={GrLocation} />
+				</Button>
+				<MapComponent lat={coords.lat} lng={coords.long} />
+				<UploadImage onFileChange={handleFileChange} />
+			</Flex>
+
 			<Flex mt={4}>
 				<Spacer />
 				<Button colorScheme="green" type="submit">

@@ -12,7 +12,7 @@ const getCoords = () => {
 			const long = position.coords.longitude;
 			console.log(`Latitude is: ${lat}`);
 			console.log(`Longitude is: ${long}`);
-			resolve(`${lat},${long}`);
+			resolve({ lat, long });
 		};
 
 		const error = (error) => {
