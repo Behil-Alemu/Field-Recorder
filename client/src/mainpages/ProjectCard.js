@@ -22,17 +22,17 @@ import { useNavigate } from 'react-router-dom';
 
 import { handleDeleteClick, handleEditClick } from './delete-edit/handleEditDelete.js';
 
-function ProjectCard({ id, folderName, username }) {
+function ProjectCard({ id, folderName, updateProjects }) {
 	let history = useNavigate();
 
 	console.debug('ProjectCard', 'id=', id, 'folderName=', folderName);
 	const handleDelete = async () => {
 		try {
-			let result = await handleDeleteClick(id);
-			console.log(result);
+			await handleDeleteClick(id);
+			updateProjects(id);
 			history('/homepage');
-			window.location.reload();
-			return; //question 1) why do i have to reload to get back to home
+
+			return;
 		} catch (err) {
 			console.error(err);
 		}
@@ -46,8 +46,7 @@ function ProjectCard({ id, folderName, username }) {
 			let result = await handleEditClick(id, dataFormat);
 			console.log(result);
 			history('/homepage');
-			// window.location.reload();
-			return; //question 1) why do i have to reload to get back to home
+			return;
 		} catch (err) {
 			console.error(err);
 		}

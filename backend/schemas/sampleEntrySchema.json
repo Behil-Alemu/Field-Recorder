@@ -16,7 +16,6 @@
         "type": "string"
       },
       "imageUrl": {
-        "type": "string"
       },
       "note": {
         "type": "string"

@@ -5,8 +5,7 @@ import LoadingSpinner from '../helpers/LoadingSpinner';
 import { Card, Text, CardBody, CardHeader, Heading, Box, SimpleGrid } from '@chakra-ui/react';
 import ProjectCard from './ProjectCard';
 
-
-function ProjectList({username}) {
+function ProjectList({ username }) {
 	const [ formErrors, setFormErrors ] = useState([]);
 	const { currentUser, token } = useContext(UserContext);
 	const [ projects, setProjects ] = useState([]);
@@ -16,7 +15,7 @@ function ProjectList({username}) {
 	useEffect(function getProjectsOnMount() {
 		console.debug('ProjectList useEffect getProjectsOnMount');
 		projectList();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	async function projectList() {
@@ -34,13 +33,18 @@ function ProjectList({username}) {
 		console.log('projects not hereee');
 		return <LoadingSpinner />;
 	}
+	const updateProjects = (deletedProjectId) => {
+		setProjects((prevProjects) => prevProjects.filter((project) => project.id !== deletedProjectId));
+	};
 
 	return (
 		<div>
 			{projects.length ? (
 				<Box p={4} bg="gray.50">
 					<SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(200px, 1fr))">
-						{projects.map((p) => <ProjectCard key={p.id} id={p.id} folderName={p.foldername} username={username} />)}
+						{projects.map((p) => (
+							<ProjectCard key={p.id} id={p.id} folderName={p.foldername} updateProjects={updateProjects} />
+						))}
 					</SimpleGrid>
 				</Box>
 			) : (

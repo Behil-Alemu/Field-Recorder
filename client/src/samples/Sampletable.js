@@ -6,16 +6,16 @@ import { convertTimestamp } from '../helpers/TimeReader';
 import { EditIcon, DeleteIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { handleDeleteClick } from './SampleHelper.js/handleEditDelete';
 import { useNavigate } from 'react-router-dom';
-export default function Sampletable({ samples, folderName, folder_id }) {
+
+export default function Sampletable({ samples, folderName, folder_id, updateSamples }) {
 	let history = useNavigate();
 
 	const handleDelete = async (id) => {
 		try {
-			let result = await handleDeleteClick(id, folderName, folder_id);
-			console.log(result);
+			await handleDeleteClick(id, folderName, folder_id);
+			updateSamples(id)
 			history(`/homepage/${folderName}/${folder_id}`);
-			//window.location.reload();
-			return; //question 1) why do i have to reload to get back to home
+			return;
 		} catch (err) {
 			console.error(err);
 		}
@@ -37,7 +37,6 @@ export default function Sampletable({ samples, folderName, folder_id }) {
 	);
 
 	const columns = useMemo(
-		
 		() => [
 			{
 				Header: 'Sample ID',
@@ -66,11 +65,9 @@ export default function Sampletable({ samples, folderName, folder_id }) {
 				accessor: 'image_url',
 				Cell: ({ row }) => (
 					<ExternalLinkIcon
-					
 						m={2}
 						onClick={() => {
-							console.log(row.original.image_url)
-							history(`/url/${toString(row.original.image_url)}`);
+							history(`/${row.original.image_url}`);
 						}}
 					/>
 				)

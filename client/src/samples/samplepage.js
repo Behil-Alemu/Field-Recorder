@@ -5,6 +5,7 @@ import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import Sampletable from './Sampletable';
 import SampleForm from './SampleForm';
+import useUpdateLists from '../hooks/useUpdateLists';
 
 function Samplepage() {
 	const { folderName, id } = useParams();
@@ -32,6 +33,9 @@ function Samplepage() {
 	if (!samples) {
 		console.log('no samples added yet');
 	}
+	const updateSamples = (deletedSampleId) => {
+		setSamples((prevSamples) => prevSamples.filter((Sample) => Sample.sample_id !== deletedSampleId));
+	};
 
 	return (
 		<Box p={4}>
@@ -42,7 +46,12 @@ function Samplepage() {
 			<div>
 				{samples && samples.length > 0 ? (
 					<Box p={4} bg="gray.50">
-						<Sampletable samples={samples} folderName={folderName} folder_id={id} />
+						<Sampletable
+							samples={samples}
+							folderName={folderName}
+							folder_id={id}
+							updateSamples={updateSamples}
+						/>
 					</Box>
 				) : (
 					<Card maxW="md" align="center" bg="red.50">

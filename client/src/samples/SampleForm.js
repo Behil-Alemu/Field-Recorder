@@ -31,16 +31,13 @@ function SampleForm() {
 	const [ organisms, setOrganisms ] = useState([]);
 	const [ organismToSearch, setOrganismToSearch ] = useState('');
 	const [ coords, setCoords ] = useState({ lat: null, long: null });
-	
 
 	console.debug('sampleForm', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
-
 	async function handleSubmit() {
 		SamplesApi.token = token;
 		let result = await SamplesApi.addSamples(formData);
 		if (result.success) {
-			//question 3 I would have to reload to see the sample adeed
-			//window.lo
+			
 			history.push('/homepage');
 		} else {
 			setFormErrors(result.errors);
@@ -91,11 +88,12 @@ function SampleForm() {
 		[ organismToSearch ]
 	);
 	const handleFileChange = (file) => {
-		console.log(toString(file))
-		setFormData((prevState) => ({
-			...prevState,
-			imageUrl: file
-		}));
+		console.log(file, "{{{{{{form file}}}}}}")
+		setFormData((prevState) => {
+			const formData = new FormData();
+			formData.append('imageUrl', file);
+			return { ...prevState, ...formData };
+		});
 	};
 	async function organismsList() {
 		try {
