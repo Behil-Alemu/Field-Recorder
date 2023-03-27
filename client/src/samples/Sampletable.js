@@ -1,20 +1,30 @@
-import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
+import { TriangleDownIcon, TriangleUpIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { Table, Thead, Tr, Th, chakra, Tbody, Td } from '@chakra-ui/react';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTable, useSortBy } from 'react-table';
 import { convertTimestamp } from '../helpers/TimeReader';
-import { EditIcon, DeleteIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+
 import { handleDeleteClick } from './SampleHelper.js/handleEditDelete';
 import { useNavigate } from 'react-router-dom';
+import ConfirmDelete from '../helpers/ConfirmDelete';
 
 export default function Sampletable({ samples, folderName, folder_id, updateSamples }) {
 	let history = useNavigate();
+	const [ isOpen, setIsOpen ] = useState(false);
+	const [ sampleIdToDelete, setSampleIdToDelete ] = useState(0);
+	const onClose = () => setIsOpen(false);
 
-	const handleDelete = async (id) => {
+	const handleDelete = (id) => {
+		setSampleIdToDelete(id);
+		setIsOpen(true);
+	};
+
+	const handleConfirmDelete = async () => {
 		try {
-			await handleDeleteClick(id, folderName, folder_id);
-			updateSamples(id)
+			await handleDeleteClick(sampleIdToDelete, folderName, folder_id);
+			updateSamples(sampleIdToDelete);
 			history(`/homepage/${folderName}/${folder_id}`);
+			onClose();
 			return;
 		} catch (err) {
 			console.error(err);
@@ -62,15 +72,15 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 			},
 			{
 				Header: 'Image URL',
-				accessor: 'image_url',
-				Cell: ({ row }) => (
-					<ExternalLinkIcon
-						m={2}
-						onClick={() => {
-							history(`/${row.original.image_url}`);
-						}}
-					/>
-				)
+				accessor: 'image_url'
+				// Cell: ({ row }) => (
+				// 	<ExternalLinkIcon
+				// 		m={2}
+				// 		onClick={() => {
+				// 			history(`/${row.original.image_url}`);
+				// 		}}
+				// 	/>
+				// )
 			},
 			{
 				Header: 'Note',
@@ -92,11 +102,12 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 								handleDelete(row.original.sample_id);
 							}}
 						/>
-						{/* <EditIcon
+						<EditIcon
+							m={2}
 							onClick={() => {
-								handleEdit(row.original.sample_id);
+								history(`/editSample/${row.original.sample_id}`);
 							}}
-						/> */}
+						/>
 					</div>
 				)
 			}
@@ -108,39 +119,45 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, useSortBy);
 
 	return (
-		<Table size="sm" {...getTableProps()}>
-			<Thead>
-				{headerGroups.map((headerGroup) => (
-					<Tr {...headerGroup.getHeaderGroupProps()}>
-						{headerGroup.headers.map((column) => (
-							<Th {...column.getHeaderProps(column.getSortByToggleProps())} isNumeric={column.isNumeric}>
-								{column.render('Header')}
-								<chakra.span pl="4">
-									{column.isSorted ? column.isSortedDesc ? (
-										<TriangleDownIcon aria-label="sorted descending" />
-									) : (
-										<TriangleUpIcon aria-label="sorted ascending" />
-									) : null}
-								</chakra.span>
-							</Th>
-						))}
-					</Tr>
-				))}
-			</Thead>
-			<Tbody {...getTableBodyProps()}>
-				{rows.map((row) => {
-					prepareRow(row);
-					return (
-						<Tr {...row.getRowProps()}>
-							{row.cells.map((cell) => (
-								<Td {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
-									{cell.render('Cell')}
-								</Td>
+		<div>
+			<Table size="sm" {...getTableProps()}>
+				<Thead>
+					{headerGroups.map((headerGroup) => (
+						<Tr {...headerGroup.getHeaderGroupProps()}>
+							{headerGroup.headers.map((column) => (
+								<Th
+									{...column.getHeaderProps(column.getSortByToggleProps())}
+									isNumeric={column.isNumeric}
+								>
+									{column.render('Header')}
+									<chakra.span pl="4">
+										{column.isSorted ? column.isSortedDesc ? (
+											<TriangleDownIcon aria-label="sorted descending" />
+										) : (
+											<TriangleUpIcon aria-label="sorted ascending" />
+										) : null}
+									</chakra.span>
+								</Th>
 							))}
 						</Tr>
-					);
-				})}
-			</Tbody>
-		</Table>
+					))}
+				</Thead>
+				<Tbody {...getTableBodyProps()}>
+					{rows.map((row) => {
+						prepareRow(row);
+						return (
+							<Tr {...row.getRowProps()}>
+								{row.cells.map((cell) => (
+									<Td {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
+										{cell.render('Cell')}
+									</Td>
+								))}
+							</Tr>
+						);
+					})}
+				</Tbody>
+			</Table>
+			<ConfirmDelete handleConfirmDelete={handleConfirmDelete} onClose={onClose} isOpen={isOpen} />
+		</div>
 	);
 }

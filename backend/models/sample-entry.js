@@ -58,6 +58,13 @@ class SampleEntry {
 		return samples.rows;
 	}
 
+	/* Returns { sample_id, commonName, scientificName, quantity, location, imageUrl, note, timestamp, folder_id  }
+   * */
+	static async getSampleById(sampleId) {
+		const sample = await db.query(`SELECT * FROM sample_entry WHERE sample_id = $1`, [ sampleId ]);
+		return sample.rows[0];
+	}
+
 	/** Update sample data with `data`.
  
    * Data can include: { common_name, scientific_name, quantity, location, image_url, note}

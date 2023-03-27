@@ -3,10 +3,10 @@
     "$id": "http://example.com/userNew.json",
     "type": "object",
     "properties": {
-      "common_name": {
+      "commonName": {
         "type": "string"
       },
-      "scientific_name": {
+      "scientificName": {
         "type": "string"
       },
       "quantity": {
@@ -15,7 +15,7 @@
       "location": {
         "type": "string"
       },
-      "image_url": {
+      "imageUrl": {
         "type": "string"
       },
       "note": {

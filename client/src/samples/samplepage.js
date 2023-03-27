@@ -5,7 +5,6 @@ import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import Sampletable from './Sampletable';
 import SampleForm from './SampleForm';
-import useUpdateLists from '../hooks/useUpdateLists';
 
 function Samplepage() {
 	const { folderName, id } = useParams();

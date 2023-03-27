@@ -24,6 +24,16 @@ router.get('/:username/:folderName', ensureLoggedIn, async function(req, res, ne
 		return next(err);
 	}
 });
+//GET single sample => {sample}*/
+router.get('/:sample_id', ensureLoggedIn, async function(req, res, next) {
+	try {
+		const sample = await SampleEntry.getSampleById(req.params.sample_id);
+
+		return res.json({ sample });
+	} catch (err) {
+		return next(err);
+	}
+});
 
 /** POST /sample-entry/add
  *
@@ -38,7 +48,7 @@ router.post('/add', upload.single('imageUrl'), ensureLoggedIn, async function(re
 			throw new BadRequestError(errs);
 		}
 		const file = req.file;
-		console.log( req.file, '{{{{{{{{file}}}}}}}}');
+		console.log(req.file, '{{{{{{{{file}}}}}}}}');
 
 		const newSample = await SampleEntry.add({ ...req.body });
 

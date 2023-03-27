@@ -11,33 +11,60 @@ import { getCoords } from '../samples/Maps/getCoords';
 import { GrLocation } from 'react-icons/gr';
 import MapComponent from './Maps/MapComponent';
 import UploadImage from './SampleHelper.js/uploadImage';
-function SampleForm() {
+function EditSamples() {
 	const history = useNavigate();
-
-	const { currentUser, token } = useContext(UserContext);
-	const { id } = useParams();
-
-	const [ formData, setFormData ] = useState({
-		commonName: '',
-		scientificName: '',
-		quantity: 0,
-		location: '',
-		imageUrl: '',
-		note: '',
-		username: currentUser.username,
-		folderId: Number(id)
-	});
 	const [ formErrors, setFormErrors ] = useState([]);
 	const [ organisms, setOrganisms ] = useState([]);
 	const [ organismToSearch, setOrganismToSearch ] = useState('');
 	const [ coords, setCoords ] = useState({ lat: null, long: null });
+	const { token } = useContext(UserContext);
+	const { sample_id } = useParams();
+	const [ sample, setSample ] = useState({});
 
-	console.debug('sampleForm', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
-	async function handleSubmit() {
+	useEffect(function getSamplessOnMount() {
+		console.debug('SampleList useEffect getSamplesOnMount');
+		sampleList();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+	const [ formData, setFormData ] = useState({});
+
+	async function sampleList() {
+		try {
+			SamplesApi.token = token;
+			let result = await SamplesApi.getSampleById(sample_id);
+			setSample(result);
+			setFormData({
+				commonName: result.common_name,
+				scientificName: result.scientific_name,
+				quantity: result.quantity,
+				location: result.location,
+				imageUrl: result.image_url,
+				note: result.note
+			});
+		} catch (err) {
+			console.log(err);
+			setFormErrors(err);
+		}
+	}
+
+	console.debug('EditSamples', 'sample=', sample, 'formData=', formData, 'formErrors', formErrors);
+
+	async function handleSubmit(evt) {
+        evt.preventDefault();
+		let editData = {
+			commonName: formData.commonName,
+			scientificName: formData.scientificName,
+			quantity: formData.quantity,
+			location: formData.location,
+			imageUrl: formData.imageUrl,
+			note: formData.note
+		};
+
 		SamplesApi.token = token;
-		let result = await SamplesApi.addSamples(formData);
+		let result = await SamplesApi.editSamples(sample_id, editData);
+        console.log(result, 'UPDATED !!!!!!!!!!!!!!!!!!!!!!');
 		if (result.success) {
-			history.push('/homepage');
+			history.push(`/homepage`);
 		} else {
 			setFormErrors(result.errors);
 		}
@@ -161,4 +188,4 @@ function SampleForm() {
 	);
 }
 
-export default SampleForm;
+export default EditSamples;
