@@ -33,7 +33,7 @@ function SampleForm() {
 	const [ coords, setCoords ] = useState({ lat: null, long: null });
 
 	console.debug('sampleForm', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
-	async function handleSubmit() {
+	async function handleSubmit(evt) {
 		SamplesApi.token = token;
 		let result = await SamplesApi.addSamples(formData);
 		if (result.success) {
@@ -88,11 +88,11 @@ function SampleForm() {
 	);
 	const handleFileChange = (file) => {
 		console.log(file, '{{{{{{form file}}}}}}');
-		setFormData((prevState) => {
-			const formData = new FormData();
-			formData.append('imageUrl', file);
-			return { ...prevState, ...formData };
-		});
+		const updatedFormData = {
+			...formData,
+			imageUrl: file
+		};
+		setFormData(updatedFormData);
 	};
 	async function organismsList() {
 		try {
@@ -148,8 +148,11 @@ function SampleForm() {
 					Pin Current Location <Icon as={GrLocation} />
 				</Button>
 				<MapComponent lat={coords.lat} lng={coords.long} />
-				<UploadImage onFileChange={handleFileChange} />
 			</Flex>
+			<FormControl p="1" id="image">
+				<FormLabel>Image</FormLabel>
+				<UploadImage onFileChange={handleFileChange} />
+			</FormControl>
 
 			<Flex mt={4}>
 				<Spacer />

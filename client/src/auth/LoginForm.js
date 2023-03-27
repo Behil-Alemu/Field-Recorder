@@ -104,12 +104,9 @@ function LoginForm({ login }) {
 						</Stack>
 						<HStack justify="space-between">
 							<Checkbox defaultChecked>Remember me</Checkbox>
-							<Button variant="link" colorScheme="blue" size="sm">
-								Forgot password?
-							</Button>
 						</HStack>
 						<Stack spacing="6">
-							<Button colorScheme='cyan' variant="filled" onClick={handleSubmit}>
+							<Button colorScheme="cyan" variant="filled" onClick={handleSubmit}>
 								Sign in
 							</Button>
 						</Stack>

@@ -9,8 +9,6 @@ const { BadRequestError } = require('../expressError');
 const SampleEntry = require('../models/sample-entry');
 const sampleEntrySchema = require('../schemas/sampleEntrySchema.json');
 const sampleUpdateSchema = require('../schemas/sampleUpdate.json');
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 
 const router = express.Router();
 
@@ -40,15 +38,13 @@ router.get('/:sample_id', ensureLoggedIn, async function(req, res, next) {
  * add include { common_name, scientific_name, quantity, location, image_url, note }
  */
 
-router.post('/add', upload.single('imageUrl'), ensureLoggedIn, async function(req, res, next) {
+router.post('/add', ensureLoggedIn, async function(req, res, next) {
 	try {
 		const validator = jsonschema.validate(req.body, sampleEntrySchema);
 		if (!validator.valid) {
 			const errs = validator.errors.map((e) => e.stack);
 			throw new BadRequestError(errs);
 		}
-		const file = req.file;
-		console.log(req.file, '{{{{{{{{file}}}}}}}}');
 
 		const newSample = await SampleEntry.add({ ...req.body });
 

@@ -1,4 +1,4 @@
-import { TriangleDownIcon, TriangleUpIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { TriangleDownIcon, TriangleUpIcon, DeleteIcon, EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { Table, Thead, Tr, Th, chakra, Tbody, Td } from '@chakra-ui/react';
 import React, { useMemo, useState } from 'react';
 import { useTable, useSortBy } from 'react-table';
@@ -7,6 +7,7 @@ import { convertTimestamp } from '../helpers/TimeReader';
 import { handleDeleteClick } from './SampleHelper.js/handleEditDelete';
 import { useNavigate } from 'react-router-dom';
 import ConfirmDelete from '../helpers/ConfirmDelete';
+import HandleImage from './SampleHelper.js/handeImage';
 
 export default function Sampletable({ samples, folderName, folder_id, updateSamples }) {
 	let history = useNavigate();
@@ -45,7 +46,7 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 			})),
 		[ samples ]
 	);
-
+console.log(samples[7])
 	const columns = useMemo(
 		() => [
 			{
@@ -72,15 +73,25 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 			},
 			{
 				Header: 'Image URL',
-				accessor: 'image_url'
-				// Cell: ({ row }) => (
-				// 	<ExternalLinkIcon
-				// 		m={2}
-				// 		onClick={() => {
-				// 			history(`/${row.original.image_url}`);
-				// 		}}
-				// 	/>
-				// )
+				accessor: 'image_url',
+				Cell: ({ row }) => {
+					const [ showModal, setShowModal ] = useState(false);
+
+					return (
+						<div>
+							<ExternalLinkIcon
+								m={2}
+								onClick={() => {
+									setShowModal(true);
+									
+								}}
+							/>
+							{showModal && (
+								<HandleImage url={row.original.image_url} onClose={() => setShowModal(false)} />
+							)}
+						</div>
+					);
+				}
 			},
 			{
 				Header: 'Note',

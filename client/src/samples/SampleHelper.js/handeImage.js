@@ -1,16 +1,40 @@
-import { Box, Text, Image } from '@chakra-ui/react';
 import React from 'react';
-import { useParams } from 'react-router-dom';
-// ...
-const HandleImage = () => {
-	const { imageurl } = useParams();
-	console.log(imageurl, "{{{{{HI}}}}}");
+
+import {
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
+	ModalCloseButton,
+	Button,
+	useDisclosure,
+	Image
+} from '@chakra-ui/react';
+
+const HandleImage = ({ url }) => {
+	const { isOpen, onOpen, onClose } = useDisclosure();
+
 	return (
-		<Box>
-			<Text>{imageurl}</Text>
-			<Image src={imageurl} />
-			<Image src="https://bit.ly/fcc-relaxing-cat" alt="" />
-		</Box>
+		<div>
+			<Button onClick={onOpen}>Review Image</Button>
+
+			<Modal onClose={onClose} isOpen={isOpen} isCentered>
+				<ModalOverlay />
+				<ModalContent>
+					<ModalHeader>Modal Title</ModalHeader>
+					<ModalCloseButton />
+					<ModalBody>
+						<Image src={url} />
+					</ModalBody>
+					<ModalFooter>
+						<Button onClick={onClose}>Close</Button>
+					</ModalFooter>
+				</ModalContent>
+			</Modal>
+		</div>
 	);
 };
+
 export default HandleImage;
