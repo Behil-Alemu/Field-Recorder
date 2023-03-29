@@ -1,24 +1,27 @@
 import React, { useContext } from 'react';
-import { Tabs, TabList, Tab, Flex, Image, useColorMode } from '@chakra-ui/react';
+import { Tabs, TabList, Tab, Flex, Image, useColorMode , useColorModeValue} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import logo from '../logo.png';
+import logo from '../images/logo.png';
 import UserContext from '../auth/UserContext';
 import { MoonIcon } from '@chakra-ui/icons';
 
 const NavigationBar = ({ logout }) => {
 	const { currentUser } = useContext(UserContext);
 	const { colorMode, toggleColorMode } = useColorMode();
+	const bg = useColorModeValue('linear(to-r, green.100, teal.500)', 'linear(to-r, green.50, green.200)')
+	const color = useColorModeValue('white', 'green.800')
+
 	function loggedInNav() {
 		return (
 			<TabList>
 				<Link to="/homepage">
-					<Tab color="red.800">My Projects</Tab>
+					<Tab color={color}>My Projects</Tab>
 				</Link>
 				<Link to="/profile">
-					<Tab color="green.800">{currentUser.first_name || currentUser.username}</Tab>
+					<Tab color={color}>{currentUser.first_name || currentUser.username}</Tab>
 				</Link>
 				<Link to="/login" onClick={logout}>
-					<Tab color="red.800">Log out</Tab>
+					<Tab color="red.300">Log out</Tab>
 				</Link>
 			</TabList>
 		);
@@ -27,18 +30,18 @@ const NavigationBar = ({ logout }) => {
 		return (
 			<TabList>
 				<Link to="/signup">
-					<Tab color="green.800">Sign Up</Tab>
+					<Tab color={color}>Sign Up</Tab>
 				</Link>
 				<Link to="/login">
-					<Tab color="green.800">Login</Tab>
+					<Tab color={color}>Login</Tab>
 				</Link>
 			</TabList>
 		);
 	}
 
 	return (
-		<Flex bg="green.50" p={4} alignItems="center" justifyContent="space-between">
-			<Tabs colorScheme="green">
+		<Flex bgGradient={bg} p={4} alignItems="center" justifyContent="space-between">
+			<Tabs colorScheme="white">
 				<TabList>
 					<Tab>
 						<Link to="/">

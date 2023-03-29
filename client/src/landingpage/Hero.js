@@ -23,15 +23,15 @@ export default function Hero({ title, subtitle, image, signupLink, createText, .
 				w={{ base: '80%', md: '40%' }}
 				align={[ 'center', 'center', 'flex-start', 'flex-start' ]}
 			>
-				<Heading
-					as="h1"
-					size="xl"
-					fontWeight="bold"
-					color="primary.800"
-					textAlign={[ 'center', 'center', 'left', 'left' ]}
+				<Text
+					bgGradient="linear(to-l, teal.500, green.500)"
+					bgClip="text"
+					fontSize="5xl"
+					fontWeight="extrabold"
 				>
 					{title}
-				</Heading>
+				</Text>
+
 				<Heading
 					as="h2"
 					size="md"
@@ -76,7 +76,7 @@ Hero.propTypes = {
 };
 
 Hero.defaultProps = {
-	title: 'FieldRecorder',
+	title: 'Field Recorder',
 	subtitle:
 		'For research biologist-data entry and analysis app. Keep track of samples and pin the location of samples found. Accompanied by NatureServe Explorer REST API, an API that has information on rare and endangered species and ecosystems in the Americas.',
 	image: 'https://source.unsplash.com/collection/1360066/800x600',

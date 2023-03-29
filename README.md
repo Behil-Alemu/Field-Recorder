@@ -32,3 +32,5 @@ for chakra landing page. https://codesandbox.io/s/landing-page-with-chakra-ui-fo
 
 
 https://react-google-maps-api-docs.netlify.app/#marker
+
+https://docs.imagekit.io/getting-started/quickstart-guides/react#uploading-files-in-react

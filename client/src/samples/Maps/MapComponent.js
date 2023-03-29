@@ -7,14 +7,7 @@ const containerStyle = {
 	height: '200px'
 };
 
-// const center = {
-// 	lat: 42.3726399,
-// 	lng: -71.1096528
-// };
-// const position = {
-// 	lat: lat,
-// 	lng: lng
-// };
+
 
 function MapComponent({ lat, lng }) {
 	const { isLoaded } = useJsApiLoader({

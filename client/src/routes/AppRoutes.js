@@ -15,7 +15,7 @@ function AppRoutes({ login, signup }) {
 	console.debug('Routes', `login=${typeof login}`, `signup=${typeof signup}`);
 
 	return (
-		<Box m={8} align="center">
+		<Box m={4}  align="center" >
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Container, FormControl, FormLabel, Heading, Input, Stack, Text, Image } from '@chakra-ui/react';
-import logo from '../logo.png';
+import { Box, Button, Container, FormControl, FormLabel, Heading, Input, Stack, Text } from '@chakra-ui/react';
 import PasswordField from '../helpers/PasswordField';
 import { NotifyRed } from '../helpers/Alert';
+import { Logo } from './Logo';
 
 /** Signup form.
  *
@@ -48,15 +48,13 @@ function SignupForm({ signup }) {
 	function handleChange(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
-	console.log('KKKKKKKKKKKKKKKKKk', formErrors);
+	console.log(formErrors);
 	return (
-		<Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
-			<Stack spacing="8">
-				<Stack spacing="6">
+		<Container maxW="lg" py={{ base: '2', md: '2' }} px={{ base: '0', sm: '8' }}>
+			<Stack spacing="4">
+				<Stack spacing="2" alignItems="center" justifyContent="center">
 					<form onSubmit={handleSubmit}>{formErrors.length > 0 && <NotifyRed error={formErrors} />}</form>
-					<Box>
-						<Image src={logo} alt="app logo" />
-					</Box>
+					<Logo />
 					<Stack spacing={{ base: '2', md: '3' }} textAlign="center">
 						<Heading size={{ base: 'xs', md: 'sm' }}>Create an account</Heading>
 						<Text color="muted">Already have an account?</Text>
@@ -119,8 +117,7 @@ function SignupForm({ signup }) {
 								/>
 							</FormControl>
 							<Stack spacing="6">
-							{/* question 5 why is the color of the button not showing up */}
-								<Button colorScheme='cyan' variant="filled" onClick={handleSubmit}>
+								<Button colorScheme="green" size="sm" onClick={handleSubmit}>
 									Sign up
 								</Button>
 							</Stack>

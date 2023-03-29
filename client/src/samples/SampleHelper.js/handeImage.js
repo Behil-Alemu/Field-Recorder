@@ -12,6 +12,7 @@ import {
 	useDisclosure,
 	Image
 } from '@chakra-ui/react';
+import noImage from '../../images/cat.png'
 
 const HandleImage = ({ url }) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -23,10 +24,10 @@ const HandleImage = ({ url }) => {
 			<Modal onClose={onClose} isOpen={isOpen} isCentered>
 				<ModalOverlay />
 				<ModalContent>
-					<ModalHeader>Modal Title</ModalHeader>
+					{url ? <ModalHeader>Sample Image</ModalHeader> : <ModalHeader>Not Valid Image</ModalHeader>}
 					<ModalCloseButton />
 					<ModalBody>
-						<Image src={url} />
+						<Image src={url} fallbackSrc={noImage} />
 					</ModalBody>
 					<ModalFooter>
 						<Button onClick={onClose}>Close</Button>

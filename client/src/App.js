@@ -1,5 +1,5 @@
 import './App.css';
-import { ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import useLocalStorage from './hooks/useLocalStorage';
@@ -96,10 +96,10 @@ function App() {
 		<ChakraProvider>
 			<BrowserRouter>
 				<UserContext.Provider value={{ currentUser, setCurrentUser, token }}>
-					<div className="App">
+					<Box className="App">
 						<NavigationBar logout={logout} />
 						<Routes login={login} signup={signup} />
-					</div>
+					</Box>
 				</UserContext.Provider>
 			</BrowserRouter>
 		</ChakraProvider>

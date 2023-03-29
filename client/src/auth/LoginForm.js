@@ -13,11 +13,12 @@ import {
 	Input,
 	Stack,
 	Text,
-	Image
+	Divider
 } from '@chakra-ui/react';
-import logo from '../logo.png';
 import PasswordField from '../helpers/PasswordField';
 import { NotifyRed } from '../helpers/Alert';
+import { OAuthButtonGroup } from './OAuthComponents/OAuthButtons';
+import { Logo } from './Logo';
 
 /** Login form.
  *
@@ -61,13 +62,11 @@ function LoginForm({ login }) {
 	}
 
 	return (
-		<Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
-			<Stack spacing="8">
-				<Stack spacing="6">
+		<Container maxW="lg" py={{ base: '2', md: '2' }} px={{ base: '0', sm: '8' }}>
+			<Stack spacing="4">
+				<Stack spacing="2" alignItems="center" justifyContent="center">
 					<form onSubmit={handleSubmit}>{formErrors.length > 0 && <NotifyRed error={formErrors} />}</form>
-					<Box>
-						<Image src={logo} alt="app logo" />
-					</Box>
+					<Logo />
 					<Stack spacing={{ base: '2', md: '3' }} text="ceAlignnter">
 						<Heading size={{ base: 'xs', md: 'sm' }}>Log in to your account</Heading>
 						<HStack spacing="1" justify="center">
@@ -98,18 +97,25 @@ function LoginForm({ login }) {
 									required
 								/>
 								<FormLabel htmlFor="password">Password</FormLabel>
-								{/* <Input id="password" type="password" onChange={handleChange} value={formData.username} /> */}
 								<PasswordField handleChange={handleChange} passwordValue={formData.password} />
 							</FormControl>
 						</Stack>
 						<HStack justify="space-between">
-							<Checkbox defaultChecked>Remember me</Checkbox>
+							<Checkbox defaultChecked colorScheme="green">
+								Remember me
+							</Checkbox>
 						</HStack>
 						<Stack spacing="6">
-							<Button colorScheme="cyan" variant="filled" onClick={handleSubmit}>
+							<Button colorScheme="green" size="sm" onClick={handleSubmit}>
 								Sign in
 							</Button>
+							<Divider color="green.100" />
+							<Text fontSize="sm" whiteSpace="nowrap" color="muted">
+								or continue with
+							</Text>
+							<Divider />
 						</Stack>
+						<OAuthButtonGroup />
 					</Stack>
 				</Box>
 			</Stack>

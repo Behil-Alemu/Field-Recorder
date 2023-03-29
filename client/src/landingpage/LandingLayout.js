@@ -1,8 +1,12 @@
 import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { Flex, useColorModeValue } from "@chakra-ui/react";
+
 
 export default function LandingLayout(props) {
+  const animalImg = useColorModeValue('linear(to-r, green.100, teal.500)', 'linear(to-r, green.50, green.200)')
+
   return (
+
     <Flex
       direction="column"
       align="center"
