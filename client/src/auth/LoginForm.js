@@ -12,13 +12,12 @@ import {
 	HStack,
 	Input,
 	Stack,
-	Text,
-	Divider
+	Text
 } from '@chakra-ui/react';
 import PasswordField from '../helpers/PasswordField';
 import { NotifyRed } from '../helpers/Alert';
-import { OAuthButtonGroup } from './OAuthComponents/OAuthButtons';
 import { Logo } from './Logo';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 /** Login form.
  *
@@ -34,8 +33,8 @@ import { Logo } from './Logo';
 function LoginForm({ login }) {
 	const history = useNavigate();
 	const [ formData, setFormData ] = useState({
-		username: '',
-		password: ''
+		username: localStorage.username ? localStorage.username : '',
+		password: localStorage.password ? localStorage.password : ''
 	});
 	const [ formErrors, setFormErrors ] = useState([]);
 
@@ -54,12 +53,22 @@ function LoginForm({ login }) {
 		} else {
 			setFormErrors(result.errors);
 		}
+
+		if (rememberMe) {
+			window.localStorage.setItem('username', formData.username);
+			window.localStorage.setItem('password', formData.password);
+		} else {
+			window.localStorage.removeItem('username');
+			window.localStorage.removeItem('password');
+		}
 	}
 
 	/** Update form data field */
 	function handleChange(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
+
+	const [ rememberMe, setRememberMe ] = useLocalStorage('rememberMe', false);
 
 	return (
 		<Container maxW="lg" py={{ base: '2', md: '2' }} px={{ base: '0', sm: '8' }}>
@@ -93,15 +102,22 @@ function LoginForm({ login }) {
 									placeholder="Enter username"
 									type="text"
 									onChange={handleChange}
-									value={formData.username}
+									value={localStorage.username ? localStorage.username : formData.username}
 									required
 								/>
 								<FormLabel htmlFor="password">Password</FormLabel>
-								<PasswordField handleChange={handleChange} passwordValue={formData.password} />
+								<PasswordField
+									handleChange={handleChange}
+									passwordValue={localStorage.password ? localStorage.password : formData.password}
+								/>
 							</FormControl>
 						</Stack>
 						<HStack justify="space-between">
-							<Checkbox defaultChecked colorScheme="green">
+							<Checkbox
+								colorScheme="green"
+								isChecked={rememberMe}
+								onChange={(event) => setRememberMe(event.target.checked)}
+							>
 								Remember me
 							</Checkbox>
 						</HStack>
@@ -109,13 +125,7 @@ function LoginForm({ login }) {
 							<Button colorScheme="green" size="sm" onClick={handleSubmit}>
 								Sign in
 							</Button>
-							<Divider color="green.100" />
-							<Text fontSize="sm" whiteSpace="nowrap" color="muted">
-								or continue with
-							</Text>
-							<Divider />
 						</Stack>
-						<OAuthButtonGroup />
 					</Stack>
 				</Box>
 			</Stack>

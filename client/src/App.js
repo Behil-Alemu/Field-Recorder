@@ -90,6 +90,7 @@ function App() {
 		setCurrentUser(null);
 		setToken(null);
 	}
+	
 	if (!infoReceived) return <LoadingSpinner />;
 
 	return (
