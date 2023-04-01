@@ -46,7 +46,7 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 			})),
 		[ samples ]
 	);
-console.log(samples[7])
+	console.log(samples[7]);
 	const columns = useMemo(
 		() => [
 			{
@@ -75,20 +75,16 @@ console.log(samples[7])
 				Header: 'Image URL',
 				accessor: 'image_url',
 				Cell: ({ row }) => {
-					const [ showModal, setShowModal ] = useState(false);
-
 					return (
 						<div>
-							<ExternalLinkIcon
+							{/* <ExternalLinkIcon
 								m={2}
 								onClick={() => {
 									setShowModal(true);
 									
 								}}
-							/>
-							{showModal && (
-								<HandleImage url={row.original.image_url} onClose={() => setShowModal(false)} />
-							)}
+							/> */}
+							{<HandleImage url={row.original.image_url} name={row.original.common_name} />}
 						</div>
 					);
 				}

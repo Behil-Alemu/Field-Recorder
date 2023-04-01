@@ -1,35 +1,41 @@
 import React from 'react';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, MarkerClusterer } from '@react-google-maps/api';
 const key = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const containerStyle = {
-	width: '400px',
-	height: '200px'
+	width: '530px',
+	height: '400px'
 };
 
+function MapComponent({ samples }) {
+	
 
-
-function MapComponent({ lat, lng }) {
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey: key
 	});
-  const position = {
-    lat: lat,
-    lng: lng
-  };
-  const center = {
-    lat: lat?lat:42.3726399,
-    lng: lng?lng:-71.1096528
-  };
+
+	const locations = samples.map((sample) => JSON.parse(sample.location));
+
+
+	const center = locations[0];
 	const onLoad = (marker) => {
 		console.log('marker: ');
 	};
 
+	function createKey(position) {
+		return position.lat + position.lng;
+	}
+
 	return isLoaded ? (
 		<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onLoad={onLoad}>
 			{' '}
-			<Marker onLoad={onLoad} position={position} />
+			<MarkerClusterer>
+				{(clusterer) =>
+					locations.map((location) => (
+						<Marker key={createKey(location)} position={location} clusterer={clusterer} />
+					))}
+			</MarkerClusterer>
 		</GoogleMap>
 	) : (
 		<div />

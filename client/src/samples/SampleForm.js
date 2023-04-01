@@ -9,7 +9,7 @@ import NatureServerApi from '../api/natureServer';
 import { DropdownIndicator } from './SampleHelper.js/DropdownIndicator';
 import { getCoords } from '../samples/Maps/getCoords';
 import { GrLocation } from 'react-icons/gr';
-import MapComponent from './Maps/MapComponent';
+import LoadingSpinner from '../helpers/LoadingSpinner';
 import UploadImage from './SampleHelper.js/uploadImage';
 function SampleForm() {
 	const history = useNavigate();
@@ -42,13 +42,13 @@ function SampleForm() {
 			setFormErrors(result.errors);
 		}
 	}
+	let coordinates = `${formData.location.lat}, ${formData.location.lng}`;
 
 	const handleGetCoords = async () => {
 		try {
-			const { lat, long } = await getCoords();
-
-			formData.location = `${lat},${long}`;
-			setCoords({ lat, long });
+			const { lat, lng } = await getCoords();
+			formData.location = { lat, lng };
+			setCoords({ lat, lng });
 		} catch (error) {
 			console.log(error);
 		}
@@ -111,6 +111,8 @@ function SampleForm() {
 		scientificName: organism.scientificName
 	}));
 
+	console.log(coordinates);
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<Flex>
@@ -144,15 +146,18 @@ function SampleForm() {
 			</Flex>
 
 			<Flex>
-				<Button align="left" onClick={handleGetCoords}>
-					Pin Current Location <Icon as={GrLocation} />
-				</Button>
-				<MapComponent lat={coords.lat} lng={coords.long} />
+				<FormControl align="left">
+					<Button align="left" onClick={handleGetCoords}>
+						Pin Current Location <Icon as={GrLocation} />
+					</Button>
+					{coordinates ? coordinates : <LoadingSpinner />}
+				</FormControl>
+
+				<FormControl p="1" id="image">
+					<FormLabel>Image</FormLabel>
+					<UploadImage onFileChange={handleFileChange} />
+				</FormControl>
 			</Flex>
-			<FormControl p="1" id="image">
-				<FormLabel>Image</FormLabel>
-				<UploadImage onFileChange={handleFileChange} />
-			</FormControl>
 
 			<Flex mt={4}>
 				<Spacer />

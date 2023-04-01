@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Input, Image } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { IKContext, IKUpload } from 'imagekitio-react';
 import ImageApi from '../../api/ImageApi';
 
@@ -59,7 +59,7 @@ const UploadImage = ({ onFileChange }) => {
 	  };
 
 	return (
-		<Box>
+		<Box >
 			<IKContext publicKey={publicKey} urlEndpoint={urlEndpoint} authenticationEndpoint={authenticationEndpoint}>
 				<IKUpload
 					type="file"

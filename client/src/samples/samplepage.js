@@ -5,6 +5,7 @@ import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import Sampletable from './Sampletable';
 import SampleForm from './SampleForm';
+import DisplayMap from './Maps/DisplayMap';
 
 function Samplepage() {
 	const { folderName, id } = useParams();
@@ -41,10 +42,14 @@ function Samplepage() {
 			<Heading as="h4" size="md" mb={4}>
 				Project Name: {folderName}
 			</Heading>
-			<SampleForm />
+			<Box>
+				<SampleForm />
+			</Box>
+			
+			<DisplayMap samples={samples} />
 			<div>
 				{samples && samples.length > 0 ? (
-					<Box p={4} bg="gray.50">
+					<Box p={4} boxShadow="base">
 						<Sampletable
 							samples={samples}
 							folderName={folderName}

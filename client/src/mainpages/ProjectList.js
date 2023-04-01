@@ -2,13 +2,14 @@ import React, { useEffect, useState, useContext } from 'react';
 import FoldersApi from '../api/FoldersApi';
 import UserContext from '../auth/UserContext';
 import LoadingSpinner from '../helpers/LoadingSpinner';
-import { Card, Text, CardBody, CardHeader, Heading, Box, SimpleGrid } from '@chakra-ui/react';
+import { Card, Text, CardBody, CardHeader, Heading, Box, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import ProjectCard from './ProjectCard';
 
 function ProjectList({ username }) {
 	const [ formErrors, setFormErrors ] = useState([]);
 	const { currentUser, token } = useContext(UserContext);
 	const [ projects, setProjects ] = useState([]);
+	const bg = useColorModeValue('gray.100', 'gray.600');
 
 	console.debug('ProjectList', 'currentUser=', currentUser, 'projects=', projects, 'formErrors', formErrors);
 
@@ -40,10 +41,15 @@ function ProjectList({ username }) {
 	return (
 		<div>
 			{projects.length ? (
-				<Box p={4} bg="gray.50">
+				<Box p={4} rounded='md' bg={bg}>
 					<SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(200px, 1fr))">
 						{projects.map((p) => (
-							<ProjectCard key={p.id} id={p.id} folderName={p.foldername} updateProjects={updateProjects} />
+							<ProjectCard
+								key={p.id}
+								id={p.id}
+								folderName={p.foldername}
+								updateProjects={updateProjects}
+							/>
 						))}
 					</SimpleGrid>
 				</Box>

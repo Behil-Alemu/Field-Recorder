@@ -12,7 +12,8 @@ import {
 	HStack,
 	Input,
 	Stack,
-	Text
+	Text,
+	useColorModeValue
 } from '@chakra-ui/react';
 import PasswordField from '../helpers/PasswordField';
 import { NotifyRed } from '../helpers/Alert';
@@ -69,10 +70,12 @@ function LoginForm({ login }) {
 	}
 
 	const [ rememberMe, setRememberMe ] = useLocalStorage('rememberMe', false);
+	const bg = useColorModeValue('white', 'gray.50', 'linear(to-r, green.50, green.200)');
+	const color = useColorModeValue('green.800', 'green.800');
 
 	return (
-		<Container maxW="lg" py={{ base: '2', md: '2' }} px={{ base: '0', sm: '8' }}>
-			<Stack spacing="4">
+		<Container  maxW="lg" py={{ base: '2', md: '2' }} px={{ base: '0', sm: '8' }}>
+			<Stack bg={bg} color={color} spacing="4">
 				<Stack spacing="2" alignItems="center" justifyContent="center">
 					<form onSubmit={handleSubmit}>{formErrors.length > 0 && <NotifyRed error={formErrors} />}</form>
 					<Logo />
