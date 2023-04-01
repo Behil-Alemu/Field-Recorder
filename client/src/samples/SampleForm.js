@@ -138,19 +138,18 @@ function SampleForm() {
 					<FormLabel>Quantity</FormLabel>
 					<Input name="quantity" type="number" value={Number(formData.quantity)} onChange={handleChange} />
 				</FormControl>
-
-				<FormControl p="1" id="note">
-					<FormLabel>Note</FormLabel>
-					<Textarea name="note" value={formData.note} onChange={handleChange} />
-				</FormControl>
-			</Flex>
-
-			<Flex>
 				<FormControl align="left">
 					<Button align="left" onClick={handleGetCoords}>
 						Pin Current Location <Icon as={GrLocation} />
 					</Button>
 					{coordinates ? coordinates : <LoadingSpinner />}
+				</FormControl>
+			</Flex>
+
+			<Flex>
+				<FormControl p="1" id="note">
+					<FormLabel>Note</FormLabel>
+					<Textarea name="note" value={formData.note} onChange={handleChange} />
 				</FormControl>
 
 				<FormControl p="1" id="image">
