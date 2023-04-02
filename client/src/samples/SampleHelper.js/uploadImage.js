@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import { IKContext, IKUpload } from 'imagekitio-react';
 import ImageApi from '../../api/ImageApi';
 
@@ -17,6 +17,8 @@ const onError = (err) => {
 
 const UploadImage = ({ onFileChange }) => {
 	const [ file, setFile ] = useState('');
+	const bg = useColorModeValue('gray.100', 'gray.600');
+	const color = useColorModeValue('teal.800', 'teal.200');
 
 	const handleChange = async (event) => {
 		if (event.target.files && event.target.files[0]) {
@@ -39,7 +41,7 @@ const UploadImage = ({ onFileChange }) => {
 				formData.append('folder', '/images');
 
 				//const uploadResponse =
-				 await fetch(urlEndpoint, {
+				await fetch(urlEndpoint, {
 					method: 'POST',
 					body: formData,
 					mode: 'no-cors'
@@ -56,12 +58,13 @@ const UploadImage = ({ onFileChange }) => {
 	const onSuccess = (res) => {
 		// Call the onFileChange callback function with the res.url value
 		onFileChange(res.url);
-	  };
+	};
 
 	return (
-		<Box >
+		<Box borderRadius="md" alignItems="left" p={6} bg={bg} color={color} shadow="md">
 			<IKContext publicKey={publicKey} urlEndpoint={urlEndpoint} authenticationEndpoint={authenticationEndpoint}>
 				<IKUpload
+					className="my-upload-button"
 					type="file"
 					name="imageUrl"
 					onChange={handleChange}

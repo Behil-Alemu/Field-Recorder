@@ -2,15 +2,27 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
-import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer, Icon } from '@chakra-ui/react';
+import {
+	FormControl,
+	FormLabel,
+	Input,
+	Textarea,
+	Button,
+	Flex,
+	Spacer,
+	Icon,
+	Stack,
+	Heading,
+	Text
+} from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import NatureServerApi from '../api/natureServer';
 import { DropdownIndicator } from './SampleHelper.js/DropdownIndicator';
 import { getCoords } from '../samples/Maps/getCoords';
 import { GrLocation } from 'react-icons/gr';
-import MapComponent from './Maps/MapComponent';
 import UploadImage from './SampleHelper.js/uploadImage';
+import LoadingSpinner from '../helpers/LoadingSpinner';
 function EditSamples() {
 	const history = useNavigate();
 	const [ formErrors, setFormErrors ] = useState([]);
@@ -20,6 +32,7 @@ function EditSamples() {
 	const { token } = useContext(UserContext);
 	const { sample_id } = useParams();
 	const [ sample, setSample ] = useState({});
+	const [ isLoading, setIsLoading ] = useState(false);
 
 	useEffect(function getSamplessOnMount() {
 		console.debug('SampleList useEffect getSamplesOnMount');
@@ -50,7 +63,7 @@ function EditSamples() {
 	console.debug('EditSamples', 'sample=', sample, 'formData=', formData, 'formErrors', formErrors);
 
 	async function handleSubmit(evt) {
-        evt.preventDefault();
+		evt.preventDefault();
 		let editData = {
 			commonName: formData.commonName,
 			scientificName: formData.scientificName,
@@ -62,7 +75,7 @@ function EditSamples() {
 
 		SamplesApi.token = token;
 		let result = await SamplesApi.editSamples(sample_id, editData);
-        console.log(result, 'UPDATED !!!!!!!!!!!!!!!!!!!!!!');
+		console.log(result, 'UPDATED !!!!!!!!!!!!!!!!!!!!!!');
 		if (result.success) {
 			history.push(`/homepage`);
 		} else {
@@ -71,6 +84,7 @@ function EditSamples() {
 	}
 
 	const handleGetCoords = async () => {
+		setIsLoading(true);
 		try {
 			const { lat, long } = await getCoords();
 
@@ -79,6 +93,7 @@ function EditSamples() {
 		} catch (error) {
 			console.log(error);
 		}
+		setIsLoading(false);
 	};
 	function handleChange(e) {
 		if (e && e.value) {
@@ -140,43 +155,53 @@ function EditSamples() {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<Flex>
-				<FormControl p="1" id="common-name" isRequired>
-					<FormLabel>Common Name</FormLabel>
-					<Select
-						options={organismsInfo}
-						value={formData.commonName}
-						onInputChange={handleInputChange}
-						onChange={handleChange}
-						components={{ DropdownIndicator }}
-						placeholder={formData.commonName}
-					/>
-				</FormControl>
+			<Heading size="lg">Update {formData.commonName}</Heading>
 
-				<FormControl p="1" id="scientific-name" isRequired>
-					<FormLabel>Scientific Name</FormLabel>
-					<Input name="scientificName" type="text" value={formData.scientificName} onChange={handleChange} />
-				</FormControl>
-			</Flex>
-			<Flex>
-				<FormControl p="1" id="quantity">
-					<FormLabel>Quantity</FormLabel>
-					<Input name="quantity" type="number" value={Number(formData.quantity)} onChange={handleChange} />
-				</FormControl>
+			<FormControl p="1" id="common-name" isRequired>
+				<FormLabel>Common Name</FormLabel>
+				<Select
+					options={organismsInfo}
+					value={formData.commonName}
+					onInputChange={handleInputChange}
+					onChange={handleChange}
+					components={{ DropdownIndicator }}
+					placeholder={formData.commonName}
+				/>
+			</FormControl>
 
-				<FormControl p="1" id="note">
-					<FormLabel>Note</FormLabel>
-					<Textarea name="note" value={formData.note} onChange={handleChange} />
-				</FormControl>
-			</Flex>
+			<FormControl p="1" id="scientific-name" isRequired>
+				<FormLabel>Scientific Name</FormLabel>
+				<Input name="scientificName" type="text" value={formData.scientificName} onChange={handleChange} />
+			</FormControl>
 
-			<Flex>
-				<Button align="left" onClick={handleGetCoords}>
-					Pin Current Location <Icon as={GrLocation} />
-				</Button>
-				<MapComponent lat={coords.lat} lng={coords.long} />
+			<FormControl p="1" id="quantity">
+				<FormLabel>Quantity</FormLabel>
+				<Input name="quantity" type="number" value={Number(formData.quantity)} onChange={handleChange} />
+			</FormControl>
+
+			<FormControl p="1" id="note">
+				<FormLabel>Note</FormLabel>
+				<Textarea name="note" value={formData.note} onChange={handleChange} />
+			</FormControl>
+
+			<FormControl align="left">
+				<FormLabel>Location</FormLabel>
+				<Stack>
+					<Button align="left" onClick={handleGetCoords}>
+						Pin Current Location <Icon as={GrLocation} />
+					</Button>
+					{isLoading ? (
+						<LoadingSpinner />
+					) : coords.lat ? (
+						<Text>{`Lat:${coords.lat} Lng:${coords.lng}`}</Text>
+					) : null}
+				</Stack>
+			</FormControl>
+
+			<FormControl p="1" id="image">
+				<FormLabel>Image</FormLabel>
 				<UploadImage onFileChange={handleFileChange} />
-			</Flex>
+			</FormControl>
 
 			<Flex mt={4}>
 				<Spacer />

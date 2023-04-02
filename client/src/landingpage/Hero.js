@@ -7,6 +7,7 @@ import UserContext from '../auth/UserContext';
 export default function Hero({ title, subtitle, image, signupLink, createText, ...rest }) {
 	const { currentUser } = useContext(UserContext);
 	const NatureServeUrl = 'https://explorer.natureserve.org/';
+	const myGit = 'https://github.com/Behil-Alemu/Capstone-Project-Two.git';
 	return (
 		<Flex
 			align="center"
@@ -56,9 +57,11 @@ export default function Hero({ title, subtitle, image, signupLink, createText, .
 						</Button>
 					</Link>
 				)}
-				<Text fontSize="xs" mt={2} textAlign="center" color="primary.800" opacity="0.6">
-					Not sure what put here.
-				</Text>
+				<Link to={myGit}>
+					<Text fontSize="xs" mt={2} textAlign="center" color="primary.800" opacity="0.6">
+						Check Project GitHub Repo.
+					</Text>
+				</Link>
 			</Stack>
 			<Box w={{ base: '80%', sm: '60%', md: '50%' }} mb={{ base: 12, md: 0 }}>
 				<Image src={image} size="100%" rounded="1rem" shadow="2xl" />

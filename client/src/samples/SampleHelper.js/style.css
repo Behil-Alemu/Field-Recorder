@@ -6,3 +6,6 @@ th,
 td {
     padding: 4px 8px;
 }
+.my-upload-button {
+    background-color: blue;
+}

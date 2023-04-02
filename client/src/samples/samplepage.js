@@ -33,8 +33,13 @@ function Samplepage() {
 	if (!samples) {
 		console.log('no samples added yet');
 	}
-	const updateSamples = (deletedSampleId) => {
+	const updateDeletedSamples = (deletedSampleId) => {
 		setSamples((prevSamples) => prevSamples.filter((Sample) => Sample.sample_id !== deletedSampleId));
+	};
+
+	const updateNewSamples = (newSample) => {
+		setSamples((prevSamples) => [...prevSamples, newSample]);
+
 	};
 
 	return (
@@ -43,7 +48,7 @@ function Samplepage() {
 				Project Name: {folderName}
 			</Heading>
 			<Box>
-				<SampleForm />
+				<SampleForm updateNewSamples={updateNewSamples} />
 			</Box>
 			
 			<DisplayMap samples={samples} />
@@ -54,7 +59,7 @@ function Samplepage() {
 							samples={samples}
 							folderName={folderName}
 							folder_id={id}
-							updateSamples={updateSamples}
+							updateDeletedSamples={updateDeletedSamples}
 						/>
 					</Box>
 				) : (

@@ -2,7 +2,19 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
-import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer, Icon } from '@chakra-ui/react';
+import {
+	FormControl,
+	FormLabel,
+	Input,
+	Textarea,
+	Button,
+	Flex,
+	Spacer,
+	Icon,
+	Text,
+	Stack,
+	useColorModeValue
+} from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import NatureServerApi from '../api/natureServer';
@@ -11,7 +23,9 @@ import { getCoords } from '../samples/Maps/getCoords';
 import { GrLocation } from 'react-icons/gr';
 import LoadingSpinner from '../helpers/LoadingSpinner';
 import UploadImage from './SampleHelper.js/uploadImage';
-function SampleForm() {
+import customStyles from './SampleHelper.js/reactSelectStyle';
+
+function SampleForm({ updateNewSamples }) {
 	const history = useNavigate();
 
 	const { currentUser, token } = useContext(UserContext);
@@ -30,21 +44,26 @@ function SampleForm() {
 	const [ formErrors, setFormErrors ] = useState([]);
 	const [ organisms, setOrganisms ] = useState([]);
 	const [ organismToSearch, setOrganismToSearch ] = useState('');
-	const [ coords, setCoords ] = useState({ lat: null, long: null });
+	const [ coords, setCoords ] = useState({ lat: null, lng: null });
+	const [ isLoading, setIsLoading ] = useState(false);
 
 	console.debug('sampleForm', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
+
 	async function handleSubmit(evt) {
+		evt.preventDefault();
 		SamplesApi.token = token;
 		let result = await SamplesApi.addSamples(formData);
+		console.log(result)
+		updateNewSamples(formData);
 		if (result.success) {
 			history.push('/homepage');
 		} else {
 			setFormErrors(result.errors);
 		}
 	}
-	let coordinates = `${formData.location.lat}, ${formData.location.lng}`;
 
 	const handleGetCoords = async () => {
+		setIsLoading(true);
 		try {
 			const { lat, lng } = await getCoords();
 			formData.location = { lat, lng };
@@ -52,6 +71,7 @@ function SampleForm() {
 		} catch (error) {
 			console.log(error);
 		}
+		setIsLoading(false);
 	};
 	function handleChange(e) {
 		if (e && e.value) {
@@ -87,7 +107,6 @@ function SampleForm() {
 		[ organismToSearch ]
 	);
 	const handleFileChange = (file) => {
-		console.log(file, '{{{{{{form file}}}}}}');
 		const updatedFormData = {
 			...formData,
 			imageUrl: file
@@ -111,14 +130,13 @@ function SampleForm() {
 		scientificName: organism.scientificName
 	}));
 
-	console.log(coordinates);
-
 	return (
 		<form onSubmit={handleSubmit}>
 			<Flex>
 				<FormControl p="1" id="common-name" isRequired>
 					<FormLabel>Common Name</FormLabel>
 					<Select
+						styles={customStyles}
 						options={organismsInfo}
 						value={formData.commonName}
 						onInputChange={handleInputChange}
@@ -139,10 +157,17 @@ function SampleForm() {
 					<Input name="quantity" type="number" value={Number(formData.quantity)} onChange={handleChange} />
 				</FormControl>
 				<FormControl align="left">
-					<Button align="left" onClick={handleGetCoords}>
-						Pin Current Location <Icon as={GrLocation} />
-					</Button>
-					{coordinates ? coordinates : <LoadingSpinner />}
+					<FormLabel>Location</FormLabel>
+					<Stack>
+						<Button align="left" onClick={handleGetCoords}>
+							Pin Current Location <Icon as={GrLocation} />
+						</Button>
+						{isLoading ? (
+							<LoadingSpinner />
+						) : coords.lat ? (
+							<Text>{`Lat:${coords.lat} Lng:${coords.lng}`}</Text>
+						) : null}
+					</Stack>
 				</FormControl>
 			</Flex>
 

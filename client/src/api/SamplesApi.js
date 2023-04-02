@@ -40,6 +40,7 @@ class SamplesApi {
 	}
 	/**Add sample to data */
 	static async addSamples(data) {
+		console.log
 		let res = await this.request(`sample-entry/add`, data, 'post');
 		return res.samples;
 	}

@@ -1,4 +1,4 @@
-import { TriangleDownIcon, TriangleUpIcon, DeleteIcon, EditIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import { TriangleDownIcon, TriangleUpIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { Table, Thead, Tr, Th, chakra, Tbody, Td } from '@chakra-ui/react';
 import React, { useMemo, useState } from 'react';
 import { useTable, useSortBy } from 'react-table';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import ConfirmDelete from '../helpers/ConfirmDelete';
 import HandleImage from './SampleHelper.js/handeImage';
 
-export default function Sampletable({ samples, folderName, folder_id, updateSamples }) {
+export default function Sampletable({ samples, folderName, folder_id, updateDeletedSamples }) {
 	let history = useNavigate();
 	const [ isOpen, setIsOpen ] = useState(false);
 	const [ sampleIdToDelete, setSampleIdToDelete ] = useState(0);
@@ -23,7 +23,7 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 	const handleConfirmDelete = async () => {
 		try {
 			await handleDeleteClick(sampleIdToDelete, folderName, folder_id);
-			updateSamples(sampleIdToDelete);
+			updateDeletedSamples(sampleIdToDelete);
 			history(`/homepage/${folderName}/${folder_id}`);
 			onClose();
 			return;
@@ -31,7 +31,6 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 			console.error(err);
 		}
 	};
-
 	const data = useMemo(
 		() =>
 			samples.map((s) => ({
@@ -46,7 +45,7 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 			})),
 		[ samples ]
 	);
-	console.log(samples[7]);
+
 	const columns = useMemo(
 		() => [
 			{
@@ -69,24 +68,25 @@ export default function Sampletable({ samples, folderName, folder_id, updateSamp
 			},
 			{
 				Header: 'Location',
-				accessor: 'location'
+				accessor: 'location',
+				Cell: ({ row }) => {
+					const coords = row.original.location;
+					console.log(coords);
+
+					if (coords) {
+						const parseCoord = JSON.parse(coords);
+						const res = `Lat: ${parseCoord['lat']} Lng: ${parseCoord['lng']}`;
+						return res;
+					} else {
+						return 'NA';
+					}
+				}
 			},
 			{
 				Header: 'Image URL',
 				accessor: 'image_url',
 				Cell: ({ row }) => {
-					return (
-						<div>
-							{/* <ExternalLinkIcon
-								m={2}
-								onClick={() => {
-									setShowModal(true);
-									
-								}}
-							/> */}
-							{<HandleImage url={row.original.image_url} name={row.original.common_name} />}
-						</div>
-					);
+					return <div>{<HandleImage url={row.original.image_url} name={row.original.common_name} />}</div>;
 				}
 			},
 			{
