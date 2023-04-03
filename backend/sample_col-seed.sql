@@ -13,8 +13,8 @@ VALUES ('First',
         
 INSERT INTO sample_folder (id, folder_name, username)
     VALUES 
-        (1,'My First Project', 'First'),
-        (2,'My Second Project', 'Second');
+        (186538652965,'My First Project', 'First'),
+        (267947686382,'My Second Project', 'Second');
 
 
 INSERT INTO sample_entry (sample_id, common_name, scientific_name, quantity, location, image_url, note, timestamp, username, folder_id)
@@ -27,7 +27,7 @@ VALUES (1,
         'Est 20 ft tall', 
         '2023-01-04 13:10:00', 
         'Second',
-        2),
+        267947686382),
         (2, 
         'pine tree', 
         'genus Pinus', 
@@ -37,7 +37,7 @@ VALUES (1,
         'None',
         '2023-01-04 13:30:00', 
         'Second',
-        2),
+        267947686382),
         (3, 
         'Tulip', 
         'Tulipa', 
@@ -47,7 +47,7 @@ VALUES (1,
         'Red and yellow colors', 
         '2023-01-05 09:30:00', 
         'First',
-        1),
+        186538652965),
         (4, 
         'Rose', 
         'Rosa', 
@@ -57,7 +57,7 @@ VALUES (1,
         'Fragrant smell', 
         '2023-01-05 15:45:00', 
         'First',
-        1);
+        186538652965);
 
 
 

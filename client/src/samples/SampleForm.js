@@ -13,7 +13,7 @@ import {
 	Icon,
 	Text,
 	Stack,
-	useColorModeValue
+	
 } from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
@@ -52,13 +52,18 @@ function SampleForm({ updateNewSamples }) {
 	async function handleSubmit(evt) {
 		evt.preventDefault();
 		SamplesApi.token = token;
-		let result = await SamplesApi.addSamples(formData);
-		console.log(result)
-		updateNewSamples(formData);
-		if (result.success) {
-			history.push('/homepage');
-		} else {
-			setFormErrors(result.errors);
+		try {
+			let result = await SamplesApi.addSamples(formData);
+			console.log(result,"{{{{{{{{result}}}}}}}}");
+			updateNewSamples(formData);
+			if (result.success) {
+				history.push('/homepage');
+			} else {
+				setFormErrors(result.errors);
+			}
+		} catch (error) {
+			// handle the error
+			console.error(error);
 		}
 	}
 

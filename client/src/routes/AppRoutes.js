@@ -11,7 +11,7 @@ import { Box } from '@chakra-ui/react';
 import HandleImage from '../samples/SampleHelper.js/handeImage';
 import EditSamples from '../samples/EditSamples';
 
-function AppRoutes({ login, signup }) {
+function AppRoutes({ login, signup, loginGoogle, signupGoogle }) {
 	console.debug('Routes', `login=${typeof login}`, `signup=${typeof signup}`);
 
 	return (
@@ -19,7 +19,8 @@ function AppRoutes({ login, signup }) {
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 
-				<Route path="/login" element={<LoginForm login={login} />} />
+				<Route path="/login" element={<LoginForm login={login} loginGoogle={loginGoogle} 
+				signupGoogle={signupGoogle} />} />
 
 				<Route path="/signup" element={<SignupForm signup={signup} />} />
 

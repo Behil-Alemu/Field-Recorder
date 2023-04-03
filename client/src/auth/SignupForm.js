@@ -17,8 +17,8 @@ import {
 import PasswordField from '../helpers/PasswordField';
 import { NotifyRed } from '../helpers/Alert';
 import { Logo } from './Logo';
-import GoogleAuth from './OAuthComponents/GoogleAuth';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+// import GoogleAuth from './OAuthComponents/GoogleAuth';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
 
 /** Signup form.
  *
@@ -58,22 +58,22 @@ function SignupForm({ signup }) {
 			setFormErrors(result.errors);
 		}
 	}
-	async function handleGoogleData(googleAuthData) {
-		console.log(googleAuthData);
-		setFormData({
-			username: googleAuthData.name,
-			password: '',
-			firstName: googleAuthData.given_name,
-			lastName: googleAuthData.family_name,
-			email: googleAuthData.email
-		});
-		let result = await signup(formData);
-		if (result.success) {
-			history('/homepage');
-		} else {
-			setFormErrors(result.errors);
-		}
-	}
+	// async function handleGoogleData(googleAuthData) {
+	// 	console.log(googleAuthData);
+	// 	setFormData({
+	// 		username: googleAuthData.name,
+	// 		password: '',
+	// 		firstName: googleAuthData.given_name,
+	// 		lastName: googleAuthData.family_name,
+	// 		email: googleAuthData.email
+	// 	});
+	// 	let result = await signup(formData);
+	// 	if (result.success) {
+	// 		history('/homepage');
+	// 	} else {
+	// 		setFormErrors(result.errors);
+	// 	}
+	// }
 
 	/** Update form data field */
 	function handleChange(e) {
@@ -154,17 +154,17 @@ function SignupForm({ signup }) {
 									<Button colorScheme="green" size="sm" onClick={handleSubmit}>
 										Sign up
 									</Button>
-									<Flex alignItems="center">
+									{/* <Flex alignItems="center">
 										<Divider mx={4} />
 										<Text fontSize="sm" whiteSpace="nowrap" color="muted">
 											or
 										</Text>
 										<Divider mx={4} />
-									</Flex>
+									</Flex> */}
 								</Stack>
-								<GoogleOAuthProvider clientId="385613727062-55f7hm08nc1cpgqfodp7rc9ld27uf9lk.apps.googleusercontent.com">
+								{/* <GoogleOAuthProvider clientId="385613727062-55f7hm08nc1cpgqfodp7rc9ld27uf9lk.apps.googleusercontent.com">
 									<GoogleAuth profileData={handleGoogleData} />
-								</GoogleOAuthProvider>
+								</GoogleOAuthProvider> */}
 							</Stack>
 						</Stack>
 					</Box>
