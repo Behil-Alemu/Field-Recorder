@@ -1,34 +1,16 @@
-import React, { useEffect, useState, useContext } from 'react';
-import FoldersApi from '../api/FoldersApi';
+import React, { useEffect, useContext } from 'react';
+//import FoldersApi from '../api/FoldersApi';
 import UserContext from '../auth/UserContext';
 import LoadingSpinner from '../helpers/LoadingSpinner';
 import { Card, Text, CardBody, CardHeader, Heading, Box, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import ProjectCard from './ProjectCard';
 
-function ProjectList({ username }) {
-	const [ formErrors, setFormErrors ] = useState([]);
-	const { currentUser, token } = useContext(UserContext);
-	const [ projects, setProjects ] = useState([]);
+function ProjectList({ projects, setProjects }) {
+	// const [ formErrors, setFormErrors ] = useState([]);
+	const { currentUser } = useContext(UserContext);
 	const bg = useColorModeValue('gray.100', 'gray.600');
 
-	console.debug('ProjectList', 'currentUser=', currentUser, 'projects=', projects, 'formErrors', formErrors);
-
-	useEffect(function getProjectsOnMount() {
-		console.debug('ProjectList useEffect getProjectsOnMount');
-		projectList();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	async function projectList() {
-		try {
-			FoldersApi.token = token;
-			let result = await FoldersApi.getFolder(username);
-			setProjects(result);
-		} catch (err) {
-			console.log(err);
-			setFormErrors(err);
-		}
-	}
+	console.debug('ProjectList', 'currentUser=', currentUser, 'projects=', projects);
 
 	if (!projects) {
 		console.log('projects not hereee');
@@ -41,7 +23,7 @@ function ProjectList({ username }) {
 	return (
 		<div>
 			{projects.length ? (
-				<Box p={4} rounded='md' bg={bg}>
+				<Box p={4} rounded="md" bg={bg}>
 					<SimpleGrid spacing={4} templateColumns="repeat(auto-fill, minmax(200px, 1fr))">
 						{projects.map((p) => (
 							<ProjectCard

@@ -35,8 +35,7 @@ class FoldersApi {
 	/**Add sample to data */
 	static async addFolder(data, username) {
 		let res = await this.request(`folders/add`, data, 'post');
-
-		return res.folders;
+		return res.newFolder;
 	}
 
 	/** Edit sample table*/

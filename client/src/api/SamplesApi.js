@@ -40,15 +40,13 @@ class SamplesApi {
 	}
 	/**Add sample to data */
 	static async addSamples(data) {
-		console.log(data);
 		let res = await this.request(`sample-entry/add`, data, 'post');
-		return res.samples;
+		return res.newSample;
 	}
 
 	/** Edit sample table*/
 	static async editSamples(sample_id, data) {
 		let res = await this.request(`sample-entry/${sample_id}`, data, 'patch');
-
 		return res.editedSample;
 	}
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import FoldersApi from '../api/FoldersApi';
 import UserContext from '../auth/UserContext';
 import { useNavigate } from 'react-router-dom';
@@ -15,20 +15,51 @@ function Homepage() {
 		username: username
 	});
 	const [ formErrors, setFormErrors ] = useState([]);
+	const [ projects, setProjects ] = useState([]);
 
 	console.debug('Homepage', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
 
-	async function handleSubmit() {
-		//why wont it work when event handlers added
-		FoldersApi.token = token;
-		let result = await FoldersApi.addFolder(formData, currentUser.username);
+	useEffect(function getProjectsOnMount() {
+		console.debug('ProjectList useEffect getProjectsOnMount');
+		projectList();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
-		if (result.success) {
-			history('/homepage');
-		} else {
-			setFormErrors(result.errors);
+	async function projectList() {
+		try {
+			FoldersApi.token = token;
+			let result = await FoldersApi.getFolder(username);
+			setProjects(result);
+		} catch (err) {
+			console.log(err);
+			setFormErrors(err.message);
 		}
 	}
+
+	async function handleSubmit(evt) {
+		evt.preventDefault();
+
+		if (!formData.folderName) {
+			setFormErrors('Folder name is required');
+			return;
+		}
+
+		try {
+			FoldersApi.token = token;
+			let result = await FoldersApi.addFolder(formData, currentUser.username);
+			if (result) {
+				let res = await FoldersApi.getFolder(username);
+				setProjects(res);
+				setTimeout(() => {
+					history('/homepage');
+				}, 500);
+			}
+		} catch (error) {
+			console.error('Error submitting form:', error);
+			setFormErrors([ error.message ]);
+		}
+	}
+
 	function handleChange(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
@@ -50,6 +81,7 @@ function Homepage() {
 								value={formData.folderName}
 								onChange={handleChange}
 								placeholder="Enter project name"
+								isRequired
 							/>
 							<FormErrorMessage>{formErrors.join(',')}</FormErrorMessage>
 						</FormControl>
@@ -60,7 +92,7 @@ function Homepage() {
 				</Box>
 			</Box>
 			<Box align="center">
-				<ProjectList username={username} />
+				<ProjectList projects={projects} setProjects={setProjects} />
 			</Box>
 		</Box>
 	);

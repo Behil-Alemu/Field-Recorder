@@ -2,19 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
-import {
-	FormControl,
-	FormLabel,
-	Input,
-	Textarea,
-	Button,
-	Flex,
-	Spacer,
-	Icon,
-	Text,
-	Stack,
-	
-} from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer, Icon, Text, Stack } from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import NatureServerApi from '../api/natureServer';
@@ -25,11 +13,11 @@ import LoadingSpinner from '../helpers/LoadingSpinner';
 import UploadImage from './SampleHelper.js/uploadImage';
 import customStyles from './SampleHelper.js/reactSelectStyle';
 
-function SampleForm({ updateNewSamples }) {
+function SampleForm({ sampleList }) {
 	const history = useNavigate();
 
 	const { currentUser, token } = useContext(UserContext);
-	const { id } = useParams();
+	const { folderName, id } = useParams();
 
 	const [ formData, setFormData ] = useState({
 		commonName: '',
@@ -54,10 +42,14 @@ function SampleForm({ updateNewSamples }) {
 		SamplesApi.token = token;
 		try {
 			let result = await SamplesApi.addSamples(formData);
-			console.log(result,"{{{{{{{{result}}}}}}}}");
-			updateNewSamples(formData);
-			if (result.success) {
-				history.push('/homepage');
+
+			console.log(result.success, '{{{{{{{{result}}}}}}}}');
+
+			if (result) {
+				await sampleList();
+				setTimeout(() => {
+					history(`/homepage/${folderName}/${id}`);
+				}, 500);
 			} else {
 				setFormErrors(result.errors);
 			}

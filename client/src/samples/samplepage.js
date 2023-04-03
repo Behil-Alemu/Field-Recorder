@@ -37,10 +37,7 @@ function Samplepage() {
 		setSamples((prevSamples) => prevSamples.filter((Sample) => Sample.sample_id !== deletedSampleId));
 	};
 
-	const updateNewSamples = (newSample) => {
-		setSamples((prevSamples) => [...prevSamples, newSample]);
-
-	};
+	
 
 	return (
 		<Box p={4}>
@@ -48,9 +45,9 @@ function Samplepage() {
 				Project Name: {folderName}
 			</Heading>
 			<Box>
-				<SampleForm updateNewSamples={updateNewSamples} />
+				<SampleForm sampleList={sampleList} folderName={folderName} id={id} />
 			</Box>
-			
+
 			<DisplayMap samples={samples} />
 			<div>
 				{samples && samples.length > 0 ? (
