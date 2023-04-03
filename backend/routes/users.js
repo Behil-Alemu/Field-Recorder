@@ -9,7 +9,7 @@ const { ensureLoggedIn, authenticateJWT } = require('../middleware/auth');
 const { BadRequestError } = require('../expressError');
 const User = require('../models/users');
 const userUpdateSchema = require('../schemas/userUpdate.json');
-const userGoogleRegisterSchema = require('../schemas/userGoogleRegisterSchema.json');
+// const userGoogleRegisterSchema = require('../schemas/userGoogleRegisterSchema.json');
 
 const router = express.Router();
 
@@ -60,40 +60,6 @@ router.delete('/:username', ensureLoggedIn, async function(req, res, next) {
 		return next(err);
 	}
 });
-// ********************************************* Google users only//
 
-router.get('/google/:email', async function(req, res, next) {
-	try {
-		const user = await User.getUserByEmail(req.params.email);
-		return res.json({ user });
-	} catch (err) {
-		return next(err);
-	}
-});
-
-router.get('/google/:username', async function(req, res, next) {
-	try {
-		const user = await User.getByUsername(req.params.username);
-		return res.json({ user });
-	} catch (err) {
-		return next(err);
-	}
-});
-
-router.post('/googleAdd', async function(req, res, next) {
-	try {
-		const validator = jsonschema.validate(req.body, userGoogleRegisterSchema);
-		if (!validator.valid) {
-			const errs = validator.errors.map((e) => e.stack);
-			throw new BadRequestError(errs);
-		}
-
-		const user = await User.addByGoogle({ ...req.body });
-
-		return res.status(201).json({ user });
-	} catch (err) {
-		return next(err);
-	}
-});
 
 module.exports = router;

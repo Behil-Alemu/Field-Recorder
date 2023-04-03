@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import { Tabs, TabList, Tab, Flex, Image, useColorMode , useColorModeValue} from '@chakra-ui/react';
+import { Tabs, TabList, Tab, Flex, Image, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
 import UserContext from '../auth/UserContext';
-import { MoonIcon } from '@chakra-ui/icons';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 const NavigationBar = ({ logout }) => {
 	const { currentUser } = useContext(UserContext);
 	const { colorMode, toggleColorMode } = useColorMode();
-	const bg = useColorModeValue('linear(to-r, green.100, teal.500)', 'linear(to-r, green.50, green.200)')
-	const color = useColorModeValue('white', 'green.800')
+	const bg = useColorModeValue('linear(to-r, green.100, teal.500)', 'linear(to-r, green.50, green.200)');
+	const color = useColorModeValue('white', 'green.800');
 
 	function loggedInNav() {
 		return (
@@ -54,8 +54,11 @@ const NavigationBar = ({ logout }) => {
 				<TabList>
 					{currentUser ? loggedInNav() : loggedOutNav()}
 					<Tab>
-						{' '}
-						<MoonIcon onClick={toggleColorMode}>Toggle {colorMode === 'light' ? 'Dark' : 'Light'}</MoonIcon>
+						{colorMode === 'light' ? (
+							<MoonIcon onClick={toggleColorMode}>Toggle Dark</MoonIcon>
+						) : (
+							<SunIcon onClick={toggleColorMode}>Toggle Light</SunIcon>
+						)}
 					</Tab>
 				</TabList>
 			</Tabs>

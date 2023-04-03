@@ -11,7 +11,7 @@ async function generateUniqueUsername(email) {
 	  return username;
 	}
 
-	console.log
+
   
 	// If username already exists, append a number to it and check again
 	let i = 1;

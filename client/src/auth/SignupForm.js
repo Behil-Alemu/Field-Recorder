@@ -17,8 +17,6 @@ import {
 import PasswordField from '../helpers/PasswordField';
 import { NotifyRed } from '../helpers/Alert';
 import { Logo } from './Logo';
-// import GoogleAuth from './OAuthComponents/GoogleAuth';
-// import { GoogleOAuthProvider } from '@react-oauth/google';
 
 /** Signup form.
  *
@@ -58,22 +56,6 @@ function SignupForm({ signup }) {
 			setFormErrors(result.errors);
 		}
 	}
-	// async function handleGoogleData(googleAuthData) {
-	// 	console.log(googleAuthData);
-	// 	setFormData({
-	// 		username: googleAuthData.name,
-	// 		password: '',
-	// 		firstName: googleAuthData.given_name,
-	// 		lastName: googleAuthData.family_name,
-	// 		email: googleAuthData.email
-	// 	});
-	// 	let result = await signup(formData);
-	// 	if (result.success) {
-	// 		history('/homepage');
-	// 	} else {
-	// 		setFormErrors(result.errors);
-	// 	}
-	// }
 
 	/** Update form data field */
 	function handleChange(e) {
@@ -84,93 +66,83 @@ function SignupForm({ signup }) {
 
 	console.log(formErrors);
 	return (
-			<Container maxW="lg" py={{ base: '2', md: '2' }} px={{ base: '0', sm: '8' }}>
-				<Stack  bg={bg} color={color} spacing="4">
-					<Stack spacing="2" alignItems="center" justifyContent="center">
-						<form onSubmit={handleSubmit}>{formErrors.length > 0 && <NotifyRed error={formErrors} />}</form>
-						<Logo />
-						<Stack spacing={{ base: '2', md: '3' }} textAlign="center">
-							<Heading size={{ base: 'xs', md: 'sm' }}>Create an account</Heading>
-							<Text color="muted">Already have an account?</Text>
-							<Button as="a" href="/login" variant="link" colorScheme="green">
-								Log in
-							</Button>
-						</Stack>
+		<Container maxW="lg" py={{ base: '2', md: '2' }} px={{ base: '0', sm: '8' }}>
+			<Stack bg={bg} color={color} spacing="4">
+				<Stack spacing="2" alignItems="center" justifyContent="center">
+					<form onSubmit={handleSubmit}>{formErrors.length > 0 && <NotifyRed error={formErrors} />}</form>
+					<Logo />
+					<Stack spacing={{ base: '2', md: '3' }} textAlign="center">
+						<Heading size={{ base: 'xs', md: 'sm' }}>Create an account</Heading>
+						<Text color="muted">Already have an account?</Text>
+						<Button as="a" href="/login" variant="link" colorScheme="green">
+							Log in
+						</Button>
 					</Stack>
-					<Box
-						py={{ base: '0', sm: '8' }}
-						px={{ base: '4', sm: '10' }}
-						bg={{ base: 'transparent', sm: 'bg-surface' }}
-						boxShadow={{ base: 'none', sm: 'md' }}
-						borderRadius={{ base: 'none', sm: 'xl' }}
-					>
-						<Stack spacing="6">
-							<Stack spacing="5">
-								<FormControl>
-									<FormLabel htmlFor="username">Username</FormLabel>
-									<Input
-										name="username"
-										id="usernameId"
-										placeholder="Enter username"
-										type="text"
-										onChange={handleChange}
-										value={formData.username}
-										required
-									/>
-									<FormLabel htmlFor="password">Password</FormLabel>
-									<PasswordField handleChange={handleChange} passwordValue={formData.password} />
-									<FormLabel htmlFor="firstName">First Name</FormLabel>
-									<Input
-										name="firstName"
-										id="firstNameId"
-										placeholder="Enter First Name"
-										type="text"
-										onChange={handleChange}
-										value={formData.firstName}
-										required
-									/>
-									<FormLabel htmlFor="firstName">Last Name</FormLabel>
-									<Input
-										name="lastName"
-										id="lastNameId"
-										placeholder="Enter Last Name"
-										type="text"
-										onChange={handleChange}
-										value={formData.lastName}
-										required
-									/>
-									<FormLabel htmlFor="email">Email</FormLabel>
-									<Input
-										name="email"
-										id="emailId"
-										placeholder="Enter Email"
-										type="email"
-										onChange={handleChange}
-										value={formData.email}
-										required
-									/>
-								</FormControl>
-								<Stack spacing="6">
-									<Button colorScheme="green" size="sm" onClick={handleSubmit}>
-										Sign up
-									</Button>
-									{/* <Flex alignItems="center">
-										<Divider mx={4} />
-										<Text fontSize="sm" whiteSpace="nowrap" color="muted">
-											or
-										</Text>
-										<Divider mx={4} />
-									</Flex> */}
-								</Stack>
-								{/* <GoogleOAuthProvider clientId="385613727062-55f7hm08nc1cpgqfodp7rc9ld27uf9lk.apps.googleusercontent.com">
-									<GoogleAuth profileData={handleGoogleData} />
-								</GoogleOAuthProvider> */}
+				</Stack>
+				<Box
+					py={{ base: '0', sm: '8' }}
+					px={{ base: '4', sm: '10' }}
+					bg={{ base: 'transparent', sm: 'bg-surface' }}
+					boxShadow={{ base: 'none', sm: 'md' }}
+					borderRadius={{ base: 'none', sm: 'xl' }}
+				>
+					<Stack spacing="6">
+						<Stack spacing="5">
+							<FormControl>
+								<FormLabel htmlFor="username">Username</FormLabel>
+								<Input
+									name="username"
+									id="usernameId"
+									placeholder="Enter username"
+									type="text"
+									onChange={handleChange}
+									value={formData.username}
+									required
+								/>
+								<FormLabel htmlFor="password">Password</FormLabel>
+								<PasswordField handleChange={handleChange} passwordValue={formData.password} />
+								<FormLabel htmlFor="firstName">First Name</FormLabel>
+								<Input
+									name="firstName"
+									id="firstNameId"
+									placeholder="Enter First Name"
+									type="text"
+									onChange={handleChange}
+									value={formData.firstName}
+									required
+								/>
+								<FormLabel htmlFor="firstName">Last Name</FormLabel>
+								<Input
+									name="lastName"
+									id="lastNameId"
+									placeholder="Enter Last Name"
+									type="text"
+									onChange={handleChange}
+									value={formData.lastName}
+									required
+								/>
+								<FormLabel htmlFor="email">Email</FormLabel>
+								<Input
+									name="email"
+									id="emailId"
+									placeholder="Enter Email"
+									type="email"
+									onChange={handleChange}
+									value={formData.email}
+									required
+								/>
+							</FormControl>
+							<Stack spacing="6">
+								<Button colorScheme="green" size="sm" onClick={handleSubmit}>
+									Sign up
+								</Button>
 							</Stack>
 						</Stack>
-					</Box>
-				</Stack>
-			</Container>
-		);
+					</Stack>
+				</Box>
+			</Stack>
+		</Container>
+	);
 }
 
 export default SignupForm;

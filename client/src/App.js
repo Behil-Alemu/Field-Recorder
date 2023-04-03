@@ -6,7 +6,6 @@ import useLocalStorage from './hooks/useLocalStorage';
 import Routes from './routes/AppRoutes';
 import LoadingSpinner from './helpers/LoadingSpinner';
 import UsersApi from './api/UsersApi';
-import GoogleUserApi from './api/GoogleUserApi';
 import UserContext from './auth/UserContext';
 import NavigationBar from './routes/NavigationBar';
 import * as jose from 'jose';
@@ -41,6 +40,7 @@ function App() {
 						UsersApi.token = token;
 
 						let currentUser = await UsersApi.getCurrentUser(username);
+						
 						setCurrentUser(currentUser);
 					} catch (err) {
 						console.log(err);
@@ -87,39 +87,6 @@ function App() {
 		}
 	}
 
-	async function loginGoogle(loginGoogleData) {
-		console.log(loginGoogleData);
-		try {
-			let res = await GoogleUserApi.getUserByEmail(loginGoogleData);
-			console.log(res);
-
-			if (res === null) {
-				return { success: false };
-			} else {
-				console.log(res)
-				setCurrentUser(res.username);
-				return { success: false };
-			}
-		} catch (errors) {
-			console.error('login failed', errors);
-			return { success: false, errors };
-		}
-	}
-
-	async function signupGoogle(signupGoogleData) {
-		try {
-			let res = await GoogleUserApi.addByGoogle(signupGoogleData);
-
-			console.log(res);
-			if (res) {
-				setCurrentUser(res.username);
-			}
-			return { success: true };
-		} catch (errors) {
-			console.error('login failed', errors);
-			return { success: false, errors };
-		}
-	}
 
 	/** Handles site-wide logout. */
 	function logout() {
@@ -135,7 +102,7 @@ function App() {
 				<UserContext.Provider value={{ currentUser, setCurrentUser, token }}>
 					<Box className="App">
 						<NavigationBar logout={logout} />
-						<Routes login={login} loginGoogle={loginGoogle} signupGoogle={signupGoogle} signup={signup} />
+						<Routes login={login} signup={signup} />
 					</Box>
 				</UserContext.Provider>
 			</BrowserRouter>
