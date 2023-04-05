@@ -40,6 +40,7 @@ class User {
 
 	static async remove(username) {
 		const user = await remove(username);
+		
 		return console.log('removed user', user.username);
 	}
 }

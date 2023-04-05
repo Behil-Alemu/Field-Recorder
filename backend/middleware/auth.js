@@ -10,25 +10,7 @@ const { UnauthorizedError } = require('../expressError');
  *verifies the JWT token by extracting it from the Authorization header and decoding it using the jwt.verify method. If the token is valid, it sets req.user to the decoded payload and calls the next middleware. 
  Middleware to verify JWT token
  */
-// function authenticateJWT(req, res, next) {
-// 	try {
-// 		const authHeader = req.headers.authorization;
-// 		if (authHeader) {
-// 			const token = authHeader.split(' ')[1];
-// 			console.log(token,"(((((((((((((((((((((())))))))))))))))))))))")
-// 			const payload = jwt.verify(token, SECRET_KEY);
 
-// 			req.user = payload;
-// 			return next();
-// 		}
-// 	} catch (err) {
-// 		return next(err);
-// 	}
-// 	return next({
-// 		status: 401,
-// 		message: 'Unauthorized'
-// 	});
-// }
 function authenticateJWT(req, res, next) {
 	try {
 		const authHeader = req.headers && req.headers.authorization;

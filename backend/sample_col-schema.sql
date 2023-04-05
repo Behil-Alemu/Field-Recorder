@@ -28,7 +28,7 @@ CREATE TABLE sample_entry (
   folder_id INTEGER NOT NULL,
   CONSTRAINT fk_users_username
     FOREIGN KEY (username)
-    REFERENCES users (username),
+    REFERENCES users (username) ON DELETE CASCADE,
   CONSTRAINT fk_folder_id
     FOREIGN KEY (folder_id)
     REFERENCES sample_folder (id) ON DELETE CASCADE

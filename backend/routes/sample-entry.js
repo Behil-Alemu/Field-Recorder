@@ -22,6 +22,7 @@ router.get('/:username/:folderName', ensureLoggedIn, async function(req, res, ne
 		return next(err);
 	}
 });
+
 //GET single sample => {sample}*/
 router.get('/:sample_id', ensureLoggedIn, async function(req, res, next) {
 	try {

@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../db');
-const { NotFoundError } = require('../expressError');
+const { NotFoundError, BadRequestError } = require('../expressError');
 const { sqlForPartialUpdate } = require('../helpers/sql');
 
 class Folder {
@@ -11,6 +11,15 @@ class Folder {
    **/
 
 	static async add({ folderName, username }) {
+		const duplicateCheck = await db.query(
+			`SELECT folder_name, username
+			FROM sample_folder
+			WHERE folder_name = $1`,
+			[ folderName ]
+		);
+
+		if (duplicateCheck.rows[0]) throw new BadRequestError(`Duplicate folder Name: ${folderName}`);
+
 		const result = await db.query(
 			`INSERT INTO sample_folder (folder_name, username)
 		   VALUES ($1, $2)
@@ -31,6 +40,8 @@ class Folder {
             WHERE sample_folder.username = $1;`,
 			[ username ]
 		);
+		if (!folder.rows) throw new BadRequestError(`No folders:`);
+
 		return folder.rows;
 	}
 
@@ -60,18 +71,17 @@ class Folder {
 
 	/** Delete given folder from database; returns undefined.
    **/
-	 static async remove(id) {
+	static async remove(id) {
 		const result = await db.query(
-		  `DELETE FROM sample_folder
+			`DELETE FROM sample_folder
 		   WHERE id = $1
 		   RETURNING id`,
-		  [id]
+			[ id ]
 		);
 		const folder = result.rows[0];
-	  
+
 		if (!folder) throw new NotFoundError(`No sample with the id: ${id}`);
-	  }
-	  
+	}
 }
 
 module.exports = Folder;

@@ -55,6 +55,7 @@ router.patch('/:username', ensureLoggedIn, async function(req, res, next) {
 router.delete('/:username', ensureLoggedIn, async function(req, res, next) {
 	try {
 		await User.remove(req.params.username);
+		
 		return res.json({ deleted: req.params.username });
 	} catch (err) {
 		return next(err);

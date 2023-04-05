@@ -62,6 +62,7 @@ class SampleEntry {
    * */
 	static async getSampleById(sampleId) {
 		const sample = await db.query(`SELECT * FROM sample_entry WHERE sample_id = $1`, [ sampleId ]);
+		if (!sample) throw new NotFoundError(`No job: ${sampleId}`);
 		return sample.rows[0];
 	}
 
