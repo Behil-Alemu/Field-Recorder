@@ -23,10 +23,10 @@ Then navigate to [Field Recorder](http://localhost:3000) in your web browser.
 ## Credits
 This app was created by Behil Alemu using the following resources:
 
-NatureServe Explorer REST API: https://explorer.natureserve.org/api-docs/
-NatureServe Explorer: https://explorer.natureserve.org/
-React Google Maps API: https://react-google-maps-api-docs.netlify.app/
-ImageKit:https://docs.imagekit.io/getting-started/quickstart-guides/react#uploading-files-in-react
+- NatureServe Explorer REST API: https://explorer.natureserve.org/api-docs/
+- NatureServe Explorer: https://explorer.natureserve.org/
+- React Google Maps API: https://react-google-maps-api-docs.netlify.app/
+- ImageKit:https://docs.imagekit.io/getting-started/quickstart-guides/react#uploading-files-in-react
 
 ### License
 This project is licensed under the MIT License. See the LICENSE file for details.
