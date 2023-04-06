@@ -1,0 +1,17 @@
+{
+    "name": "capstonetwo",
+    "version": "1.0.0",
+    "description": "My Node.js application",
+    "main": "index.js",
+    "scripts": {
+      "start": "concurrently \"npm run backend\" \"npm run client\"",
+      "backend": "cd backend && PORT=3001 node index.js",
+      "client": "cd client && npm start"
+    },
+    "dependencies": {
+      "concurrently": "^6.0.2",
+      "express": "^4.17.1",
+      "body-parser": "^1.19.0"
+    }
+  }
+  
