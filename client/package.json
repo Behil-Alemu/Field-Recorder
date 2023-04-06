@@ -36,7 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-both": "concurrently \"cd ../ && cd backend/ && PORT=3001 nodemon index.js\" \"PORT=3000 react-scripts start\""
+    "start-both": "concurrently \"cd ../ && cd backend/ && PORT=3001 nodemon server.js\" \"PORT=3000 react-scripts start\""
   },
   "eslintConfig": {
     "extends": "react-app"
