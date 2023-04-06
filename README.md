@@ -1,36 +1,32 @@
-//SELECT * FROM sample_folder WHERE folder_name = 'My First Project';
+# Research Biologist Data Entry and Analysis App
 
-SELECT * FROM sample_entry WHERE username = 'First';
+> **This app is designed for research biologists who need to keep track of samples and analyze data. It allows users to pin the location of samples found and access information on rare and endangered species and ecosystems in the Americas through the NatureServe Explorer REST API.** 
 
-SELECT se.*
-FROM sample_entry se
-JOIN sample_folder sf ON sf.id = se.folder_id
-WHERE sf.folder_name = 'Bug' AND se.username = 'behil';
+## Features
+- Pin the location of samples found using React Google Maps API
+- Access information on rare and endangered species and ecosystems in the Americas through the NatureServe Explorer REST API
+- Upload images from a user's device using ImageKit
 
-SELECT se.*
-FROM sample_entry se
-JOIN sample_folder sf ON sf.id = se.folder_id
-WHERE sf.folder_name = 'My First Project' AND se.username = 'First';
+## Installation
+To use this app, you will need to clone the repository and install the required dependencies:
 
+`git clone https://github.com/Behil-Alemu/Capstone-Project-Two.git`
+`cd Capstone-Project-Two`
+`npm install`
 
-SELECT folder_name AS folderName
-FROM sample_folder sf
-JOIN users u ON u.username = sf.username
-WHERE sf.username = 'First';
+## Usage
+To run the app, use the following command:
+`npm start`
 
-SELECT folder_name AS folderName
-FROM sample_folder 
-WHERE sample_folder.username = 'First';
+Then navigate to [Field Recorder](http://localhost:3000) in your web browser.
 
-first do this as a get request 
-https://explorer.natureserve.org/api/data/suggestions/?searchTerm=frog&recordType=ALL
-once selected go by taxa id
+## Credits
+This app was created by Behil Alemu using the following resources:
 
-https://explorer.natureserve.org/api/data/taxon/ELEMENT_GLOBAL.2.106149
+[NatureServe Explorer REST API: ](https://explorer.natureserve.org/api-docs/)
+[NatureServe Explorer](https://explorer.natureserve.org/)
+[React Google Maps API: ](https://react-google-maps-api-docs.netlify.app/)
+[ImageKit:](https://docs.imagekit.io/getting-started/quickstart-guides/react#uploading-files-in-react)
 
-for chakra landing page. https://codesandbox.io/s/landing-page-with-chakra-ui-forked-o4uusw?file=/package.json:281-361
-
-
-https://react-google-maps-api-docs.netlify.app/#marker
-
-https://docs.imagekit.io/getting-started/quickstart-guides/react#uploading-files-in-react
+### License
+This project is licensed under the MIT License. See the LICENSE file for details.
