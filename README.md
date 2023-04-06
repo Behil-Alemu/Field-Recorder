@@ -10,10 +10,12 @@
 ## Installation
 To use this app, you will need to clone the repository and install the required dependencies:
 
-`git clone https://github.com/Behil-Alemu/Capstone-Project-Two.git`
-`cd Capstone-Project-Two`
-`npm install`
+```
+git clone https://github.com/Behil-Alemu/Capstone-Project-Two.git
+cd Capstone-Project-Two
+npm install
 
+```
 ## Usage
 To run the app, use the following command:
 `npm start`
