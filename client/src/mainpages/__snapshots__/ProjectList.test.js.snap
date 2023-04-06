@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-spinner css-1oq7xc3"
+  >
+    <span
+      class="css-8b45rq"
+    >
+      Loading...
+    </span>
+  </div>
+</DocumentFragment>
+`;

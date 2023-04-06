@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="chakra-container css-140i716"
+  >
+    <div
+      class="chakra-stack css-sxjj"
+    >
+      <div
+        class="chakra-stack css-b8wtr3"
+      >
+        <form />
+        <div
+          class="css-6iqxdq"
+        >
+          <img
+            alt="Logo"
+            class="chakra-image css-1qfjeyj"
+            src="logo.png"
+          />
+        </div>
+        <div
+          class="chakra-stack css-1v2xz92"
+        >
+          <h2
+            class="chakra-heading css-0"
+          >
+            Create an account
+          </h2>
+          <p
+            class="chakra-text css-1c5b18p"
+          >
+            Already have an account?
+          </p>
+          <a
+            class="chakra-button css-4xx2wk"
+            href="/login"
+          >
+            Log in
+          </a>
+        </div>
+      </div>
+      <div
+        class="css-fsjjbh"
+      >
+        <div
+          class="chakra-stack css-16voevi"
+        >
+          <div
+            class="chakra-stack css-137fd6w"
+          >
+            <div
+              class="chakra-form-control css-0"
+              role="group"
+            >
+              <label
+                class="chakra-form__label css-uvho5g"
+                for="username"
+                id="field-:r0:-label"
+              >
+                Username
+              </label>
+              <input
+                aria-required="true"
+                class="chakra-input css-0"
+                id="usernameId"
+                name="username"
+                placeholder="Enter username"
+                required=""
+                type="text"
+                value=""
+              />
+              <label
+                class="chakra-form__label css-uvho5g"
+                for="password"
+                id="field-:r0:-label"
+              >
+                Password
+              </label>
+              <div
+                class="chakra-form-control css-0"
+                role="group"
+              >
+                <div
+                  class="chakra-input__group css-bx0blc"
+                  data-group="true"
+                >
+                  <input
+                    aria-required="true"
+                    class="chakra-input css-1n0hj84"
+                    id="field-:r1:"
+                    name="password"
+                    required=""
+                    type="password"
+                    value=""
+                  />
+                  <div
+                    class="chakra-input__right-element css-vcnsx7"
+                  >
+                    <button
+                      class="chakra-button css-xsdlqf"
+                      type="button"
+                    >
+                      Show
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <label
+                class="chakra-form__label css-uvho5g"
+                for="firstName"
+                id="field-:r0:-label"
+              >
+                First Name
+              </label>
+              <input
+                aria-required="true"
+                class="chakra-input css-0"
+                id="firstNameId"
+                name="firstName"
+                placeholder="Enter First Name"
+                required=""
+                type="text"
+                value=""
+              />
+              <label
+                class="chakra-form__label css-uvho5g"
+                for="firstName"
+                id="field-:r0:-label"
+              >
+                Last Name
+              </label>
+              <input
+                aria-required="true"
+                class="chakra-input css-0"
+                id="lastNameId"
+                name="lastName"
+                placeholder="Enter Last Name"
+                required=""
+                type="text"
+                value=""
+              />
+              <label
+                class="chakra-form__label css-uvho5g"
+                for="email"
+                id="field-:r0:-label"
+              >
+                Email
+              </label>
+              <input
+                aria-required="true"
+                class="chakra-input css-0"
+                id="emailId"
+                name="email"
+                placeholder="Enter Email"
+                required=""
+                type="email"
+                value=""
+              />
+            </div>
+            <div
+              class="chakra-stack css-16voevi"
+            >
+              <button
+                class="chakra-button css-4xx2wk"
+                type="button"
+              >
+                Sign up
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

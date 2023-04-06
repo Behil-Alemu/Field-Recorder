@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="css-0"
+  >
+    <div
+      class="css-2rlxtj"
+    >
+      <h1
+        class="chakra-heading css-1itv5e3"
+      >
+        testuser's projects
+      </h1>
+      <div
+        class="css-1fadoc0"
+      >
+        <form>
+          <div
+            class="chakra-form-control css-0"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="folderName"
+              id="field-:r0:-label"
+            >
+              Folder Name
+            </label>
+            <input
+              aria-required="true"
+              class="chakra-input css-0"
+              id="folderName"
+              name="folderName"
+              placeholder="Enter project name"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            class="chakra-button css-1rydqik"
+            type="submit"
+          >
+            Add Folder
+          </button>
+        </form>
+      </div>
+    </div>
+    <div
+      align="center"
+      class="css-0"
+    >
+      <div>
+        <div
+          class="chakra-card css-7q4bz5"
+        >
+          <div
+            class="chakra-card__header css-0"
+          >
+            <h2
+              class="chakra-heading css-0"
+            >
+              Sorry, no projects yet!
+            </h2>
+          </div>
+          <div
+            class="chakra-card__body css-0"
+          >
+            <p
+              class="chakra-text css-0"
+            >
+              Use above form :|
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot when logged out 1`] = `
+<DocumentFragment>
+  <div
+    class="css-0"
+  >
+    <div
+      class="css-2rlxtj"
+    >
+      <h1
+        class="chakra-heading css-1itv5e3"
+      >
+        's projects
+      </h1>
+      <div
+        class="css-1fadoc0"
+      >
+        <form>
+          <div
+            class="chakra-form-control css-0"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="folderName"
+              id="field-:r1:-label"
+            >
+              Folder Name
+            </label>
+            <input
+              aria-required="true"
+              class="chakra-input css-0"
+              id="folderName"
+              name="folderName"
+              placeholder="Enter project name"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+          <button
+            class="chakra-button css-1rydqik"
+            type="submit"
+          >
+            Add Folder
+          </button>
+        </form>
+      </div>
+    </div>
+    <div
+      align="center"
+      class="css-0"
+    >
+      <div>
+        <div
+          class="chakra-card css-7q4bz5"
+        >
+          <div
+            class="chakra-card__header css-0"
+          >
+            <h2
+              class="chakra-heading css-0"
+            >
+              Sorry, no projects yet!
+            </h2>
+          </div>
+          <div
+            class="chakra-card__body css-0"
+          >
+            <p
+              class="chakra-text css-0"
+            >
+              Use above form :|
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

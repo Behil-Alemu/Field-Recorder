@@ -8,7 +8,10 @@ import LoadingSpinner from './helpers/LoadingSpinner';
 import UsersApi from './api/UsersApi';
 import UserContext from './auth/UserContext';
 import NavigationBar from './routes/NavigationBar';
+import { TextEncoder } from 'fast-text-encoding';
+
 import * as jose from 'jose';
+global.TextEncoder = TextEncoder;
 
 /** 
  * - infoLoaded: has user data been pulled from API?

@@ -1,0 +1,296 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot with user 1`] = `
+<DocumentFragment>
+  <div
+    class="css-2rlxtj"
+  >
+    <h4
+      class="chakra-heading css-1itv5e3"
+    >
+      Project Name: 
+    </h4>
+    <div
+      class="css-0"
+    >
+      <form>
+        <div
+          class="css-k008qs"
+        >
+          <div
+            class="chakra-form-control css-5tigzz"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="common-name"
+              id="common-name-label"
+            >
+              Common Name
+              <span
+                aria-hidden="true"
+                class="chakra-form__required-indicator css-0"
+                role="presentation"
+              >
+                *
+              </span>
+            </label>
+            <div
+              class=" css-b62m3t-container"
+            >
+              <span
+                class="css-1f43avz-a11yText-A11yText"
+                id="react-select-2-live-region"
+              />
+              <span
+                aria-atomic="false"
+                aria-live="polite"
+                aria-relevant="additions text"
+                class="css-1f43avz-a11yText-A11yText"
+              />
+              <div
+                class=" css-17kaizj-control"
+              >
+                <div
+                  class=" css-1fdsijx-ValueContainer"
+                >
+                  <div
+                    class=" css-1jqq78o-placeholder"
+                    id="react-select-2-placeholder"
+                  />
+                  <div
+                    class=" css-qbdosj-Input"
+                    data-value=""
+                  >
+                    <input
+                      aria-autocomplete="list"
+                      aria-describedby="react-select-2-placeholder"
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      autocapitalize="none"
+                      autocomplete="off"
+                      autocorrect="off"
+                      class=""
+                      id="react-select-2-input"
+                      role="combobox"
+                      spellcheck="false"
+                      style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+                      tabindex="0"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  class=" css-1hb7zxy-IndicatorsContainer"
+                >
+                  <span
+                    class=" css-1u9des2-indicatorSeparator"
+                  />
+                  <div
+                    aria-hidden="true"
+                    class=" css-1xc3v61-indicatorContainer"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="css-tj5bde-Svg"
+                      focusable="false"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      width="20"
+                    >
+                      <path
+                        d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="chakra-form-control css-5tigzz"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="scientific-name"
+              id="scientific-name-label"
+            >
+              Scientific Name
+              <span
+                aria-hidden="true"
+                class="chakra-form__required-indicator css-0"
+                role="presentation"
+              >
+                *
+              </span>
+            </label>
+            <input
+              aria-required="true"
+              class="chakra-input css-0"
+              id="scientific-name"
+              name="scientificName"
+              required=""
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="css-k008qs"
+        >
+          <div
+            class="chakra-form-control css-5tigzz"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="quantity"
+              id="quantity-label"
+            >
+              Quantity
+            </label>
+            <input
+              class="chakra-input css-0"
+              id="quantity"
+              name="quantity"
+              type="number"
+              value="0"
+            />
+          </div>
+          <div
+            align="left"
+            class="chakra-form-control css-0"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="field-:r3:"
+              id="field-:r3:-label"
+            >
+              Location
+            </label>
+            <div
+              class="chakra-stack css-n21gh5"
+            >
+              <button
+                align="left"
+                class="chakra-button css-4xx2wk"
+                type="button"
+              >
+                Pin Current Location 
+                <svg
+                  class="chakra-icon css-13otjrl"
+                  fill="currentColor"
+                  focusable="false"
+                  height="1em"
+                  stroke="currentColor"
+                  stroke-width="0"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12,22 C12,22 4,16 4,10 C4,5 8,2 12,2 C16,2 20,5 20,10 C20,16 12,22 12,22 Z M12,13 C13.657,13 15,11.657 15,10 C15,8.343 13.657,7 12,7 C10.343,7 9,8.343 9,10 C9,11.657 10.343,13 12,13 L12,13 Z"
+                    fill="none"
+                    stroke="#000"
+                    stroke-width="2"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="css-k008qs"
+        >
+          <div
+            class="chakra-form-control css-5tigzz"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="note"
+              id="note-label"
+            >
+              Note
+            </label>
+            <textarea
+              class="chakra-textarea css-0"
+              id="note"
+              name="note"
+            />
+          </div>
+          <div
+            class="chakra-form-control css-5tigzz"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="image"
+              id="image-label"
+            >
+              Image
+            </label>
+            <div
+              class="css-uiup45"
+            >
+              <input
+                class="my-upload-button"
+                name="imageUrl"
+                type="file"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="css-1n0zz00"
+        >
+          <div
+            class="css-17xejub"
+          />
+          <button
+            class="chakra-button css-4xx2wk"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <div>
+      <button
+        class="chakra-button css-4xx2wk"
+        type="button"
+      >
+        View map with samples location
+      </button>
+    </div>
+    <div>
+      <div
+        class="chakra-card css-7q4bz5"
+      >
+        <div
+          class="chakra-card__header css-0"
+        >
+          <h2
+            class="chakra-heading css-0"
+          >
+            Sorry, no projects yet!
+          </h2>
+        </div>
+        <div
+          class="chakra-card__body css-0"
+        >
+          <p
+            class="chakra-text css-0"
+          >
+            Use above form :|
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
