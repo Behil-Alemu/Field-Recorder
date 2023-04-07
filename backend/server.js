@@ -1,5 +1,4 @@
 'use strict';
-require('dotenv').config();
 
 const app = require('./app');
 //port is listed as 3001 in config
