@@ -2,22 +2,22 @@
 
 /** Express app for capstone two. */
 
-const express = require('express');
+import express, { json } from 'express';
 /**CORS is a security feature,prevents  pages from making requests to servers that are not in the same origin (domain, protocol, and port) as the web page itself.  */
-const cors = require('cors');
+import cors from 'cors';
 require('dotenv').config();
 
-const { NotFoundError } = require('./expressError');
-const { authenticateJWT } = require('./middleware/auth');
-const authRoutes = require('./routes/auth');
-const usersRoutes = require('./routes/users');
-const sampleEntryRoutes = require('./routes/sample-entry');
-const foldersRoutes = require('./routes/folders');
-const imagesRoutes = require('./routes/imageKit');
+import { NotFoundError } from './expressError';
+import { authenticateJWT } from './middleware/auth';
+import authRoutes from './routes/auth';
+import usersRoutes from './routes/users';
+import sampleEntryRoutes from './routes/sample-entry';
+import foldersRoutes from './routes/folders';
+import imagesRoutes from './routes/imageKit';
 /**
  *morgan- log details about incoming HTTP requests, such as the request method, URL, response status, and response time.
  */
-const morgan = require('morgan');
+import morgan from 'morgan';
 // const ImageKit = require('imagekit');
 
 const app = express();
@@ -29,7 +29,7 @@ const app = express();
 // });
 
 app.use(cors());
-app.use(express.json());
+app.use(json());
 app.use(morgan('tiny'));
 app.use(authenticateJWT);
 
@@ -66,4 +66,4 @@ app.use(function(err, req, res, next) {
 	});
 });
 
-module.exports = app;
+export default app;
