@@ -1,6 +1,6 @@
 {
     "scripts": {
-      "start": "nodemon backend/server.js"
+      "start": "nodemon cd backend/server.mjs"
     },
     "engines": {
       "node": "16.18.0"
