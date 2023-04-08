@@ -5,15 +5,16 @@
 import express, { json } from 'express';
 /**CORS is a security feature,prevents  pages from making requests to servers that are not in the same origin (domain, protocol, and port) as the web page itself.  */
 import cors from 'cors';
-require('dotenv').config();
+// require('dotenv').config();
+import dotenv from 'dotenv';
 
-import { NotFoundError } from './expressError';
-import { authenticateJWT } from './middleware/auth';
-import authRoutes from './routes/auth';
-import usersRoutes from './routes/users';
-import sampleEntryRoutes from './routes/sample-entry';
-import foldersRoutes from './routes/folders';
-import imagesRoutes from './routes/imageKit';
+import { NotFoundError } from './expressError.js';
+import { authenticateJWT } from './middleware/auth.js';
+import authRoutes from './routes/auth.js';
+import usersRoutes from './routes/users.js';
+import sampleEntryRoutes from './routes/sample-entry.js';
+import foldersRoutes from './routes/folders.js';
+import imagesRoutes from './routes/imageKit.js';
 /**
  *morgan- log details about incoming HTTP requests, such as the request method, URL, response status, and response time.
  */
