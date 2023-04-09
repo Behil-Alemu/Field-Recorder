@@ -7,7 +7,6 @@ import express, { json } from 'express';
 import cors from 'cors';
 // require('dotenv').config();
 import dotenv from 'dotenv';
-
 import { NotFoundError } from './expressError.js';
 import { authenticateJWT } from './middleware/auth.js';
 import authRoutes from './routes/auth.js';
