@@ -3,6 +3,7 @@
       "start": "nodemon cd backend/server.mjs"
     },
     "engines": {
-      "node": "16.18.0"
+      "node": "16.18.0",
+      "npm": "8.19.2"
     }
   }
