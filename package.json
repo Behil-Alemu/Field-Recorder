@@ -5,6 +5,7 @@
   "main": "backend/server.cjs",
   "scripts": {
     "start": "cd backend && npm install && npm start",
+    "build": "react-scripts build",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Behil",
