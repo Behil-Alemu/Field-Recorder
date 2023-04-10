@@ -1,9 +1,11 @@
 'use strict';
 // require('dotenv').config();
-import path from 'path';
-import express from 'express';
+const path = require('path');
+const express = require('express');
 
-import app from './app.mjs';
+const app = require('./app.js');
+
+// import app from './app.js';
 //port is listed as 3001 in config
 import { PORT } from './config.js';
 // listen at port 3001
