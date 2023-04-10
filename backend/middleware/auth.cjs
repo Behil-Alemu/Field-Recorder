@@ -3,8 +3,8 @@
 /** Convenience middleware to handle common auth cases in routes. */
 
 const jwt = require('jsonwebtoken');
-const { SECRET_KEY } = require('../config');
-const { UnauthorizedError } = require('../expressError');
+const { SECRET_KEY } = require('../config.cjs');
+const { UnauthorizedError } = require('../expressError.cjs');
 
 /** Middleware: Authenticate user.
  *verifies the JWT token by extracting it from the Authorization header and decoding it using the jwt.verify method. If the token is valid, it sets req.user to the decoded payload and calls the next middleware. 

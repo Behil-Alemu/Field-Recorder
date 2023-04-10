@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../../db');
-const { NotFoundError } = require('../../expressError');
+const { NotFoundError } = require('../../expressError.cjs');
 /** Given a username, return data about user.
    *
    * Returns { username, first_name, last_name }
@@ -12,15 +12,14 @@ const { NotFoundError } = require('../../expressError');
 
 async function getUserInfo(username) {
 	const userRes = await db.query(
-      `SELECT username,
+		`SELECT username,
               first_name AS "firstName",
               last_name AS "lastName",
               email
        FROM users
        WHERE username = $1`,
-      [username]
-    );
-    
+		[ username ]
+	);
 
 	const user = userRes.rows[0];
 

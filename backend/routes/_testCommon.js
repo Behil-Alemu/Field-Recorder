@@ -1,9 +1,9 @@
 'use strict';
 
 const db = require('../db.js');
-const Folders = require('../models/folders');
-const Sample = require('../models/sample-entry');
-const User = require('../models/users');
+const Folders = require('../models/folders.cjs');
+const Sample = require('../models/sample-entry.cjs');
+const User = require('../models/users.cjs');
 const { createToken } = require('../helpers/tokens');
 
 const testSampleIds = [];

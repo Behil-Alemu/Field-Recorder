@@ -1,6 +1,6 @@
 {
     "scripts": {
-      "start": "node backend/server.js"
+      "start": "node backend/server.cjs"
     },
     "engines": {
       "node": "16.18.0",

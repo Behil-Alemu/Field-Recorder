@@ -4,13 +4,13 @@
 
 const jsonschema = require('jsonschema');
 
-const User = require('../models/users');
+const User = require('../models/users.cjs');
 const express = require('express');
 const router = new express.Router();
 const { createToken } = require('../helpers/tokens');
 const userAuthSchema = require('../schemas/userAuth.json');
 const userRegisterSchema = require('../schemas/userNew.json');
-const { BadRequestError } = require('../expressError');
+const { BadRequestError } = require('../expressError.cjs');
 
 /** POST /auth/token:  { username, password } => { token }
  *

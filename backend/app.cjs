@@ -7,12 +7,12 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const { NotFoundError } = require('./expressError');
-const { authenticateJWT } = require('./middleware/auth');
-const authRoutes = require('./routes/auth');
-const usersRoutes = require('./routes/users');
+const { NotFoundError } = require('./expressError.cjs');
+const { authenticateJWT } = require('./middleware/auth.cjs');
+const authRoutes = require('./routes/auth.cjs');
+const usersRoutes = require('./routes/users.cjs');
 const sampleEntryRoutes = require('./routes/sample-entry');
-const foldersRoutes = require('./routes/folders');
+const foldersRoutes = require('./routes/folders.cjs');
 const imagesRoutes = require('./routes/imageKit');
 /**
  *morgan- log details about incoming HTTP requests, such as the request method, URL, response status, and response time.
@@ -22,7 +22,7 @@ const morgan = require('morgan');
 const app = express();
 
 app.use(cors());
-app.use(json());
+app.use(express.json());
 app.use(morgan('tiny'));
 app.use(authenticateJWT);
 

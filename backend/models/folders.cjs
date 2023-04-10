@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../db');
-const { NotFoundError, BadRequestError } = require('../expressError');
+const { NotFoundError, BadRequestError } = require('../expressError.cjs');
 const { sqlForPartialUpdate } = require('../helpers/sql');
 
 class Folder {

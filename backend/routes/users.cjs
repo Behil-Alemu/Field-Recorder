@@ -5,9 +5,9 @@
 const jsonschema = require('jsonschema');
 
 const express = require('express');
-const { ensureLoggedIn, authenticateJWT } = require('../middleware/auth');
-const { BadRequestError } = require('../expressError');
-const User = require('../models/users');
+const { ensureLoggedIn, authenticateJWT } = require('../middleware/auth.cjs');
+const { BadRequestError } = require('../expressError.cjs');
+const User = require('../models/users.cjs');
 const userUpdateSchema = require('../schemas/userUpdate.json');
 // const userGoogleRegisterSchema = require('../schemas/userGoogleRegisterSchema.json');
 
@@ -55,12 +55,11 @@ router.patch('/:username', ensureLoggedIn, async function(req, res, next) {
 router.delete('/:username', ensureLoggedIn, async function(req, res, next) {
 	try {
 		await User.remove(req.params.username);
-		
+
 		return res.json({ deleted: req.params.username });
 	} catch (err) {
 		return next(err);
 	}
 });
-
 
 module.exports = router;

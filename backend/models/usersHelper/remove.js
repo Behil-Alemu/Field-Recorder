@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../../db');
-const { NotFoundError } = require('../../expressError');
+const { NotFoundError } = require('../../expressError.cjs');
 /** Delete given user from database; returns undefined. */
 async function remove(username) {
 	let result = await db.query(

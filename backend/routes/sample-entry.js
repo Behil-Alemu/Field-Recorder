@@ -4,9 +4,9 @@
 
 const jsonschema = require('jsonschema');
 const express = require('express');
-const { ensureLoggedIn } = require('../middleware/auth');
-const { BadRequestError } = require('../expressError');
-const SampleEntry = require('../models/sample-entry');
+const { ensureLoggedIn } = require('../middleware/auth.cjs');
+const { BadRequestError } = require('../expressError.cjs');
+const SampleEntry = require('../models/sample-entry.cjs');
 const sampleEntrySchema = require('../schemas/sampleEntrySchema.json');
 const sampleUpdateSchema = require('../schemas/sampleUpdate.json');
 

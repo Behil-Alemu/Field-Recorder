@@ -4,9 +4,9 @@
 
 const jsonschema = require('jsonschema');
 const express = require('express');
-const { ensureLoggedIn } = require('../middleware/auth');
-const { BadRequestError } = require('../expressError');
-const Folder = require('../models/folders');
+const { ensureLoggedIn } = require('../middleware/auth.cjs');
+const { BadRequestError } = require('../expressError.cjs');
+const Folder = require('../models/folders.cjs');
 const folderEntrySchema = require('../schemas/folder.json');
 const folderUpdateSchema = require('../schemas/folderUpdate.json');
 

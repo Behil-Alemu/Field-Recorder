@@ -2,8 +2,8 @@
 
 const db = require('../../db');
 const bcrypt = require('bcrypt');
-const { BadRequestError } = require('../../expressError');
-const { BCRYPT_WORK_FACTOR } = require('../../config');
+const { BadRequestError } = require('../../expressError.cjs');
+const { BCRYPT_WORK_FACTOR } = require('../../config.cjs');
 /** Register user with data.
    *
    * Returns { username, firstName, lastName, email, isAdmin }

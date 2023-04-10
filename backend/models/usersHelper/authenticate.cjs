@@ -2,7 +2,7 @@
 
 const db = require('../../db');
 const bcrypt = require('bcrypt');
-const { UnauthorizedError } = require('../../expressError');
+const { UnauthorizedError } = require('../../expressError.cjs');
 /** authenticate user with username, password.
    *
    * Returns { username, first_name, last_name, email }
@@ -20,7 +20,7 @@ async function authenticate(username, password) {
               email
        FROM users
        WHERE username = $1`,
-		[ username ],
+		[ username ]
 	);
 
 	const user = result.rows[0];

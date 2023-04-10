@@ -2,8 +2,8 @@
 
 const db = require('../../db');
 const bcrypt = require('bcrypt');
-const { NotFoundError } = require('../../expressError');
-const { BCRYPT_WORK_FACTOR } = require("../../config");
+const { NotFoundError } = require('../../expressError.cjs');
+const { BCRYPT_WORK_FACTOR } = require('../../config.cjs');
 const { sqlForPartialUpdate } = require('../../helpers/sql');
 
 /** Update user data with `data`.
@@ -24,7 +24,7 @@ const { sqlForPartialUpdate } = require('../../helpers/sql');
    */
 
 async function update(username, data) {
-    //hash the password that is entered
+	//hash the password that is entered
 	if (data.password) {
 		data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
 	}

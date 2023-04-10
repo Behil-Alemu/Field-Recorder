@@ -1,6 +1,6 @@
 'use strict';
 
-const authenticate = require('./usersHelper/authenticate');
+const authenticate = require('./usersHelper/authenticate.cjs');
 const register = require('./usersHelper/register');
 const remove = require('./usersHelper/remove');
 const update = require('./usersHelper/update');
