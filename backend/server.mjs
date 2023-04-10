@@ -11,7 +11,6 @@ import { PORT } from './config.js';
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(new URL('../client/build', import.meta.url).pathname)));
 
-
 app.listen(PORT, function() {
 	console.log(`Started on http://localhost:${PORT}`);
 });

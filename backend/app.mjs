@@ -18,15 +18,9 @@ import imagesRoutes from './routes/imageKit.js';
  *morgan- log details about incoming HTTP requests, such as the request method, URL, response status, and response time.
  */
 import morgan from 'morgan';
-// const ImageKit = require('imagekit');
 
 const app = express();
-//add to middleware stack
-// const imagekit = new ImageKit({
-// 	publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-// 	privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
-// 	urlEndpoint: 'https://ik.imagekit.io/kwjg3hkrf'
-// });
+
 
 app.use(cors());
 app.use(json());
@@ -39,16 +33,7 @@ app.use('/sample-entry', sampleEntryRoutes);
 app.use('/folders', foldersRoutes);
 app.use('/images', imagesRoutes);
 
-// app.use(function(req, res, next) {
-// 	res.header('Access-Control-Allow-Origin', '*');
-// 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-// 	next();
-// });
 
-// app.get('/imgAuth', function(req, res) {
-// 	var result = imagekit.getAuthenticationParameters();
-// 	res.send(result);
-// });
 
 /** Handle 404 errors -- this matches everything */
 app.use(function(req, res, next) {
