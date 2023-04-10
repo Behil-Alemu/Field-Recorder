@@ -12,7 +12,7 @@ import UserContext from '../auth/UserContext';
 function PrivateRoute({ element, ...rest }) {
 	const { currentUser } = useContext(UserContext);
 
-	console.debug('PrivateRoute', 'path=', path, 'element=', element);
+	console.debug('PrivateRoute', 'path=', 'element=', element);
 
 	if (!currentUser) {
 		return <Navigate to="/login" />;

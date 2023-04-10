@@ -26,7 +26,7 @@ const UploadImage = ({ onFileChange }) => {
 				let response = await ImageApi.getAuth();
 
 				const file = event.target.files[0];
-				setFile(res.url);
+				setFile(response.url);
 
 				// const response = await fetch(authenticationEndpoint);
 
