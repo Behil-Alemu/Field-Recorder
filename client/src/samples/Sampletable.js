@@ -75,7 +75,7 @@ export default function Sampletable({ samples, folderName, folder_id, updateDele
 
 					if (coords) {
 						const parseCoord = JSON.parse(coords);
-						
+
 						const res = `Lat: ${parseCoord['lat']} Lng: ${parseCoord['lng']}`;
 						return res;
 					} else {
@@ -87,6 +87,7 @@ export default function Sampletable({ samples, folderName, folder_id, updateDele
 				Header: 'Image URL',
 				accessor: 'image_url',
 				Cell: ({ row }) => {
+					console.log(row.original.image_url);
 					return <div>{<HandleImage url={row.original.image_url} name={row.original.common_name} />}</div>;
 				}
 			},
