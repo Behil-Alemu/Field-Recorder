@@ -8,8 +8,7 @@
   "scripts": {
     "start": "node server.cjs",
     "dev": "nodemon server.cjs",
-    "test": "jest -i",
-    "build": "cd .. && cd client && npm install && npm run build"
+    "test": "jest -i"
 
   },
   "jest": {
