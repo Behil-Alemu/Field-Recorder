@@ -1,13 +1,23 @@
-const customStyles = {
-	control: (provided) => ({
-		...provided,
-		backgroundColor: '#E2EAEE',
-		borderColor: 'white'
-	}),
-	singleValue: (provided) => ({
-		...provided,
-		color: 'black'
-	})
-};
+import { useColorMode } from '@chakra-ui/react';
 
-export default customStyles;
+function customStyles() {
+	const { colorMode } = useColorMode();
+
+	return {
+		control: (provided) => ({
+			...provided,
+			backgroundColor: colorMode === 'dark' ? 'gray.800' : 'white'
+		}),
+		menu: (provided) => ({
+			...provided,
+			backgroundColor: colorMode === 'dark' ? 'gray.800' : 'white'
+		}),
+		option: (provided, state) => ({
+			...provided,
+			backgroundColor: state.isFocused ? (colorMode === 'dark' ? 'gray.700' : 'gray.100') : 'transparent',
+			color: colorMode === 'dark' ? 'white' : 'black'
+		})
+	};
+}
+
+export { customStyles };

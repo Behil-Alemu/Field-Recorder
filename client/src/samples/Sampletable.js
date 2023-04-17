@@ -49,11 +49,6 @@ export default function Sampletable({ samples, folderName, folder_id, updateDele
 	const columns = useMemo(
 		() => [
 			{
-				Header: 'Sample ID',
-				accessor: 'sample_id',
-				isNumeric: true
-			},
-			{
 				Header: 'Common Name',
 				accessor: 'common_name'
 			},

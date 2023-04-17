@@ -9,6 +9,7 @@ function ProjectList({ projects, setProjects }) {
 	// const [ formErrors, setFormErrors ] = useState([]);
 	const { currentUser } = useContext(UserContext);
 	const bg = useColorModeValue('gray.100', 'gray.600');
+	const cardBg = useColorModeValue('red.50', 'red.800');
 
 	console.debug('ProjectList', 'currentUser=', currentUser, 'projects=', projects);
 
@@ -36,7 +37,7 @@ function ProjectList({ projects, setProjects }) {
 					</SimpleGrid>
 				</Box>
 			) : (
-				<Card maxW="md" align="center" bg="red.50">
+				<Card maxW="md" align="center" bg={cardBg}>
 					<CardHeader>
 						<Heading size="md">Sorry, no projects yet!</Heading>
 					</CardHeader>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Heading, Card, CardBody, CardHeader, Text } from '@chakra-ui/react';
+import { Box, Heading, Card, CardBody, CardHeader, Text, useColorModeValue } from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import Sampletable from './Sampletable';
@@ -36,8 +36,7 @@ function Samplepage() {
 	const updateDeletedSamples = (deletedSampleId) => {
 		setSamples((prevSamples) => prevSamples.filter((Sample) => Sample.sample_id !== deletedSampleId));
 	};
-
-	
+	const cardBg = useColorModeValue('red.50', 'red.800');
 
 	return (
 		<Box p={4}>
@@ -60,7 +59,7 @@ function Samplepage() {
 						/>
 					</Box>
 				) : (
-					<Card maxW="md" align="center" bg="red.50">
+					<Card maxW="md" align="center" bg={cardBg}>
 						<CardHeader>
 							<Heading size="md">Sorry, no projects yet!</Heading>
 						</CardHeader>

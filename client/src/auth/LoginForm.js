@@ -72,14 +72,16 @@ function LoginForm({ login }) {
 	}
 
 	const [ rememberMe, setRememberMe ] = useLocalStorage('rememberMe', false);
-	const bg = useColorModeValue('white', 'gray.50', 'linear(to-r, green.50, green.200)');
-	const color = useColorModeValue('green.800', 'green.800');
+	const bg = useColorModeValue('white', 'gray.800');
+	const color = useColorModeValue('gray.800', 'white');
 
 	return (
 		<Container maxW="lg" py={{ base: '2', md: '2' }} px={{ base: '0', sm: '8' }}>
 			<Stack bg={bg} color={color} spacing="4">
 				<Stack spacing="2" alignItems="center" justifyContent="center">
-					<form onSubmit={handleSubmit}>{formErrors.length > 0 && <NotifyRed error={formErrors} />}</form>
+					<form onSubmit={handleSubmit}>
+						{formErrors.length > 0 && <NotifyRed error={formErrors} colorScheme="red" />}
+					</form>
 					<Logo />
 					<Stack spacing={{ base: '2', md: '3' }} text="ceAlignnter">
 						<Heading size={{ base: 'xs', md: 'sm' }}>Log in to your account</Heading>
@@ -94,9 +96,9 @@ function LoginForm({ login }) {
 				<Box
 					py={{ base: '0', sm: '8' }}
 					px={{ base: '4', sm: '10' }}
-					bg={{ base: 'transparent', sm: 'bg-surface' }}
+					bg={useColorModeValue('transparent', 'gray.700')}
 					boxShadow={{ base: 'none', sm: 'md' }}
-					borderRadius={{ base: 'none', sm: 'xl' }}
+					borderRadius={{ base: 'none', sm: useColorModeValue('xl', 'md') }}
 				>
 					<Stack spacing="6">
 						<Stack spacing="5">

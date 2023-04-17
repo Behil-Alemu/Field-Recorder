@@ -2,7 +2,19 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
-import { FormControl, FormLabel, Input, Textarea, Button, Flex, Spacer, Icon, Text, Stack } from '@chakra-ui/react';
+import {
+	FormControl,
+	FormLabel,
+	Input,
+	Textarea,
+	Button,
+	Flex,
+	Spacer,
+	Icon,
+	Text,
+	Stack,
+	useColorMode
+} from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
 import NatureServerApi from '../api/natureServer';
@@ -11,7 +23,7 @@ import { getCoords } from '../samples/Maps/getCoords';
 import { GrLocation } from 'react-icons/gr';
 import LoadingSpinner from '../helpers/LoadingSpinner';
 import UploadImage from './SampleHelper.js/uploadImage';
-import customStyles from './SampleHelper.js/reactSelectStyle';
+// import { customStyles } from './SampleHelper.js/reactSelectStyle';
 
 function SampleForm({ sampleList }) {
 	const history = useNavigate();
@@ -127,6 +139,25 @@ function SampleForm({ sampleList }) {
 		scientificName: organism.scientificName
 	}));
 
+	const { colorMode } = useColorMode();
+	const customStyles = {
+		control: (provided) => ({
+			...provided,
+			backgroundColor: colorMode === 'dark' ? 'gray.800' : 'white'
+		}),
+		menu: (provided) => ({
+			...provided,
+			backgroundColor: colorMode === 'dark' ? 'gray.800' : 'white'
+		}),
+		option: (provided, state) => ({
+			...provided,
+			backgroundColor: state.isFocused
+				? colorMode === 'dark' ? '#A0AEC0' : 'gray.100'
+				: colorMode === 'dark' ? '#1A202C' : '#F7FAFC',
+			color: colorMode === 'dark' ? 'white' : 'black'
+		})
+	};
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<Flex>
@@ -148,11 +179,12 @@ function SampleForm({ sampleList }) {
 					<Input name="scientificName" type="text" value={formData.scientificName} onChange={handleChange} />
 				</FormControl>
 			</Flex>
-			<Flex>
+			<Stack direction={{ base: 'column', md: 'row' }}>
 				<FormControl p="1" id="quantity">
 					<FormLabel>Quantity</FormLabel>
 					<Input name="quantity" type="number" value={Number(formData.quantity)} onChange={handleChange} />
 				</FormControl>
+
 				<FormControl align="left">
 					<FormLabel>Location</FormLabel>
 					<Stack>
@@ -166,9 +198,9 @@ function SampleForm({ sampleList }) {
 						) : null}
 					</Stack>
 				</FormControl>
-			</Flex>
+			</Stack>
 
-			<Flex>
+			<Stack direction={{ base: 'column', md: 'row' }}>
 				<FormControl p="1" id="note">
 					<FormLabel>Note</FormLabel>
 					<Textarea name="note" value={formData.note} onChange={handleChange} />
@@ -178,7 +210,7 @@ function SampleForm({ sampleList }) {
 					<FormLabel>Image</FormLabel>
 					<UploadImage onFileChange={handleFileChange} />
 				</FormControl>
-			</Flex>
+			</Stack>
 
 			<Flex mt={4}>
 				<Spacer />

@@ -8,11 +8,10 @@ export const Logo = (props) => (
 		justifyContent="center"
 		w="150px"
 		h="150px"
-		
 		rounded="full"
 		boxShadow="md"
 		{...props}
 	>
-		<Image src={logo} alt="Logo" maxW="80%" maxH="80%" />
+		<Image src={logo} alt="Logo" maxW="80%" maxH="80%" borderRadius="full" />
 	</Box>
 );

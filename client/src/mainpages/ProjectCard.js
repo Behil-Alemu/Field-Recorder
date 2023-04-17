@@ -94,7 +94,6 @@ function ProjectCard({ id, folderName, updateProjects }) {
 					</Heading>
 				</CardHeader>
 				<CardBody>
-					<Text>Project # {id}</Text>
 					<Link to={`/homepage/${folderName}/${id}`}>
 						<Button type="submit" size="sm">
 							View samples
