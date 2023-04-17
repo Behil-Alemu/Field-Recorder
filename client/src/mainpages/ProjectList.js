@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 //import FoldersApi from '../api/FoldersApi';
 import UserContext from '../auth/UserContext';
 import LoadingSpinner from '../helpers/LoadingSpinner';

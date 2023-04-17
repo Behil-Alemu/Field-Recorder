@@ -7,7 +7,6 @@ import {
 	CardFooter,
 	Heading,
 	Button,
-	Text,
 	IconButton,
 	Editable,
 	EditableInput,
