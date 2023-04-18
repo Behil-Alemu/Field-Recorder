@@ -55,7 +55,7 @@ function SampleForm({ sampleList }) {
 		try {
 			let result = await SamplesApi.addSamples(formData);
 
-			console.log(result.success, '{{{{{{{{result}}}}}}}}');
+			console.log(result, '{{{{{{{{result}}}}}}}}');
 
 			if (result) {
 				await sampleList();
