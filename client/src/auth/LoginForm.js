@@ -13,9 +13,7 @@ import {
 	Input,
 	Stack,
 	Text,
-	useColorModeValue,
-	Divider,
-	Flex
+	useColorModeValue
 } from '@chakra-ui/react';
 import PasswordField from '../helpers/PasswordField';
 import { NotifyRed } from '../helpers/Alert';
