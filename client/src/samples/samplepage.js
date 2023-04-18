@@ -24,6 +24,7 @@ function Samplepage() {
 		try {
 			SamplesApi.token = token;
 			let result = await SamplesApi.getSamples(currentUser.username, folderName);
+			;
 			setSamples(result);
 		} catch (err) {
 			console.log(err);

@@ -29,6 +29,7 @@ class SamplesApi {
 
 	static async getSamples(username, folderName) {
 		let res = await this.request(`sample-entry/${username}/${folderName}`);
+		console.log(res, '{{{{{{results samplepage}}}}}}');
 		return res.samples;
 	}
 
@@ -41,7 +42,7 @@ class SamplesApi {
 	/**Add sample to data */
 	static async addSamples(data) {
 		let res = await this.request(`sample-entry/add`, data, 'post');
-		console.log(res)
+		console.log(res);
 		return res.newSample;
 	}
 
