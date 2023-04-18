@@ -10,8 +10,6 @@ import {
 	Input,
 	Stack,
 	Text,
-	Divider,
-	Flex,
 	useColorModeValue
 } from '@chakra-ui/react';
 import PasswordField from '../helpers/PasswordField';
@@ -61,8 +59,8 @@ function SignupForm({ signup }) {
 	function handleChange(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	}
-	const bg = useColorModeValue('white', 'gray.50', 'linear(to-r, green.50, green.200)');
-	const color = useColorModeValue('green.800', 'green.800');
+	const bg = useColorModeValue('white', 'gray.800');
+	const color = useColorModeValue('gray.800', 'white');
 
 	console.log(formErrors);
 	return (
@@ -82,7 +80,7 @@ function SignupForm({ signup }) {
 				<Box
 					py={{ base: '0', sm: '8' }}
 					px={{ base: '4', sm: '10' }}
-					bg={{ base: 'transparent', sm: 'bg-surface' }}
+					bg={useColorModeValue('transparent', 'gray.700')}
 					boxShadow={{ base: 'none', sm: 'md' }}
 					borderRadius={{ base: 'none', sm: 'xl' }}
 				>
