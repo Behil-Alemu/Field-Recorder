@@ -17,10 +17,7 @@ function Homepage() {
 	const [ formErrors, setFormErrors ] = useState([]);
 	const [ projects, setProjects ] = useState([]);
 
-	console.debug('Homepage', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
-
 	useEffect(function getProjectsOnMount() {
-		console.debug('ProjectList useEffect getProjectsOnMount');
 		projectList();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);

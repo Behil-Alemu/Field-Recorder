@@ -31,7 +31,7 @@ function App() {
 	const [ currentUser, setCurrentUser ] = useState(null);
 	const [ token, setToken ] = useLocalStorage(TOKEN_STORAGE_ID);
 
-	console.debug('App', 'infoReceived=', infoReceived, 'currentUser=', currentUser, 'token=', token);
+	
 
 	useEffect(
 		function fetchUserData() {

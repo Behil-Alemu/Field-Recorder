@@ -20,7 +20,10 @@ npm install
 To run the app, use the following command:
 `npm start`
 
-Then navigate to [Field Recorder](http://localhost:3000) in your web browser.
+Then navigate to [Field Recorder](https://field-recorder.netlify.app/) in your web browser.
+
+![Screenshot of Research Biologist Data Entry and Analysis App](/client/src/images/welcomePage.png "Research Biologist Data Entry and Analysis App")
+
 
 ## Credits
 This app was created by Behil Alemu using the following resources:

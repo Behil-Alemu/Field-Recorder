@@ -4,7 +4,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 
 class GoogleUserApi {
 	static async request(endpoint, data = {}, method = 'get') {
-		console.debug('API Call:', endpoint, data, method);
+		
 
 		const url = `${BASE_URL}/${endpoint}`;
 
@@ -22,7 +22,6 @@ class GoogleUserApi {
 
 	static async getUserByEmail(email) {
 		let res = await this.request(`users/google/${email}`);
-		console.log(res);
 		return res;
 	}
 	/** check if that username is already in the database   */
@@ -34,7 +33,6 @@ class GoogleUserApi {
 	/** add a new user with their google profile  */
 
 	static async addByGoogle(data) {
-		console.log(data);
 		let res = await this.request(`users/googleAdd`, data, 'post');
 		return res;
 	}

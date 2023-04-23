@@ -28,8 +28,6 @@ function ProjectCard({ id, folderName, updateProjects }) {
 	const [ sampleIdToDelete, setSampleIdToDelete ] = useState(0);
 	const onClose = () => setIsOpen(false);
 
-	console.debug('ProjectCard', 'id=', id, 'folderName=', folderName);
-
 	const handleDelete = (id) => {
 		setSampleIdToDelete(id);
 		setIsOpen(true);
@@ -52,7 +50,6 @@ function ProjectCard({ id, folderName, updateProjects }) {
 
 		try {
 			let result = await handleEditClick(id, dataFormat);
-			console.log(result);
 			history('/homepage');
 			return;
 		} catch (err) {

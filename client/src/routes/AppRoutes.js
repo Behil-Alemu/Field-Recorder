@@ -16,7 +16,6 @@ function AppRoutes({ login, signup }) {
 	console.debug('Routes', `login=${typeof login}`, `signup=${typeof signup}`);
 	const { currentUser } = useContext(UserContext);
 
-	console.log(currentUser, '{{{{{{{us}}}}}}}');
 	return (
 		<Box m={4} align="center">
 			<Routes>

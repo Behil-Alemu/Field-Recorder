@@ -5,8 +5,6 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
 class ImageApi {
 	
     static async request(endpoint, data = {}, method = 'get') {
-		console.debug('API Call:', endpoint, data, method);
-
 		const url = `${BASE_URL}/${endpoint}`;
 		
 		const params = method === 'get' ? data : {};
@@ -28,7 +26,6 @@ class ImageApi {
     /** Get auth to send image to imageKit.io  */
 
 	static async sendImage(data) {
-        console.log(data)
 		let res = await this.request(`images/add`,  data, 'post');
 		return res;
 	}

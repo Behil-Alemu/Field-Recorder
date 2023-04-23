@@ -11,8 +11,6 @@ class SamplesApi {
 	static token;
 
 	static async request(endpoint, data = {}, method = 'get') {
-		console.debug('API Call:', endpoint, data, method);
-
 		const url = `${BASE_URL}/${endpoint}`;
 		const headers = { Authorization: `Bearer ${SamplesApi.token}` };
 		const params = method === 'get' ? data : {};
@@ -29,7 +27,7 @@ class SamplesApi {
 
 	static async getSamples(username, folderName) {
 		let res = await this.request(`sample-entry/${username}/${folderName}`);
-		console.log(res, '{{{{{{results samplepage}}}}}}');
+
 		return res.samples;
 	}
 
@@ -42,7 +40,6 @@ class SamplesApi {
 	/**Add sample to data */
 	static async addSamples(data) {
 		let res = await this.request(`sample-entry/add`, data, 'post');
-		console.log(res);
 		return res.newSample;
 	}
 

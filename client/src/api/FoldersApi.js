@@ -11,7 +11,7 @@ class FoldersApi {
 	static token;
 
 	static async request(endpoint, data = {}, method = 'get') {
-		console.debug('API Call:', endpoint, data, method, 'token', this.token);
+		
 
 		const url = `${BASE_URL}/${endpoint}`;
 		const headers = { Authorization: `Bearer ${FoldersApi.token}` };
@@ -40,7 +40,6 @@ class FoldersApi {
 
 	/** Edit sample table*/
 	static async editFolder(id, data) {
-		console.log('PPppppp', data);
 		let res = await this.request(`folders/${id}`, data, 'patch');
 		return res.folders;
 	}

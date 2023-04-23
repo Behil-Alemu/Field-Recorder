@@ -23,7 +23,6 @@ import { getCoords } from '../samples/Maps/getCoords';
 import { GrLocation } from 'react-icons/gr';
 import LoadingSpinner from '../helpers/LoadingSpinner';
 import UploadImage from './SampleHelper.js/uploadImage';
-// import { customStyles } from './SampleHelper.js/reactSelectStyle';
 
 function SampleForm({ sampleList }) {
 	const history = useNavigate();
@@ -47,15 +46,11 @@ function SampleForm({ sampleList }) {
 	const [ coords, setCoords ] = useState({ lat: null, lng: null });
 	const [ isLoading, setIsLoading ] = useState(false);
 
-	console.debug('sampleForm', 'currentUser=', currentUser, 'formData=', formData, 'formErrors', formErrors);
-
 	async function handleSubmit(evt) {
 		evt.preventDefault();
 		SamplesApi.token = token;
 		try {
 			let result = await SamplesApi.addSamples(formData);
-
-			console.log(result, '{{{{{{{{result}}}}}}}}');
 
 			if (result) {
 				await sampleList();
@@ -109,7 +104,6 @@ function SampleForm({ sampleList }) {
 
 	useEffect(
 		function getSamplessOnMount() {
-			console.debug('SampleList useEffect getSamplesOnMount');
 			organismsList();
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps

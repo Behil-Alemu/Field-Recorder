@@ -50,7 +50,6 @@ const GoogleAuth = ({profileData}) => {
 		googleLogout();
 		setProfile(null);
 	};
-	console.log(profile);
 
 	return (
 		<div>

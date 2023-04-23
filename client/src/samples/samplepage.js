@@ -12,10 +12,8 @@ function Samplepage() {
 	const [ formErrors, setFormErrors ] = useState([]);
 	const { currentUser, token } = useContext(UserContext);
 	const [ samples, setSamples ] = useState([]);
-	console.debug('Samplepage', 'currentUser=', currentUser, 'samples=', samples, 'formErrors', formErrors);
 
 	useEffect(function getSamplessOnMount() {
-		console.debug('SampleList useEffect getSamplesOnMount');
 		sampleList();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -24,7 +22,6 @@ function Samplepage() {
 		try {
 			SamplesApi.token = token;
 			let result = await SamplesApi.getSamples(currentUser.username, folderName);
-			;
 			setSamples(result);
 		} catch (err) {
 			console.log(err);

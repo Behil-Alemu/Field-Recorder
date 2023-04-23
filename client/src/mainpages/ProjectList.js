@@ -11,10 +11,7 @@ function ProjectList({ projects, setProjects }) {
 	const bg = useColorModeValue('gray.100', 'gray.600');
 	const cardBg = useColorModeValue('red.50', 'red.800');
 
-	console.debug('ProjectList', 'currentUser=', currentUser, 'projects=', projects);
-
 	if (!projects) {
-		console.log('projects not hereee');
 		return <LoadingSpinner />;
 	}
 	const updateProjects = (deletedProjectId) => {

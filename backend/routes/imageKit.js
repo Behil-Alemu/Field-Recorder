@@ -1,8 +1,4 @@
-/* 
-  This is our backend server.
-  Replace YOUR_IMAGEKIT_URL_ENDPOINT, YOUR_IMAGEKIT_PUBLIC_KEY, 
-  and YOUR_IMAGEKIT_PRIVATE_KEY with actual values
-*/
+
 const express = require('express');
 const app = express();
 const ImageKit = require('imagekit');
@@ -29,15 +25,6 @@ router.get('/imgAuth', function(req, res) {
 	res.send(result);
 });
 
-// const uploadResponse = await ImageApi.sendImage(formData);
-// const urlEndpoint = 'https://ik.imagekit.io/kwjg3hkrf';
 
-// router.post('/add', async function(req, res) {
-// 	const formData = req.body;
-// 	const uploadResponse = await post(urlEndpoint, formData);
-
-// 	const uploadResult = await uploadResponse.json();
-// 	res.json(uploadResult);
-// });
 
 module.exports = router;

@@ -10,8 +10,7 @@ const getCoords = () => {
 		const success = (position) => {
 			const lat = position.coords.latitude;
 			const lng = position.coords.longitude;
-			console.log(`Latitude is: ${lat}`);
-			console.log(`Longitude is: ${lng}`);
+
 			resolve({ lat, lng });
 		};
 

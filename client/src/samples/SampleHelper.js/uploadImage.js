@@ -11,10 +11,6 @@ const onError = (err) => {
 	console.log('Error', err);
 };
 
-// const onSuccess = (res) => {
-// 	console.log('Success', res.url);
-// };
-
 const UploadImage = ({ onFileChange }) => {
 	const [ file, setFile ] = useState('');
 	const bg = useColorModeValue('gray.100', 'gray.600');
@@ -28,10 +24,6 @@ const UploadImage = ({ onFileChange }) => {
 				const file = event.target.files[0];
 				setFile(res.url);
 
-				// const response = await fetch(authenticationEndpoint);
-
-				// const { expire, signature } = await response.json();
-
 				const formData = new FormData();
 				formData.append('file', file);
 				formData.append('fileName', file.name);
@@ -40,16 +32,11 @@ const UploadImage = ({ onFileChange }) => {
 				formData.append('timestamp', response.expire);
 				formData.append('folder', '/images');
 
-				//const uploadResponse =
 				await fetch(urlEndpoint, {
 					method: 'POST',
 					body: formData,
 					mode: 'no-cors'
 				});
-
-				// const uploadResult = await uploadResponse.json();
-
-				// onFileChange(res.url);
 			} catch (error) {
 				console.log(error);
 			}

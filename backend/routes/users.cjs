@@ -9,7 +9,7 @@ const { ensureLoggedIn, authenticateJWT } = require('../middleware/auth.cjs');
 const { BadRequestError } = require('../expressError.cjs');
 const User = require('../models/users.cjs');
 const userUpdateSchema = require('../schemas/userUpdate.json');
-// const userGoogleRegisterSchema = require('../schemas/userGoogleRegisterSchema.json');
+
 
 const router = express.Router();
 

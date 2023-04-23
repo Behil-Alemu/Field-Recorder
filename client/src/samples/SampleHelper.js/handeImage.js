@@ -15,9 +15,6 @@ import {
 import noImage from '../../images/cat.png';
 
 const HandleImage = ({ url, name }) => {
-
-	console.log(url);
-	
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
