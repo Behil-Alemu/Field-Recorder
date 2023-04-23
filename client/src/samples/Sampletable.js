@@ -107,7 +107,7 @@ export default function Sampletable({ samples, folderName, folder_id, updateDele
 						<EditIcon
 							m={2}
 							onClick={() => {
-								history(`/editSample/${row.original.sample_id}`);
+								history(`/editSample/${folderName}/${row.original.sample_id}`);
 							}}
 						/>
 					</div>

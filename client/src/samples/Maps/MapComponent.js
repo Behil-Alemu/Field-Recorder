@@ -8,15 +8,15 @@ const containerStyle = {
 };
 
 function MapComponent({ samples }) {
-	
-
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey: key
 	});
+	
+	
+	const locations = samples.filter(sample => sample.location).map(sample => JSON.parse(sample.location));
 
-	const locations = samples.map((sample) => JSON.parse(sample.location));
-
+	
 
 	const center = locations[0];
 	const onLoad = (marker) => {

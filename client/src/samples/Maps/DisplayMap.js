@@ -10,7 +10,6 @@ import {
 	ModalCloseButton,
 	Button,
 	useDisclosure,
-	Image
 } from '@chakra-ui/react';
 import MapComponent from './MapComponent';
 

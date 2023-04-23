@@ -13,7 +13,8 @@ import {
 	Icon,
 	Stack,
 	Heading,
-	Text
+	Text,
+	useColorMode
 } from '@chakra-ui/react';
 import UserContext from '../auth/UserContext';
 import SamplesApi from '../api/SamplesApi';
@@ -30,7 +31,7 @@ function EditSamples() {
 	const [ organismToSearch, setOrganismToSearch ] = useState('');
 	const [ coords, setCoords ] = useState({ lat: null, long: null });
 	const { token } = useContext(UserContext);
-	const { sample_id } = useParams();
+	const { sample_id, folderName } = useParams();
 	const [ sample, setSample ] = useState({});
 	const [ isLoading, setIsLoading ] = useState(false);
 
@@ -60,8 +61,6 @@ function EditSamples() {
 		}
 	}
 
-	console.debug('EditSamples', 'sample=', sample, 'formData=', formData, 'formErrors', formErrors);
-
 	async function handleSubmit(evt) {
 		evt.preventDefault();
 		let editData = {
@@ -75,9 +74,9 @@ function EditSamples() {
 
 		SamplesApi.token = token;
 		let result = await SamplesApi.editSamples(sample_id, editData);
-		console.log(result, 'UPDATED !!!!!!!!!!!!!!!!!!!!!!');
-		if (result.success) {
-			history.push(`/homepage`);
+
+		if (result) {
+			history(`/homepage/${folderName}/${sample_id}`);
 		} else {
 			setFormErrors(result.errors);
 		}
@@ -129,7 +128,6 @@ function EditSamples() {
 		[ organismToSearch ]
 	);
 	const handleFileChange = (file) => {
-		console.log(file, '{{{{{{form file}}}}}}');
 		setFormData((prevState) => {
 			const formData = new FormData();
 			formData.append('imageUrl', file);
@@ -152,7 +150,24 @@ function EditSamples() {
 		id: organism.uniqueId,
 		scientificName: organism.scientificName
 	}));
-
+	const { colorMode } = useColorMode();
+	const customStyles = {
+		control: (provided) => ({
+			...provided,
+			backgroundColor: colorMode === 'dark' ? 'gray.800' : 'white'
+		}),
+		menu: (provided) => ({
+			...provided,
+			backgroundColor: colorMode === 'dark' ? 'gray.800' : 'white'
+		}),
+		option: (provided, state) => ({
+			...provided,
+			backgroundColor: state.isFocused
+				? colorMode === 'dark' ? '#A0AEC0' : 'gray.100'
+				: colorMode === 'dark' ? '#1A202C' : '#F7FAFC',
+			color: colorMode === 'dark' ? 'white' : 'black'
+		})
+	};
 	return (
 		<form onSubmit={handleSubmit}>
 			<Heading size="lg">Update {formData.commonName}</Heading>
@@ -160,6 +175,7 @@ function EditSamples() {
 			<FormControl p="1" id="common-name" isRequired>
 				<FormLabel>Common Name</FormLabel>
 				<Select
+					styles={customStyles}
 					options={organismsInfo}
 					value={formData.commonName}
 					onInputChange={handleInputChange}

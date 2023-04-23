@@ -47,7 +47,7 @@ function AppRoutes({ login, signup }) {
 
 				{/* <PrivateRoute path="/profile" element={<ProfileForm />} /> */}
 
-				<Route path="/editSample/:sample_id" element={<EditSamples />} />
+				<Route path="/editSample/:folderName/:sample_id" element={<EditSamples />} />
 
 				<Route path="/" element={<Navigate to="/" />} />
 			</Routes>
