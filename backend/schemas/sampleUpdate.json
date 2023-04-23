@@ -13,7 +13,6 @@
         "type": "integer"
       },
       "location": {
-        "type": "string"
       },
       "imageUrl": {
         "type": "string"

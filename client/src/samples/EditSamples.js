@@ -24,12 +24,13 @@ import { getCoords } from '../samples/Maps/getCoords';
 import { GrLocation } from 'react-icons/gr';
 import UploadImage from './SampleHelper.js/uploadImage';
 import LoadingSpinner from '../helpers/LoadingSpinner';
+import EditCoords from './Maps/EditCoords';
 function EditSamples() {
 	const history = useNavigate();
 	const [ formErrors, setFormErrors ] = useState([]);
 	const [ organisms, setOrganisms ] = useState([]);
 	const [ organismToSearch, setOrganismToSearch ] = useState('');
-	const [ coords, setCoords ] = useState({ lat: null, long: null });
+	const [ coords, setCoords ] = useState({ lat: null, lng: null });
 	const { token } = useContext(UserContext);
 	const { sample_id, folderName } = useParams();
 	const [ sample, setSample ] = useState({});
@@ -41,6 +42,7 @@ function EditSamples() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	const [ formData, setFormData ] = useState({});
+	console.debug(formData);
 
 	async function sampleList() {
 		try {
@@ -81,19 +83,14 @@ function EditSamples() {
 			setFormErrors(result.errors);
 		}
 	}
-
-	const handleGetCoords = async () => {
-		setIsLoading(true);
-		try {
-			const { lat, long } = await getCoords();
-
-			formData.location = `${lat},${long}`;
-			setCoords({ lat, long });
-		} catch (error) {
-			console.log(error);
-		}
-		setIsLoading(false);
+	const handleGetCoords = (lat, lng) => {
+		console.log(lat,lng)
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			location: { lat, lng }
+		}));
 	};
+
 	function handleChange(e) {
 		if (e && e.value) {
 			// // Handle change from Select component
@@ -203,13 +200,11 @@ function EditSamples() {
 			<FormControl align="left">
 				<FormLabel>Location</FormLabel>
 				<Stack>
-					<Button align="left" onClick={handleGetCoords}>
-						Pin Current Location <Icon as={GrLocation} />
-					</Button>
+					<EditCoords setCoords={setCoords} setIsLoading={setIsLoading} handleGetCoords={handleGetCoords} />
 					{isLoading ? (
 						<LoadingSpinner />
 					) : coords.lat ? (
-						<Text>{`Lat:${coords.lat} Lng:${coords.lng}`}</Text>
+						<Text>{`Lat:${formData.location.lat} Lng:${formData.location.lng}`}</Text>
 					) : null}
 				</Stack>
 			</FormControl>

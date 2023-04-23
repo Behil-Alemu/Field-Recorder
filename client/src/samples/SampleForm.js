@@ -45,6 +45,7 @@ function SampleForm({ sampleList }) {
 	const [ organismToSearch, setOrganismToSearch ] = useState('');
 	const [ coords, setCoords ] = useState({ lat: null, lng: null });
 	const [ isLoading, setIsLoading ] = useState(false);
+	console.debug(formData);
 
 	async function handleSubmit(evt) {
 		evt.preventDefault();
@@ -70,6 +71,7 @@ function SampleForm({ sampleList }) {
 		setIsLoading(true);
 		try {
 			const { lat, lng } = await getCoords();
+			console.log(lat, lng);
 			formData.location = { lat, lng };
 			setCoords({ lat, lng });
 		} catch (error) {
