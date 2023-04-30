@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { GoogleMap, useJsApiLoader, Marker, MarkerClusterer } from '@react-google-maps/api';
-const key = process.env.REACT_APP_GOOGLE_API_KEY;
+import React, { useState, useEffect } from 'react';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { getCoords } from './getCoords';
+import LoadingSpinner from '../../helpers/LoadingSpinner';
 
+const key = process.env.REACT_APP_GOOGLE_API_KEY;
 const containerStyle = {
 	width: '530px',
 	height: '400px'
@@ -12,10 +14,19 @@ function EditMapComponent({ onMapClick }) {
 		id: 'google-map-script',
 		googleMapsApiKey: key
 	});
-
+	const [ MapisLoading, setMapIsLoading ] = useState(false);
 	const [ clickedLocation, setClickedLocation ] = useState(null);
+	const [ center, setCenter ] = useState({ lat: 0, lng: 0 });
 
-    const center = { lat: 37.0902, lng: -95.7129 };
+	useEffect(() => {
+		async function fetchCoords() {
+			setMapIsLoading(true);
+			const { lat, lng } = await getCoords();
+			setCenter({ lat, lng });
+		}
+		fetchCoords();
+		setMapIsLoading(false);
+	}, []);
 
 	const handleClick = (event) => {
 		const lat = event.latLng.lat();
@@ -25,24 +36,14 @@ function EditMapComponent({ onMapClick }) {
 		onMapClick && onMapClick(lat, lng);
 	};
 
-	function createKey(position) {
-		if (!position) {
-			return null;
-		}
-		return position.lat + position.lng;
-	}
-
-	return isLoaded ? (
+	return isLoaded && !MapisLoading ? (
 		<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onClick={handleClick}>
 			{clickedLocation && <Marker position={clickedLocation} />}
-			<MarkerClusterer>
-				{(clusterer) => (
-					<Marker key={createKey(clickedLocation)} position={clickedLocation} clusterer={clusterer} />
-				)}
-			</MarkerClusterer>
 		</GoogleMap>
 	) : (
-		<div />
+		<div>
+			<LoadingSpinner />
+		</div>
 	);
 }
 

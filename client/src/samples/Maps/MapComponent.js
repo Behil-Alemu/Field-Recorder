@@ -12,7 +12,7 @@ function MapComponent({ samples }) {
 		id: 'google-map-script',
 		googleMapsApiKey: key
 	});
-	
+	// const locations = samples.map((sample) => JSON.parse(sample.location));
 	
 	const locations = samples.filter(sample => sample.location).map(sample => JSON.parse(sample.location));
 

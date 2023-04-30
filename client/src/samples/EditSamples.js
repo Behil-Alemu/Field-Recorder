@@ -84,7 +84,6 @@ function EditSamples() {
 		}
 	}
 	const handleGetCoords = (lat, lng) => {
-		console.log(lat,lng)
 		setFormData((prevFormData) => ({
 			...prevFormData,
 			location: { lat, lng }
@@ -204,7 +203,7 @@ function EditSamples() {
 					{isLoading ? (
 						<LoadingSpinner />
 					) : coords.lat ? (
-						<Text>{`Lat:${formData.location.lat} Lng:${formData.location.lng}`}</Text>
+						<Text>{`Lat:${coords.lat} Lng:${coords.lng}`}</Text>
 					) : null}
 				</Stack>
 			</FormControl>

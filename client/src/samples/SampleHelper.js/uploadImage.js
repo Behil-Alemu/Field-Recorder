@@ -5,7 +5,8 @@ import ImageApi from '../../api/ImageApi';
 
 const publicKey = process.env.REACT_APP_PUBLIC_KEY;
 const urlEndpoint = 'https://ik.imagekit.io/kwjg3hkrf';
-const authenticationEndpoint = 'http://localhost:3001/images/imgAuth';
+const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:3001';
+const authenticationEndpoint = `${BASE_URL}/images/imgAuth`;
 
 const onError = (err) => {
 	console.log('Error', err);
@@ -23,6 +24,7 @@ const UploadImage = ({ onFileChange }) => {
 
 				const file = event.target.files[0];
 				setFile(res.url);
+				console.log(file);
 
 				const formData = new FormData();
 				formData.append('file', file);
@@ -32,6 +34,8 @@ const UploadImage = ({ onFileChange }) => {
 				formData.append('timestamp', response.expire);
 				formData.append('folder', '/images');
 
+				console.log(formData)
+				
 				await fetch(urlEndpoint, {
 					method: 'POST',
 					body: formData,
