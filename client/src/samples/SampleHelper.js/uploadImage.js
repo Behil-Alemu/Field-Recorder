@@ -24,7 +24,6 @@ const UploadImage = ({ onFileChange }) => {
 
 				const file = event.target.files[0];
 				setFile(res.url);
-				console.log(file);
 
 				const formData = new FormData();
 				formData.append('file', file);
@@ -34,7 +33,6 @@ const UploadImage = ({ onFileChange }) => {
 				formData.append('timestamp', response.expire);
 				formData.append('folder', '/images');
 
-				console.log(formData)
 				
 				await fetch(urlEndpoint, {
 					method: 'POST',

@@ -71,7 +71,6 @@ function SampleForm({ sampleList }) {
 		setIsLoading(true);
 		try {
 			const { lat, lng } = await getCoords();
-			console.log(lat, lng);
 			formData.location = { lat, lng };
 			setCoords({ lat, lng });
 		} catch (error) {

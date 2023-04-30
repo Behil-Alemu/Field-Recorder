@@ -68,7 +68,6 @@ export default function Sampletable({ samples, folderName, folder_id, updateDele
 					const coords = row.original.location;
 
 					if (coords) {
-						console.log(coords)
 						const parseCoord = JSON.parse(coords);
 
 						const res = `Lat: ${parseCoord['lat']} Lng: ${parseCoord['lng']}`;
