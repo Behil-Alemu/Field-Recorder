@@ -26,6 +26,8 @@ function ProjectCard({ id, folderName, updateProjects }) {
 	let history = useNavigate();
 	const [ isOpen, setIsOpen ] = useState(false);
 	const [ sampleIdToDelete, setSampleIdToDelete ] = useState(0);
+	const [ newFolderName, setNewFolderName ] = useState(folderName);
+
 	const onClose = () => setIsOpen(false);
 
 	const handleDelete = (id) => {
@@ -44,16 +46,20 @@ function ProjectCard({ id, folderName, updateProjects }) {
 		}
 	};
 	const handleEdit = async (id, newValue) => {
-		let dataFormat = {
-			folderName: newValue
-		};
+		if (newValue !== folderName) {
+			setNewFolderName(newValue); // update folderName state to edited value
+			let dataFormat = {
+				folderName: newValue
+			};
 
-		try {
-			let result = await handleEditClick(id, dataFormat);
-			history('/homepage');
-			return;
-		} catch (err) {
-			console.error(err);
+			try {
+				let result = await handleEditClick(id, dataFormat);
+				console.log(result.folderName);
+				history('/homepage');
+				return;
+			} catch (err) {
+				console.error(err);
+			}
 		}
 	};
 	function EditableControls() {
@@ -90,7 +96,7 @@ function ProjectCard({ id, folderName, updateProjects }) {
 					</Heading>
 				</CardHeader>
 				<CardBody>
-					<Link to={`/homepage/${folderName}/${id}`}>
+					<Link to={`/homepage/${newFolderName}/${id}`}>
 						<Button type="submit" size="sm">
 							View samples
 						</Button>

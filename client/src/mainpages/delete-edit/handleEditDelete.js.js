@@ -13,7 +13,8 @@ async function handleDeleteClick(id) {
 async function handleEditClick(id, data) {
 	try {
 		let result = await FoldersApi.editFolder(id, data);
-		return result.success;
+		console.log(result);
+		return result;
 	} catch (err) {
 		return err;
 	}
