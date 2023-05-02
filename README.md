@@ -22,7 +22,7 @@ To run the app, use the following command:
 
 Then navigate to [Field Recorder](https://field-recorder.netlify.app/) in your web browser.
 
-[![Screenshot of Research Biologist Data Entry and Analysis App](/client/src/images/welcomePage.png)](/client/src/images/Demo2x.mp4 "Research Biologist Data Entry and Analysis App")
+[![Screenshot of Research Biologist Data Entry and Analysis App](/client/src/images/welcomePage.png)](/client/src/images/Demo2x.gif "Research Biologist Data Entry and Analysis App")
 
 
 
