@@ -36,6 +36,18 @@ app.use('/images', imagesRoutes);
 app.use(function(req, res, next) {
 	return next(new NotFoundError());
 });
+// Define the allowed origins (include your Netlify domain)
+const allowedOrigins = ['https://field-recorder.netlify.app'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
 
 /** Generic error handler; anything unhandled goes here. */
 app.use(function(err, req, res, next) {
