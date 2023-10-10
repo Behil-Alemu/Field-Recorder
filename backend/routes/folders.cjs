@@ -57,7 +57,6 @@ router.patch('/:id', ensureLoggedIn, async function(req, res, next) {
 			const errs = validator.errors.map((e) => e.stack);
 			throw new BadRequestError(errs);
 		}
-		
 
 		const editedFolder = await Folder.update(req.params.id, req.body);
 		return res.json({ editedFolder });

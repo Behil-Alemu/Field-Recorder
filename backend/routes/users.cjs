@@ -10,7 +10,6 @@ const { BadRequestError } = require('../expressError.cjs');
 const User = require('../models/users.cjs');
 const userUpdateSchema = require('../schemas/userUpdate.json');
 
-
 const router = express.Router();
 
 /** GET /[username] => { user }*/
