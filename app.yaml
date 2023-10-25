@@ -1,10 +1,10 @@
-runtime: nodejs16
-env_variables:
-  REACT_APP_GOOGLE_API_KEY: your_api_key
-  REACT_APP_PUBLIC_KEY: your_public_key
-  REACT_APP_BASE_URL: https://fieldrecorder-capstone-two.herokuapp.com
-handlers:
-  - url: /static
-    static_dir: client/build/static
-  - url: /.*
-    script: auto
+# runtime: nodejs16
+# env_variables:
+#   REACT_APP_GOOGLE_API_KEY: your_api_key
+#   REACT_APP_PUBLIC_KEY: your_public_key
+#   REACT_APP_BASE_URL: https://fieldrecorder-capstone-two.herokuapp.com
+# handlers:
+#   - url: /static
+#     static_dir: client/build/static
+#   - url: /.*
+#     script: auto
