@@ -4,7 +4,8 @@
   "description": "My app description",
   "main": "backend/server.cjs",
   "scripts": {
-    "start": "cd backend && npm install && npm start"
+    "start": "cd backend && npm install && npm start",
+    "knex": "knex"
    
   },
   "author": "Behil",
