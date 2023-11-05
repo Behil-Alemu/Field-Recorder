@@ -5,7 +5,7 @@
   "main": "backend/server.cjs",
   "scripts": {
     "start": "cd backend && npm install && npm start",
-    "knex": "knex"
+    "knex": "knex --knexfile backend/knexfile.js"
    
   },
   "author": "Behil",
